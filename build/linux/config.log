@@ -1,0 +1,239 @@
+# project gauge (5.5.0) configured on Fri Nov 15 17:59:46 2013 by
+# waf 1.7.12 (abi 98, python 20704f0 on linux2)
+# using ./waf configure --bundle=ALL --bundle-path=~/steinwurf_projects/bundle_dependencies
+#
+----------------------------------------
+Setting top to
+/home/nestor/steinwurf_projects/cpuid
+----------------------------------------
+Setting out to
+/home/nestor/steinwurf_projects/cpuid/build/linux
+----------------------------------------
+Checking for program git
+/usr/bin/git
+find program=['git'] paths=['/usr/lib/lightdm/lightdm', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/home/nestor/steinwurf_projects/ns-3-dev/bake'] var='GIT' -> '/usr/bin/git'
+['/usr/bin/git', 'version']
+out: git version 1.8.1.2
+
+['/usr/bin/git', 'config', '--get', 'remote.origin.url']
+out: https://github.com/steinwurf-internal/cpuid.git
+
+----------------------------------------
+Resolve dependency waf-tools
+Creating new repository folder: /home/nestor/steinwurf_projects/bundle_dependencies/waf-tools-a5b14c
+['/usr/bin/git', 'clone', 'https://github.com/steinwurf/external-waf-tools.git', '/home/nestor/steinwurf_projects/bundle_dependencies/waf-tools-a5b14c/master']
+out: Cloning into '/home/nestor/steinwurf_projects/bundle_dependencies/waf-tools-a5b14c/master'...
+
+['/usr/bin/git', 'pull']
+out: Already up-to-date.
+
+['/usr/bin/git', 'tag', '-l']
+out: 1.0.0
+1.0.1
+1.0.2
+1.0.3
+1.0.4
+1.0.5
+1.0.6
+1.1.0
+1.2.0
+1.2.1
+1.3.0
+1.3.1
+1.4.0
+1.5.0
+1.5.1
+2.0.0
+2.1.0
+2.1.1
+2.10.0
+2.10.1
+2.11.0
+2.12.0
+2.13.0
+2.14.0
+2.15.0
+2.2.0
+2.3.0
+2.4.0
+2.5.0
+2.6.0
+2.7.0
+2.8.0
+2.9.0
+
+['/usr/bin/git', 'clone', '-l', '--no-hardlinks', '/home/nestor/steinwurf_projects/bundle_dependencies/waf-tools-a5b14c/master', '/home/nestor/steinwurf_projects/bundle_dependencies/waf-tools-a5b14c/2.15.0']
+out: Cloning into '/home/nestor/steinwurf_projects/bundle_dependencies/waf-tools-a5b14c/2.15.0'...
+done.
+
+['/usr/bin/git', 'checkout', '2.15.0']
+err: Note: checking out '2.15.0'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b new_branch_name
+
+HEAD is now at 6a50ce0... Preparing to create tag 2.15.0
+
+/home/nestor/steinwurf_projects/bundle_dependencies/waf-tools-a5b14c/2.15.0
+----------------------------------------
+Resolve dependency gtest
+Creating new repository folder: /home/nestor/steinwurf_projects/bundle_dependencies/gtest-4ed968
+['/usr/bin/git', 'clone', 'https://github.com/steinwurf/external-gtest.git', '/home/nestor/steinwurf_projects/bundle_dependencies/gtest-4ed968/master']
+out: Cloning into '/home/nestor/steinwurf_projects/bundle_dependencies/gtest-4ed968/master'...
+
+['/usr/bin/git', 'pull']
+out: Already up-to-date.
+
+['/usr/bin/git', 'tag', '-l']
+out: 1.0.3
+1.0.4
+2.0.0
+2.0.1
+2.0.2
+2.0.3
+2.0.4
+2.0.5
+2.0.6
+2.0.7
+2.1.0
+2.1.1
+2.1.2
+2.1.3
+
+['/usr/bin/git', 'clone', '-l', '--no-hardlinks', '/home/nestor/steinwurf_projects/bundle_dependencies/gtest-4ed968/master', '/home/nestor/steinwurf_projects/bundle_dependencies/gtest-4ed968/2.1.3']
+out: Cloning into '/home/nestor/steinwurf_projects/bundle_dependencies/gtest-4ed968/2.1.3'...
+done.
+
+['/usr/bin/git', 'checkout', '2.1.3']
+err: Note: checking out '2.1.3'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b new_branch_name
+
+HEAD is now at 8028aea... Preparing to create tag 2.1.3
+
+/home/nestor/steinwurf_projects/bundle_dependencies/gtest-4ed968/2.1.3
+----------------------------------------
+Resolve dependency boost
+Creating new repository folder: /home/nestor/steinwurf_projects/bundle_dependencies/boost-11f274
+['/usr/bin/git', 'clone', 'https://github.com/steinwurf/external-boost-light.git', '/home/nestor/steinwurf_projects/bundle_dependencies/boost-11f274/master']
+out: Cloning into '/home/nestor/steinwurf_projects/bundle_dependencies/boost-11f274/master'...
+
+['/usr/bin/git', 'pull']
+out: Already up-to-date.
+
+['/usr/bin/git', 'tag', '-l']
+out: 1.0.0
+1.1.0
+
+['/usr/bin/git', 'clone', '-l', '--no-hardlinks', '/home/nestor/steinwurf_projects/bundle_dependencies/boost-11f274/master', '/home/nestor/steinwurf_projects/bundle_dependencies/boost-11f274/1.1.0']
+out: Cloning into '/home/nestor/steinwurf_projects/bundle_dependencies/boost-11f274/1.1.0'...
+done.
+
+['/usr/bin/git', 'checkout', '1.1.0']
+err: Note: checking out '1.1.0'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b new_branch_name
+
+HEAD is now at 8a2269d... Preparing to create tag 1.1.0
+
+/home/nestor/steinwurf_projects/bundle_dependencies/boost-11f274/1.1.0
+----------------------------------------
+Resolve dependency tables
+Creating new repository folder: /home/nestor/steinwurf_projects/bundle_dependencies/tables-c83c83
+['/usr/bin/git', 'clone', 'https://github.com/steinwurf/tables.git', '/home/nestor/steinwurf_projects/bundle_dependencies/tables-c83c83/master']
+out: Cloning into '/home/nestor/steinwurf_projects/bundle_dependencies/tables-c83c83/master'...
+
+['/usr/bin/git', 'pull']
+out: Already up-to-date.
+
+['/usr/bin/git', 'tag', '-l']
+out: 1.0.0
+2.0.0
+3.0.0
+3.0.1
+4.0.0
+4.1.0
+
+['/usr/bin/git', 'clone', '-l', '--no-hardlinks', '/home/nestor/steinwurf_projects/bundle_dependencies/tables-c83c83/master', '/home/nestor/steinwurf_projects/bundle_dependencies/tables-c83c83/1.0.0']
+out: Cloning into '/home/nestor/steinwurf_projects/bundle_dependencies/tables-c83c83/1.0.0'...
+done.
+
+['/usr/bin/git', 'checkout', '1.0.0']
+err: Note: checking out '1.0.0'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b new_branch_name
+
+HEAD is now at 1aaebf0... Preparing to create tag 1.0.0
+
+/home/nestor/steinwurf_projects/bundle_dependencies/tables-c83c83/1.0.0
+----------------------------------------
+Using the mkspec:
+cxx_default
+----------------------------------------
+Checking for 'g++' (C++ compiler)
+find program=['g++', 'c++'] paths=['/usr/lib/lightdm/lightdm', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/home/nestor/steinwurf_projects/ns-3-dev/bake'] var='CXX' -> '/usr/bin/g++'
+find program=['ar'] paths=['/usr/lib/lightdm/lightdm', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/home/nestor/steinwurf_projects/ns-3-dev/bake'] var='AR' -> '/usr/bin/ar'
+find program=['gcc', 'cc'] paths=['/usr/lib/lightdm/lightdm', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/home/nestor/steinwurf_projects/ns-3-dev/bake'] var='CC' -> '/usr/bin/gcc'
+(tool ar is already loaded, skipping)
+/usr/bin/g++
+----------------------------------------
+Checking for library pthread
+==>
+
+int main(int argc, char **argv) {
+	(void)argc; (void)argv;
+	return 0;
+}
+
+<==
+[1/2] [32mcxx: build/linux/.conf_check_5fee3fd83c7db1cf859ce238d40e5919/test.cpp -> build/linux/.conf_check_5fee3fd83c7db1cf859ce238d40e5919/testbuild/test.cpp.1.o
+[0m
+['/usr/bin/g++', '-O2', '-ftree-vectorize', '-Wextra', '-Wall', '-std=c++0x', '../test.cpp', '-c', '-o', 'test.cpp.1.o']
+[2/2] [33mcxxprogram: build/linux/.conf_check_5fee3fd83c7db1cf859ce238d40e5919/testbuild/test.cpp.1.o -> build/linux/.conf_check_5fee3fd83c7db1cf859ce238d40e5919/testbuild/testprog
+[0m
+['/usr/bin/g++', '-s', 'test.cpp.1.o', '-o', '/home/nestor/steinwurf_projects/cpuid/build/linux/.conf_check_5fee3fd83c7db1cf859ce238d40e5919/testbuild/testprog', '-Wl,-Bstatic', '-Wl,-Bdynamic', '-lpthread']
+yes
+----------------------------------------
+Checking for library rt
+==>
+
+int main(int argc, char **argv) {
+	(void)argc; (void)argv;
+	return 0;
+}
+
+<==
+[1/2] [32mcxx: build/linux/.conf_check_b100d22b1ded7b57a1e0698fd4b27a67/test.cpp -> build/linux/.conf_check_b100d22b1ded7b57a1e0698fd4b27a67/testbuild/test.cpp.1.o
+[0m
+['/usr/bin/g++', '-O2', '-ftree-vectorize', '-Wextra', '-Wall', '-std=c++0x', '../test.cpp', '-c', '-o', 'test.cpp.1.o']
+[2/2] [33mcxxprogram: build/linux/.conf_check_b100d22b1ded7b57a1e0698fd4b27a67/testbuild/test.cpp.1.o -> build/linux/.conf_check_b100d22b1ded7b57a1e0698fd4b27a67/testbuild/testprog
+[0m
+['/usr/bin/g++', '-s', 'test.cpp.1.o', '-o', '/home/nestor/steinwurf_projects/cpuid/build/linux/.conf_check_b100d22b1ded7b57a1e0698fd4b27a67/testbuild/testprog', '-Wl,-Bstatic', '-Wl,-Bdynamic', '-lrt']
+yes
