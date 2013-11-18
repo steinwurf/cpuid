@@ -4,7 +4,7 @@
 import os
 
 APPNAME = 'cpuid'
-VERSION = '5.5.0'
+VERSION = '1.0.0'
 
 def recurse_helper(ctx, name):
 
@@ -26,24 +26,6 @@ def options(opt):
             git_repository = 'github.com/steinwurf/external-waf-tools.git',
             major_version = 2))
 
-    bundle.add_dependency(opt,
-        resolve.ResolveGitMajorVersion(
-            name = 'gtest',
-            git_repository = 'github.com/steinwurf/external-gtest.git',
-            major_version = 2))
-
-    bundle.add_dependency(opt,
-        resolve.ResolveGitMajorVersion(
-            name = 'boost',
-            git_repository = 'github.com/steinwurf/external-boost-light.git',
-            major_version = 1))
-
-    bundle.add_dependency(opt,
-        resolve.ResolveGitMajorVersion(
-            name = 'tables',
-            git_repository = 'github.com/steinwurf/tables.git',
-            major_version = 1))
-
     opt.load('wurf_dependency_bundle')
     opt.load('wurf_tools')
 
@@ -57,24 +39,10 @@ def configure(conf):
         conf.load_external_tool('install_path', 'wurf_install_path')
         conf.load_external_tool('project_gen', 'wurf_project_generator')
 
-        recurse_helper(conf, 'boost')
-        recurse_helper(conf, 'gtest')
-        recurse_helper(conf, 'tables')
-
 def build(bld):
 
-    bld.stlib(features = 'cxx',
-              source   = bld.path.ant_glob('src/cpuid/*.cpp'),
-              target   = 'cpuid',
-              export_includes = ['src'],
-              use = ['tables', 'boost_chrono', 'boost_system',
-              'boost_program_options'])
-
-    if bld.is_toplevel():
-        recurse_helper(bld, 'boost')
-        recurse_helper(bld, 'gtest')
-        recurse_helper(bld, 'tables')
-
-        #bld.recurse('examples/sample_benchmarks')
-        #bld.recurse('test')
+    bld.program(features = 'cxx',
+              source = 'src/cpuid/cpuid.cpp',
+              target = 'cpuid.o',
+              use = [])
 
