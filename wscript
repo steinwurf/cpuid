@@ -12,7 +12,7 @@ def recurse_helper(ctx, name):
         ctx.fatal('Load a tool to find %s as system dependency' % name)
     else:
         p = ctx.dependency_path(name)
-        ctx.recurse(p)
+        ctx.recurse([p])
 
 def options(opt):
 
