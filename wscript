@@ -42,7 +42,7 @@ def configure(conf):
 def build(bld):
 
     bld.program(features = 'cxx',
-              source = 'src/cpuid/cpuid.cpp',
+              source = 'test/cpuid.cpp',
               target = 'cpuid.o',
               use = [])
 
