@@ -2,11 +2,14 @@
 #include <gtest/gtest.h>
 #include <cpuid/cpuinfo_x86.hpp>
 
-TEST(cpuninfo_x86_tests, basic_structure)
+TEST(cpuninfo_x86_tests, basic_commands)
 {
-    cpuinfo_x86 m_cpuinfo;
+    cpuid::cpuinfo_x86 m_cpuinfo;
 
-    cpuinfo_x86.print_vendorID();
-    cpuinfo_x86.print_EX_registers();
+    int eax_input = 0;
+
+    m_cpuinfo.get_cpuinfo(eax_input);
+    m_cpuinfo.print_vendorID();
+    m_cpuinfo.print_EX_registers(eax_input);
 
 }

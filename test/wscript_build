@@ -3,6 +3,6 @@
 
 bld.program(
     features = 'cxx test',
-    source   = ['cpuid_tests.cpp'] + bld.path.ant_glob('src/test_cpuinfo_x86.cpp'),
+    source   = ['cpuid_tests.cpp'] + bld.path.ant_glob('src/test_*.cpp'),
     target   = 'cpuid_tests',
-    use = ['gtest'])
+    use = ['cpuid','gtest'])

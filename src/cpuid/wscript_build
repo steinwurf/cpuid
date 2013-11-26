@@ -1,0 +1,10 @@
+# encoding: utf-8
+
+bld.stlib \
+(
+    features = 'cxx',
+    source   = bld.path.ant_glob('**/*.cpp'),
+    target   = 'cpuid',
+    use      = [],
+    export_includes = ['..']
+)
