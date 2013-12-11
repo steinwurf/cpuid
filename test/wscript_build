@@ -1,0 +1,8 @@
+#! /usr/bin/env python
+# encoding: utf-8
+
+bld.program(
+    features = 'cxx test',
+    source   = ['cpuid_tests.cpp'] + bld.path.ant_glob('src/test_*.cpp'),
+    target   = 'cpuid_tests',
+    use = ['cpuid','gtest'])
