@@ -10,25 +10,25 @@ namespace cpuid
         public:
 
             //Prints vendor ID as a string
-            void print_vendorID()
+            void print_vendor_id()
             {
 
                 printf("\n\n");
 
                 //Print EBX register
-                for (int i = 0; i<4; i++)
+                for (uint8_t i = 0; i<4; i++)
                 {
                     printf("%c" ,((char *)EX_registers)[i+4]);
                 }
 
                 //Print EDX register
-                for (int i = 0; i<4; i++)
+                for (uint8_t i = 0; i<4; i++)
                 {
                     printf("%c" ,((char *)EX_registers)[i+12]);
                 }
 
                 //Print ECX register
-                for (int i = 0; i<4; i++) {
+                for (uint8_t i = 0; i<4; i++) {
                     printf("%c" ,((char *)EX_registers)[i+8]);
                 }
 
@@ -37,7 +37,7 @@ namespace cpuid
             }
 
             //Print EX registers values
-            void print_EX_registers(int eax_input)
+            void print_EX_registers(uint8_t eax_input)
             {
 
                 printf("Register values in HEX for request EAX = %d:\n",
@@ -49,7 +49,7 @@ namespace cpuid
             }
 
             //Assembler function that gets the CPU info
-            void get_cpuinfo(int eax_input)
+            void get_cpuinfo(uint8_t eax_input)
             {
 
                 __asm__("cpuid"
