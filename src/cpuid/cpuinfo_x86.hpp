@@ -14,16 +14,6 @@ namespace cpuid
             cpuinfo_x86()
             {
                 //Create instruction set map and fill it
-                m_instruction_set_map.insert(std::make_pair("FPU",std::make_pair(3,0)));
-                m_instruction_set_map.insert(std::make_pair("MMX",std::make_pair(3,23)));
-                m_instruction_set_map.insert(std::make_pair("SSE",std::make_pair(3,25)));
-                m_instruction_set_map.insert(std::make_pair("SSE2",std::make_pair(3,26)));
-                m_instruction_set_map.insert(std::make_pair("SSE3",std::make_pair(2,0)));
-                m_instruction_set_map.insert(std::make_pair("SSSE3",std::make_pair(2,9)));
-                m_instruction_set_map.insert(std::make_pair("SSE4.1",std::make_pair(2,19)));
-                m_instruction_set_map.insert(std::make_pair("SSE4.2",std::make_pair(2,20)));
-                m_instruction_set_map.insert(std::make_pair("PCLMULQDQ",std::make_pair(2,1)));
-                m_instruction_set_map.insert(std::make_pair("AVX",std::make_pair(2,28)));
             }
 
             //Prints vendor ID as a string
@@ -105,10 +95,22 @@ namespace cpuid
             //Register container
             typedef std::pair<uint8_t,uint8_t> register_map;
             //Instruction set map container
-            typedef std::map<std::string,register_map> instruction_set_map;
+            typedef const std::map<std::string,register_map> instruction_set_map;
             //Register values
             uint32_t EX_registers[4];
-            instruction_set_map m_instruction_set_map;
+            static instruction_set_map m_instruction_set_map;
     };
 
+    cpuinfo_x86::instruction_set_map cpuinfo_x86::m_instruction_set_map = {
+        {"FPU",std::make_pair(3,0)},
+        {"MMX",std::make_pair(3,23)},
+        {"SSE",std::make_pair(3,25)},
+        {"SSE2",std::make_pair(3,26)},
+        {"SSE3",std::make_pair(2,0)},
+        {"SSSE3",std::make_pair(2,9)},
+        {"SSE4.1",std::make_pair(2,19)},
+        {"SSE4.2",std::make_pair(2,20)},
+        {"PCLMULQDQ",std::make_pair(2,1)},
+        {"AVX",std::make_pair(2,28)}
+    };
 }
