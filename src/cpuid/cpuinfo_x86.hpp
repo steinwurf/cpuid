@@ -11,6 +11,21 @@ namespace cpuid
     {
         public:
 
+            cpuinfo_x86()
+            {
+                //Create instruction set map and fill it
+                m_instruction_set_map.insert(std::make_pair("FPU",std::make_pair(3,0)));
+                m_instruction_set_map.insert(std::make_pair("MMX",std::make_pair(3,23)));
+                m_instruction_set_map.insert(std::make_pair("SSE",std::make_pair(3,25)));
+                m_instruction_set_map.insert(std::make_pair("SSE2",std::make_pair(3,26)));
+                m_instruction_set_map.insert(std::make_pair("SSE3",std::make_pair(2,0)));
+                m_instruction_set_map.insert(std::make_pair("SSSE3",std::make_pair(2,9)));
+                m_instruction_set_map.insert(std::make_pair("SSE4.1",std::make_pair(2,19)));
+                m_instruction_set_map.insert(std::make_pair("SSE4.2",std::make_pair(2,20)));
+                m_instruction_set_map.insert(std::make_pair("PCLMULQDQ",std::make_pair(2,1)));
+                m_instruction_set_map.insert(std::make_pair("AVX",std::make_pair(2,28)));
+            }
+
             //Prints vendor ID as a string
             void print_vendor_id()
             {
@@ -64,29 +79,6 @@ namespace cpuid
             //Function to get the register and flag values to check
             bool has_instruction_set(std::string instruction_set_name)
             {
-
-                //Create instruction set map and fill it
-
-                //Register container
-                typedef std::pair<uint8_t,uint8_t> register_map;
-
-                //Instruction set map container
-                typedef std::map<std::string,register_map> instruction_set_map;
-
-                instruction_set_map m_instruction_set_map;
-
-                m_instruction_set_map.insert(std::make_pair("FPU",std::make_pair(3,0)));
-                m_instruction_set_map.insert(std::make_pair("MMX",std::make_pair(3,23)));
-                m_instruction_set_map.insert(std::make_pair("SSE",std::make_pair(3,25)));
-                m_instruction_set_map.insert(std::make_pair("SSE2",std::make_pair(3,26)));
-                m_instruction_set_map.insert(std::make_pair("SSE3",std::make_pair(2,0)));
-                m_instruction_set_map.insert(std::make_pair("SSSE3",std::make_pair(2,9)));
-                m_instruction_set_map.insert(std::make_pair("SSE4.1",std::make_pair(2,19)));
-                m_instruction_set_map.insert(std::make_pair("SSE4.2",std::make_pair(2,20)));
-                m_instruction_set_map.insert(std::make_pair("PCLMULQDQ",std::make_pair(2,1)));
-                m_instruction_set_map.insert(std::make_pair("AVX",std::make_pair(2,28)));
-
-
                 uint8_t register_id = m_instruction_set_map.find(instruction_set_name)->second.first;
                 uint8_t flag = m_instruction_set_map.find(instruction_set_name)->second.second;
 
@@ -110,9 +102,13 @@ namespace cpuid
             }
 
         private:
-
+            //Register container
+            typedef std::pair<uint8_t,uint8_t> register_map;
+            //Instruction set map container
+            typedef std::map<std::string,register_map> instruction_set_map;
             //Register values
             uint32_t EX_registers[4];
+            instruction_set_map m_instruction_set_map;
     };
 
 }
