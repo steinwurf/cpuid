@@ -11,106 +11,125 @@ namespace cpuid
     {
         public:
 
+            // Default constructor for feature detection
             cpuinfo_x86()
             {
-                //Create instruction set map and fill it
+                get_cpuinfo(1);
             }
 
-            //Prints vendor ID as a string
-            void print_vendor_id()
+            // Overload constructor for vendor_id detection
+            /// @input EAX input = 0
+            cpuinfo_x86(uint8_t eax_input)
+            {
+                get_cpuinfo(eax_input);
+            }
+
+            /// @return Vendor ID as a string
+            std::string vendor_id() const
             {
 
-                printf("\n\n");
+                std::string vendor_id = ("");
 
-                //Print EBX register
+                // Get EBX register char values
                 for (uint8_t i = 0; i<4; i++)
                 {
-                    printf("%c" ,((char *)EX_registers)[i+4]);
+                    vendor_id += ((char*)&m_ebx)[i];
                 }
 
-                //Print EDX register
+                // Get EDX register char values
                 for (uint8_t i = 0; i<4; i++)
                 {
-                    printf("%c" ,((char *)EX_registers)[i+12]);
+                    vendor_id += ((char*)&m_edx)[i];
                 }
 
-                //Print ECX register
-                for (uint8_t i = 0; i<4; i++) {
-                    printf("%c" ,((char *)EX_registers)[i+8]);
+                // Get ECX register char values
+                for (uint8_t i = 0; i<4; i++)
+                {
+                    vendor_id += ((char*)&m_ecx)[i];
                 }
 
-                printf("\n\n");
-
+                return vendor_id;
             }
 
-            //Print EX registers values
-            void print_EX_registers(uint8_t eax_input)
-            {
-
-                printf("Register values in HEX for request EAX = %d:\n",
-                       eax_input);
-                printf("EAX: %#010x\n",EX_registers[0]);
-                printf("EBX: %#010x\n",EX_registers[1]);
-                printf("ECX: %#010x\n",EX_registers[2]);
-                printf("EDX: %#010x\n\n",EX_registers[3]);
-            }
-
-            //Assembler function that gets the CPU info
+            /// @return CPU info in ex registers: m_eax,m_ebx,m_ecx,m_edx
             void get_cpuinfo(uint8_t eax_input)
             {
-
                 __asm__("cpuid"
-                        : "=a"(EX_registers[0]), "=b"(EX_registers[1]),
-                          "=c"(EX_registers[2]), "=d"(EX_registers[3])
+                        : "=a"(m_eax), "=b"(m_ebx),
+                          "=c"(m_ecx), "=d"(m_edx)
                         : "a"(eax_input) );
-
             }
 
-            //Function to get the register and flag values to check
-            bool has_instruction_set(std::string instruction_set_name)
+            /// @return true if the CPU supports the FPU instruction set
+            bool has_fpu() const
             {
-                uint8_t register_id = m_instruction_set_map.find(instruction_set_name)->second.first;
-                uint8_t flag = m_instruction_set_map.find(instruction_set_name)->second.second;
-
-                return(register_flag(register_id,flag));
+                return m_edx & (1 << 0);
             }
 
-            //Check the required register and flag
-            bool register_flag(uint8_t register_id,uint8_t flag)
+            /// @return true if the CPU supports the MMX instruction set
+            bool has_mmx() const
             {
+                return m_edx & (1 << 23);
+            }
 
-                get_cpuinfo(1);
+            /// @return true if the CPU supports the SSE instruction set
+            bool has_sse() const
+            {
+                return m_edx & (1 << 25);
+            }
 
-                if(EX_registers[register_id] & (1 << flag))
-                {
-                    return(true);
-                }
-                else
-                {
-                    return(false);
-                }
+            /// @return true if the CPU supports the SSE2 instruction set
+            bool has_sse2() const
+            {
+                return m_edx & (1 << 26);
+            }
+
+            /// @return true if the CPU supports the SSE3 instruction set
+            bool has_sse3() const
+            {
+                return m_ecx & (1 << 0);
+            }
+
+            /// @return true if the CPU supports the SSSE3 instruction set
+            bool has_ssse3() const
+            {
+                return m_ecx & (1 << 9);
+            }
+
+            /// @return true if the CPU supports the SSE4.1 instruction set
+            bool has_sse4_1() const
+            {
+                return m_ecx & (1 << 19);
+            }
+
+            /// @return true if the CPU supports the SSE4.2 instruction set
+            bool has_sse4_2() const
+            {
+                return m_ecx & (1 << 20);
+            }
+
+            /// @return true if the CPU supports the PCLMULQDQ instruction set
+            bool has_pclmulqdq() const
+            {
+                return m_ecx & (1 << 1);
+            }
+
+            /// @return true if the CPU supports the AVX instruction set
+            bool has_avx() const
+            {
+                return m_ecx & (1 << 28);
             }
 
         private:
-            //Register container
-            typedef std::pair<uint8_t,uint8_t> register_map;
-            //Instruction set map container
-            typedef const std::map<std::string,register_map> instruction_set_map;
-            //Register values
-            uint32_t EX_registers[4];
-            static instruction_set_map m_instruction_set_map;
-    };
 
-    cpuinfo_x86::instruction_set_map cpuinfo_x86::m_instruction_set_map = {
-        {"FPU",std::make_pair(3,0)},
-        {"MMX",std::make_pair(3,23)},
-        {"SSE",std::make_pair(3,25)},
-        {"SSE2",std::make_pair(3,26)},
-        {"SSE3",std::make_pair(2,0)},
-        {"SSSE3",std::make_pair(2,9)},
-        {"SSE4.1",std::make_pair(2,19)},
-        {"SSE4.2",std::make_pair(2,20)},
-        {"PCLMULQDQ",std::make_pair(2,1)},
-        {"AVX",std::make_pair(2,28)}
+            // EAX, EBX, ECX and EDX registers
+            uint32_t m_eax;
+            uint32_t m_ebx;
+            uint32_t m_ecx;
+            uint32_t m_edx;
+
+            // EAX input to get_cpuinfo
+            uint8_t eax_input;
     };
 }
+
