@@ -1,8 +1,6 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdint.h>
-#include <map>
-#include <string>
 
 namespace cpuid
 {
@@ -11,54 +9,12 @@ namespace cpuid
     {
         public:
 
-            // Default constructor for feature detection
-            cpuinfo_x86()
-            {
-                get_cpuinfo(1);
-            }
+             // Default constructor for feature detection
 
-            // Overload constructor for vendor_id detection
-            /// @input EAX input = 0
-            cpuinfo_x86(uint8_t eax_input)
-            {
-                get_cpuinfo(eax_input);
-            }
-
-            /// @return Vendor ID as a string
-            std::string vendor_id() const
-            {
-
-                std::string vendor_id = ("");
-
-                // Get EBX register char values
-                for (uint8_t i = 0; i<4; i++)
-                {
-                    vendor_id += ((char*)&m_ebx)[i];
-                }
-
-                // Get EDX register char values
-                for (uint8_t i = 0; i<4; i++)
-                {
-                    vendor_id += ((char*)&m_edx)[i];
-                }
-
-                // Get ECX register char values
-                for (uint8_t i = 0; i<4; i++)
-                {
-                    vendor_id += ((char*)&m_ecx)[i];
-                }
-
-                return vendor_id;
-            }
-
-            /// @return CPU info in ex registers: m_eax,m_ebx,m_ecx,m_edx
-            void get_cpuinfo(uint8_t eax_input)
-            {
-                __asm__("cpuid"
-                        : "=a"(m_eax), "=b"(m_ebx),
-                          "=c"(m_ecx), "=d"(m_edx)
-                        : "a"(eax_input) );
-            }
+             cpuinfo_x86()
+             {
+                get_cpuinfo();
+             }
 
             /// @return true if the CPU supports the FPU instruction set
             bool has_fpu() const
@@ -122,14 +78,28 @@ namespace cpuid
 
         private:
 
-            // EAX, EBX, ECX and EDX registers
+            // Feature bits of the EAX register when calling get_cpuinfo
             uint32_t m_eax;
+
+            // Feature bits of the EBX register when calling get_cpuinfo
             uint32_t m_ebx;
+
+            // Feature bits of the ECX register when calling get_cpuinfo
             uint32_t m_ecx;
+
+            // Feature bits of the EDX register when calling get_cpuinfo
             uint32_t m_edx;
 
-            // EAX input to get_cpuinfo
-            uint8_t eax_input;
+        protected:
+
+            /// CPU feature set info in m_eax,m_ebx,m_ecx,m_edx
+            void get_cpuinfo()
+            {
+                __asm__("cpuid"
+                        : "=a"(m_eax), "=b"(m_ebx),
+                          "=c"(m_ecx), "=d"(m_edx)
+                        : "a"(1) );
+            }
+
     };
 }
-
