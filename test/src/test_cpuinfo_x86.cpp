@@ -2,14 +2,19 @@
 #include <gtest/gtest.h>
 #include <cpuid/cpuinfo_x86.hpp>
 
-TEST(cpuninfo_x86_tests, basic_commands)
+TEST(cpuinfo_x86_tests, check_instruction_sets)
 {
     cpuid::cpuinfo_x86 m_cpuinfo;
 
-    int eax_input = 0;
-
-    m_cpuinfo.get_cpuinfo(eax_input);
-    m_cpuinfo.print_vendor_id();
-    m_cpuinfo.print_EX_registers(eax_input);
+    EXPECT_TRUE(m_cpuinfo.has_fpu());
+    EXPECT_TRUE(m_cpuinfo.has_mmx());
+    EXPECT_TRUE(m_cpuinfo.has_sse());
+    EXPECT_TRUE(m_cpuinfo.has_sse2());
+    EXPECT_TRUE(m_cpuinfo.has_sse3());
+    EXPECT_TRUE(m_cpuinfo.has_ssse3());
+    EXPECT_TRUE(m_cpuinfo.has_sse4_1());
+    EXPECT_TRUE(m_cpuinfo.has_sse4_2());
+    EXPECT_TRUE(m_cpuinfo.has_pclmulqdq());
+    EXPECT_TRUE(m_cpuinfo.has_avx());
 
 }
