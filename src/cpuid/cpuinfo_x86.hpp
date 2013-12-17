@@ -9,12 +9,11 @@ namespace cpuid
     {
         public:
 
-             // Default constructor for feature detection
-
-             cpuinfo_x86()
-             {
-                get_cpuinfo();
-             }
+            // Default constructor for feature detection
+            cpuinfo_x86()
+            {
+               get_cpuinfo();
+            }
 
             /// @return true if the CPU supports the FPU instruction set
             bool has_fpu() const
@@ -76,6 +75,17 @@ namespace cpuid
                 return m_ecx & (1 << 28);
             }
 
+        protected:
+
+            /// CPU feature set info in m_eax,m_ebx,m_ecx,m_edx
+            void get_cpuinfo()
+            {
+                __asm__("cpuid"
+                        : "=a"(m_eax), "=b"(m_ebx),
+                          "=c"(m_ecx), "=d"(m_edx)
+                        : "a"(1) );
+            }
+
         private:
 
             // Feature bits of the EAX register when calling get_cpuinfo
@@ -89,17 +99,6 @@ namespace cpuid
 
             // Feature bits of the EDX register when calling get_cpuinfo
             uint32_t m_edx;
-
-        protected:
-
-            /// CPU feature set info in m_eax,m_ebx,m_ecx,m_edx
-            void get_cpuinfo()
-            {
-                __asm__("cpuid"
-                        : "=a"(m_eax), "=b"(m_ebx),
-                          "=c"(m_ecx), "=d"(m_edx)
-                        : "a"(1) );
-            }
 
     };
 }
