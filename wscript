@@ -32,6 +32,12 @@ def options(opt):
             git_repository = 'github.com/steinwurf/external-gtest.git',
             major_version = 2))
 
+    bundle.add_dependency(opt,
+        resolve.ResolveGitMajorVersion(
+            name = 'boost',
+            git_repository = 'github.com/steinwurf/external-boost-light.git',
+            major_version = 1))
+
     opt.load('wurf_dependency_bundle')
     opt.load('wurf_tools')
 
@@ -48,14 +54,17 @@ def configure(conf):
         conf.load_external_tool('install_path', 'wurf_install_path')
         conf.load_external_tool('project_gen', 'wurf_project_generator')
 
+        recurse_helper(conf, 'boost')
         recurse_helper(conf, 'gtest')
 
 def build(bld):
+
 
     if bld.is_toplevel():
 
         bld.load('wurf_dependency_bundle')
 
+        recurse_helper(bld, 'boost')
         recurse_helper(bld, 'gtest')
 
         # Only build test when executed from the

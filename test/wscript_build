@@ -5,4 +5,4 @@ bld.program(
     features = 'cxx test',
     source   = ['cpuid_tests.cpp'] + bld.path.ant_glob('src/test_*.cpp'),
     target   = 'cpuid_tests',
-    use = ['cpuid','gtest'])
+    use = ['cpuid','gtest','boost_includes'])
