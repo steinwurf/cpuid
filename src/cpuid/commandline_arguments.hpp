@@ -22,12 +22,14 @@ namespace cpuid
                 (option, po::value<T>(), description);
         }
 
-        po::variables_map parse(int argc, const char *argv[]);
+        po::variables_map parse(int argc, char **argv);
 
     private:
 
         /// The options
         po::options_description m_options;
     };
+
+    extern commandline_arguments test_commandline_arguments;
 
 }

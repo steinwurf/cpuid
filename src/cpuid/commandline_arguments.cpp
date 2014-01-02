@@ -10,7 +10,7 @@ namespace cpuid
         : m_options("Options for cpuid")
     {
         m_options.add_options()
-            ("help", "produce help message")
+            ("help_cpuid", "produce help message for cpuid")
             ("has_fpu", po::value<bool>(),
              "Specify if you consider that current CPU has FPU "
               "for example ./cpuid_tests --has_fpu=true")
@@ -44,13 +44,13 @@ namespace cpuid
     }
 
     po::variables_map
-    commandline_arguments::parse(int argc, const char *argv[])
+    commandline_arguments::parse(int argc, char **argv)
     {
         po::variables_map vm;
         po::store(po::parse_command_line(argc, argv, m_options), vm);
         po::notify(vm);
 
-        if (vm.count("help"))
+        if (vm.count("help_cpuid"))
         {
             std::cout << m_options << std::endl;
         }
