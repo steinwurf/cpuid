@@ -5,11 +5,23 @@
 
 TEST(cpuinfo_x86_tests, check_instruction_sets)
 {
-    for(auto& i : cpuid::variable_map) {
-        std::cout << i.first << " : " << i.second.as<bool>() << std::endl;
-    }
-
     cpuid::cpuinfo_x86 m_cpuinfo;
+
+    for(auto& i : cpuid::variable_map) {
+
+        bool result = false;
+
+        if (i.first == std::string("has_fpu"))
+        {
+            result = m_cpuinfo.has_fpu();
+        }
+        else if (i.first == std::string("has_mmx"))
+        {
+            result = m_cpuinfo.has_mmx();
+        }
+
+        EXPECT_EQ(i.second.as<bool>(), result);
+    }
 
     EXPECT_TRUE(m_cpuinfo.has_fpu());
     EXPECT_TRUE(m_cpuinfo.has_mmx());
