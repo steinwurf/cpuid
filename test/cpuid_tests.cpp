@@ -1,10 +1,14 @@
 #include <cstdint>
 #include <ctime>
 #include <gtest/gtest.h>
-#include <cpuid/commandline_arguments.hpp>
-#include <string>
 
-cpuid::po::variables_map cpuid::variable_map;
+#include <boost/program_options.hpp>
+#include "commandline_arguments.hpp"
+
+
+namespace po = boost::program_options;
+
+po::variables_map variable_map;
 
 GTEST_API_ int main(int argc, char** argv)
 {
@@ -12,9 +16,16 @@ GTEST_API_ int main(int argc, char** argv)
 
     testing::InitGoogleTest(&argc, argv);
 
-    cpuid::commandline_arguments cmd_args;
+    commandline_arguments cmd_args;
 
-    cpuid::variable_map = cmd_args.parse(argc,argv);
+    variable_map = cmd_args.parse(argc,argv);
+
+    if (variable_map.count("help_cpuid"))
+    {
+        cmd_args.print_help();
+        return 0;
+    }
+
 
     return RUN_ALL_TESTS();
 

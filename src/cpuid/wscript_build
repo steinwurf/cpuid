@@ -5,6 +5,6 @@ bld.stlib \
     features = 'cxx',
     source   = bld.path.ant_glob('**/*.cpp'),
     target   = 'cpuid',
-    use      = ['boost_program_options'],
+    use      = [],
     export_includes = ['..']
 )
