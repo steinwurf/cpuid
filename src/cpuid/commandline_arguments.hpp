@@ -30,6 +30,5 @@ namespace cpuid
         po::options_description m_options;
     };
 
-    extern commandline_arguments test_commandline_arguments;
-
+    extern po::variables_map variable_map;
 }

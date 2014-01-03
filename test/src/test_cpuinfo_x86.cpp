@@ -1,9 +1,14 @@
 #include <cstdint>
 #include <gtest/gtest.h>
 #include <cpuid/cpuinfo_x86.hpp>
+#include <cpuid/commandline_arguments.hpp>
 
 TEST(cpuinfo_x86_tests, check_instruction_sets)
 {
+    for(auto& i : cpuid::variable_map) {
+        std::cout << i.first << " : " << i.second.as<bool>() << std::endl;
+    }
+
     cpuid::cpuinfo_x86 m_cpuinfo;
 
     EXPECT_TRUE(m_cpuinfo.has_fpu());

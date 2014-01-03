@@ -43,8 +43,7 @@ namespace cpuid
               "for example ./cpuid_tests --has_avx=true");
     }
 
-    po::variables_map
-    commandline_arguments::parse(int argc, char **argv)
+    po::variables_map commandline_arguments::parse(int argc, char **argv)
     {
         po::variables_map vm;
         po::store(po::parse_command_line(argc, argv, m_options), vm);
