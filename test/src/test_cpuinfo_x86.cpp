@@ -7,7 +7,7 @@ TEST(cpuinfo_x86_tests, check_instruction_sets)
 {
     cpuid::cpuinfo_x86 m_cpuinfo;
 
-    for(auto& i : cpuid::variable_map) {
+    for(const auto& i : cpuid::variable_map) {
 
         bool result = false;
 
@@ -19,19 +19,40 @@ TEST(cpuinfo_x86_tests, check_instruction_sets)
         {
             result = m_cpuinfo.has_mmx();
         }
+        else if (i.first == std::string("has_sse"))
+        {
+            result = m_cpuinfo.has_sse();
+        }
+        else if (i.first == std::string("has_sse2"))
+        {
+            result = m_cpuinfo.has_sse2();
+        }
+        else if (i.first == std::string("has_sse3"))
+        {
+            result = m_cpuinfo.has_sse3();
+        }
+        else if (i.first == std::string("has_ssse3"))
+        {
+            result = m_cpuinfo.has_ssse3();
+        }
+        else if (i.first == std::string("has_sse4_1"))
+        {
+            result = m_cpuinfo.has_sse4_1();
+        }
+        else if (i.first == std::string("has_sse4_2"))
+        {
+            result = m_cpuinfo.has_sse4_2();
+        }
+        else if (i.first == std::string("has_pclmulqdq"))
+        {
+            result = m_cpuinfo.has_pclmulqdq();
+        }
+        else if (i.first == std::string("has_avx"))
+        {
+            result = m_cpuinfo.has_avx();
+        }
 
         EXPECT_EQ(i.second.as<bool>(), result);
     }
-
-    EXPECT_TRUE(m_cpuinfo.has_fpu());
-    EXPECT_TRUE(m_cpuinfo.has_mmx());
-    EXPECT_TRUE(m_cpuinfo.has_sse());
-    EXPECT_TRUE(m_cpuinfo.has_sse2());
-    EXPECT_TRUE(m_cpuinfo.has_sse3());
-    EXPECT_TRUE(m_cpuinfo.has_ssse3());
-    EXPECT_TRUE(m_cpuinfo.has_sse4_1());
-    EXPECT_TRUE(m_cpuinfo.has_sse4_2());
-    EXPECT_TRUE(m_cpuinfo.has_pclmulqdq());
-    EXPECT_TRUE(m_cpuinfo.has_avx());
 
 }
