@@ -20,8 +20,6 @@ class commandline_arguments
 
         po::variables_map parse(int argc, char **argv);
 
-        void print_help();
-
     private:
 
         /// The options

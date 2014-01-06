@@ -20,13 +20,6 @@ GTEST_API_ int main(int argc, char** argv)
 
     variable_map = cmd_args.parse(argc,argv);
 
-    if (variable_map.count("help_cpuid"))
-    {
-        cmd_args.print_help();
-        return 0;
-    }
-
-
     return RUN_ALL_TESTS();
 
 }
