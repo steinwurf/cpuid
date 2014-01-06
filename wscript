@@ -71,5 +71,6 @@ def build(bld):
         # top-level wscript i.e. not when included as a dependency
         # in a recurse call
         bld.recurse('test')
+        bld.recurse('examples/print_cpuinfo')
 
     bld.recurse('src/cpuid')
