@@ -5,10 +5,7 @@
 #include <boost/program_options.hpp>
 #include "commandline_arguments.hpp"
 
-
-namespace po = boost::program_options;
-
-po::variables_map variable_map;
+boost::program_options::variables_map variable_map;
 
 GTEST_API_ int main(int argc, char** argv)
 {

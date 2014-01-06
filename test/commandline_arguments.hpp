@@ -2,8 +2,6 @@
 
 #include <boost/program_options.hpp>
 
-namespace po = boost::program_options;
-
 class commandline_arguments
 {
     public:
@@ -15,15 +13,16 @@ class commandline_arguments
         template<class T> void add_option(const char* option,
                                           const char* description)
         {
-            m_options.add_options()(option, po::value<T>(), description);
+            m_options.add_options()(option, boost::program_options::value<T>(),
+                                    description);
         }
 
-        po::variables_map parse(int argc, char **argv);
+        boost::program_options::variables_map parse(int argc, char **argv);
 
     private:
 
         /// The options
-        po::options_description m_options;
+        boost::program_options::options_description m_options;
 };
 
-extern po::variables_map variable_map;
+extern boost::program_options::variables_map variable_map;

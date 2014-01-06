@@ -3,6 +3,8 @@
 
 #include "commandline_arguments.hpp"
 
+namespace po = boost::program_options;
+
 commandline_arguments::commandline_arguments()
 {
     m_options.add_options()
