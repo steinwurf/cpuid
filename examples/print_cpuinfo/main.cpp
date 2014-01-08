@@ -6,20 +6,37 @@
 
 int main()
 {
-    srand((uint32_t)time(0));
-
     cpuid::cpuinfo_x86 m_cpuid;
 
-    printf("CPU has FPU?: %s \n", m_cpuid.has_fpu() ? "Yes" : "No");
-    printf("CPU has MMX?: %s \n", m_cpuid.has_mmx() ? "Yes" : "No");
-    printf("CPU has SSE?: %s \n", m_cpuid.has_sse() ? "Yes" : "No");
-    printf("CPU has SSE2?: %s \n", m_cpuid.has_sse2() ? "Yes" : "No");
-    printf("CPU has SSE3?: %s \n", m_cpuid.has_sse3() ? "Yes" : "No");
-    printf("CPU has SSSE3?: %s \n", m_cpuid.has_ssse3() ? "Yes" : "No");
-    printf("CPU has SSE4.1?: %s \n", m_cpuid.has_sse4_1() ? "Yes" : "No");
-    printf("CPU has SSE4.2?: %s \n", m_cpuid.has_sse4_2() ? "Yes" : "No");
-    printf("CPU has PCLMULQDQ?: %s \n", m_cpuid.has_pclmulqdq() ? "Yes" : "No");
-    printf("CPU has AVX?: %s \n", m_cpuid.has_avx() ? "Yes" : "No");
+    std::cout << "CPU has FPU?: "
+        << (m_cpuid.has_fpu() ? "Yes" : "No") << std::endl;
+
+    std::cout << "CPU has MMX?: "
+        << (m_cpuid.has_mmx() ? "Yes" : "No") << std::endl;
+
+    std::cout << "CPU has SSE?: "
+        << (m_cpuid.has_sse() ? "Yes" : "No") << std::endl;
+
+    std::cout << "CPU has SSE2?: "
+        << (m_cpuid.has_sse2() ? "Yes" : "No") << std::endl;
+
+    std::cout << "CPU has SSE3?: "
+        << (m_cpuid.has_sse3() ? "Yes" : "No") << std::endl;
+
+    std::cout << "CPU has SSSE3?: "
+        << (m_cpuid.has_ssse3() ? "Yes" : "No") << std::endl;
+
+    std::cout << "CPU has SSE4.1?: "
+        << (m_cpuid.has_sse4_1() ? "Yes" : "No") << std::endl;
+
+    std::cout << "CPU has SSE4.2?: "
+        << (m_cpuid.has_sse4_2() ? "Yes" : "No") << std::endl;
+
+    std::cout << "CPU has PCLMULQDQ?: "
+        << (m_cpuid.has_pclmulqdq() ? "Yes" : "No") << std::endl;
+
+    std::cout << "CPU has AVX?: "
+        << (m_cpuid.has_avx() ? "Yes" : "No") << std::endl;
 
     return 0;
 }

@@ -5,4 +5,4 @@ bld.program(
     features = 'cxx',
     source   = bld.path.ant_glob('*.cpp'),
     target   = 'print_cpuinfo_example',
-    use      = ['boost_program_options','cpuid'])
+    use      = ['cpuid'])
