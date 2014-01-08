@@ -3,6 +3,7 @@
 
 bld.program(
     features = 'cxx test',
-    source   = ['cpuid_tests.cpp'] + bld.path.ant_glob('src/test_*.cpp'),
+    source   = ['cpuid_tests.cpp', 'commandline_arguments.cpp']
+                + bld.path.ant_glob('src/test_*.cpp'),
     target   = 'cpuid_tests',
-    use = ['cpuid','gtest','boost_includes'])
+    use = ['cpuid','gtest','boost_program_options'])
