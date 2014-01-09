@@ -1,12 +1,12 @@
-#include <ctime>
-#include <string>
+#include <iostream>
 
-#include <cpuid/cpuinfo_x86.hpp>
+#include <cpuid/cpuinfo.hpp>
 
 
 int main()
 {
-    cpuid::cpuinfo_x86 m_cpuid;
+    cpuid::cpuinfo m_cpuid;
+
 
     std::cout << "CPU has FPU?: "
         << (m_cpuid.has_fpu() ? "Yes" : "No") << std::endl;
@@ -37,6 +37,10 @@ int main()
 
     std::cout << "CPU has AVX?: "
         << (m_cpuid.has_avx() ? "Yes" : "No") << std::endl;
+
+    std::cout << "CPU has ARM NEON?: "
+        << (m_cpuid.has_neon() ? "Yes" : "No") << std::endl;
+
 
     return 0;
 }
