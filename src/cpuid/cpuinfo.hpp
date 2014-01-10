@@ -7,6 +7,10 @@
     #include <armintr.h>
 #endif
 
+#if (defined(__linux__) || defined(ANDROID))
+    #include <cstring>
+#endif
+
 namespace cpuid
 {
 

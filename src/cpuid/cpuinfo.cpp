@@ -193,6 +193,10 @@ namespace cpuid
                             has = false;
                         }
                     }
+                    else
+                    {
+                        has = false;
+                    }
                 }
 
                 fclose(cpufile);
