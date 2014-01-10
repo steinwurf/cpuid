@@ -19,5 +19,4 @@ TEST(cpuinfo_tests, check_instruction_sets)
               m_cpuinfo.has_pclmulqdq());
     EXPECT_EQ(variable_map["has_avx"].as<bool>(), m_cpuinfo.has_avx());
     EXPECT_EQ(variable_map["has_neon"].as<bool>(), m_cpuinfo.has_neon());
-
 }
