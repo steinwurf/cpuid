@@ -100,7 +100,7 @@ namespace cpuid
 
     };
 
-#elif defined(__arm__)
+#elif (defined(__arm__) || defined(_M_ARM))
 
     // Private class definition for ARM
     class cpuinfo::impl
@@ -164,20 +164,25 @@ namespace cpuid
                 return false;
             }
 
-#if (defined(__linux__) || defined(ANDROID))
+            void get_cpuinfo()
+            {
+            }
+
+    #if (defined(__linux__) || defined(ANDROID))
+
             bool has_neon() const
             {
                 bool has;
                 FILE* cpufile;
-                cpufile = fopen ("/proc/cpuinfo","r");
+                cpufile = fopen("/proc/cpuinfo","r");
 
-                char buf[512];
-                while (fgets(buf, 511, cpufile) != NULL)
+                char buffer[512];
+                while (fgets(buffer, 511, cpufile) != NULL)
                 {
-                    if (memcmp(buf, "Features", 8) == 0)
+                    if (memcmp(buffer, "Features", 8) == 0)
                     {
                         char* neon;
-                        neon = strstr(buf,"neon");
+                        neon = strstr(buffer,"neon");
                         if(neon != NULL)
                         {
                             has = true;
@@ -194,17 +199,31 @@ namespace cpuid
                 return has;
 
             }
-#else
+
+    #elif (defined(_MSC_VER) && defined(_M_ARM))
+
+            bool has_neon() const
+            {
+                try
+                {
+                    __emit(0xF2200150);
+                    return true;
+                }
+                catch(const std::exception &e)
+                {
+                    std::cout << "Error:" << e.what() << std::endl;
+                    return false;
+                }
+            }
+
+    #else
+
             bool has_neon() const
             {
                 return false;
             }
 
-            void get_cpuinfo()
-            {
-            }
-
-#endif
+    #endif
     };
 
 #else

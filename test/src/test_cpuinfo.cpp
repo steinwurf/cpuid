@@ -6,7 +6,7 @@
 TEST(cpuinfo_tests, check_instruction_sets)
 {
     cpuid::cpuinfo m_cpuinfo;
-/*
+
     EXPECT_EQ(variable_map["has_fpu"].as<bool>(), m_cpuinfo.has_fpu());
     EXPECT_EQ(variable_map["has_mmx"].as<bool>(), m_cpuinfo.has_mmx());
     EXPECT_EQ(variable_map["has_sse"].as<bool>(), m_cpuinfo.has_sse());
@@ -18,5 +18,5 @@ TEST(cpuinfo_tests, check_instruction_sets)
     EXPECT_EQ(variable_map["has_pclmulqdq"].as<bool>(),
               m_cpuinfo.has_pclmulqdq());
     EXPECT_EQ(variable_map["has_avx"].as<bool>(), m_cpuinfo.has_avx());
-*/
+
 }

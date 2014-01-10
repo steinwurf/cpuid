@@ -3,6 +3,10 @@
 #include <memory>
 #include <cstdio>
 
+#if (defined(_MSC_VER) && defined(_M_ARM))
+    #include <armintr.h>
+#endif
+
 namespace cpuid
 {
 
