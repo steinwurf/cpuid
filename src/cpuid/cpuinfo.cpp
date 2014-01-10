@@ -200,6 +200,10 @@ namespace cpuid
                 return false;
             }
 
+            void get_cpuinfo()
+            {
+            }
+
 #endif
     };
 
@@ -217,7 +221,7 @@ namespace cpuid
     }
 
     // Destructor
-    cpuinfo::~cpuinfo()=default;
+    cpuinfo::~cpuinfo() = default;
 
     // x86 member functions
     bool cpuinfo::has_fpu() const
