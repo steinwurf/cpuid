@@ -7,7 +7,6 @@ int main()
 {
     cpuid::cpuinfo m_cpuid;
 
-
     std::cout << "CPU has FPU?: "
         << (m_cpuid.has_fpu() ? "Yes" : "No") << std::endl;
 
@@ -40,7 +39,6 @@ int main()
 
     std::cout << "CPU has ARM NEON?: "
         << (m_cpuid.has_neon() ? "Yes" : "No") << std::endl;
-
 
     return 0;
 }

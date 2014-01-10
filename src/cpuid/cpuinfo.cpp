@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include "cpuinfo.hpp"
 
 namespace cpuid
