@@ -90,7 +90,7 @@ namespace cpuid
                 uint32_t ex_registers[4] = {m_eax,m_ebx,m_ecx,m_edx};
                 uint32_t input = 1;
 
-                __cpuid(ex_registers,input);
+                __cpuid((uint32_t*)ex_registers,input);
             }
 
     #else
@@ -265,7 +265,13 @@ namespace cpuid
     }
 
     // Destructor
+
+#if (defined(_MSC_VER))
+    cpuinfo::~cpuinfo()
+    { }
+#else
     cpuinfo::~cpuinfo() = default;
+#endif
 
     // x86 member functions
     bool cpuinfo::has_fpu() const
