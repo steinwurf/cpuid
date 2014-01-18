@@ -88,9 +88,9 @@ namespace cpuid
             void get_cpuinfo()
             {
                 uint32_t ex_registers[4] = {m_eax,m_ebx,m_ecx,m_edx};
-                uint32_t input = 1;
+                //uint32_t input = 1;
 
-                __cpuid((uint32_t*)ex_registers,input);
+                __cpuid(ex_registers,0x1);
             }
 
     #else
