@@ -1,4 +1,9 @@
 #include <stdint.h>
+
+#if (defined(_MSC_VER))
+    #include <intrin.h>
+#endif
+
 #include "cpuinfo.hpp"
 
 namespace cpuid
