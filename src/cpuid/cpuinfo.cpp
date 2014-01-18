@@ -77,6 +77,17 @@ namespace cpuid
             }
 
             /// CPU feature set info in m_eax,m_ebx,m_ecx,m_edx
+
+    #if (defined(_MSC_VER))
+
+            void get_cpuinfo()
+            {
+                uint32_t ex_registers = {m_eax,m_ebx,m_ecx,m_edx};
+                __cpuid(ex_registers,1);
+            }
+
+    #else
+
             void get_cpuinfo()
             {
                 __asm__("cpuid"
@@ -84,6 +95,8 @@ namespace cpuid
                           "=c"(m_ecx), "=d"(m_edx)
                         : "a"(1) );
             }
+
+    #endif
 
         private:
 
@@ -101,7 +114,7 @@ namespace cpuid
 
     };
 
-#elif (defined(__arm__) || defined(_M_ARM))
+#elif (defined(__arm__) || defined(_M_ARM)) || defined(__mips__)
 
     // Private class definition for ARM
     class cpuinfo::impl
@@ -216,7 +229,7 @@ namespace cpuid
                 }
                 catch(const std::exception &e)
                 {
-                    std::cout << "Error:" << e.what() << std::endl;
+                    //std::cout << "Error:" << e.what() << std::endl;
                     return false;
                 }
             }
