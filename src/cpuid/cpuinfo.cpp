@@ -82,7 +82,7 @@ namespace cpuid
 
             void get_cpuinfo()
             {
-                uint32_t ex_registers = {m_eax,m_ebx,m_ecx,m_edx};
+                uint32_t ex_registers[4] = {m_eax,m_ebx,m_ecx,m_edx};
                 __cpuid(ex_registers,1);
             }
 
