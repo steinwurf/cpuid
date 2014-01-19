@@ -9,6 +9,7 @@
 
 #include <cstdio>
 #include <cassert>
+#include <cstring>
 
 #include "cpuinfo.hpp"
 
