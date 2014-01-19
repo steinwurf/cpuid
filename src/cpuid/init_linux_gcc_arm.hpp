@@ -31,7 +31,7 @@ namespace cpuid
             }
             else
             {
-                info.m_has_neon = false
+                info.m_has_neon = false;
             }
         }
 
