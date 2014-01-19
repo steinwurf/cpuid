@@ -1,11 +1,11 @@
 #include <cstdint>
 #include <gtest/gtest.h>
-#include <cpuid/cpuinfo_x86.hpp>
+#include <cpuid/cpuinfo.hpp>
 #include "../commandline_arguments.hpp"
 
-TEST(cpuinfo_x86_tests, check_instruction_sets)
+TEST(cpuinfo_tests, check_instruction_sets)
 {
-    cpuid::cpuinfo_x86 m_cpuinfo;
+    cpuid::cpuinfo m_cpuinfo;
 
     EXPECT_EQ(variable_map["has_fpu"].as<bool>(), m_cpuinfo.has_fpu());
     EXPECT_EQ(variable_map["has_mmx"].as<bool>(), m_cpuinfo.has_mmx());
@@ -18,5 +18,5 @@ TEST(cpuinfo_x86_tests, check_instruction_sets)
     EXPECT_EQ(variable_map["has_pclmulqdq"].as<bool>(),
               m_cpuinfo.has_pclmulqdq());
     EXPECT_EQ(variable_map["has_avx"].as<bool>(), m_cpuinfo.has_avx());
-
+    EXPECT_EQ(variable_map["has_neon"].as<bool>(), m_cpuinfo.has_neon());
 }
