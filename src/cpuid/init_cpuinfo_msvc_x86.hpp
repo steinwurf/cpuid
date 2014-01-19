@@ -20,7 +20,7 @@ namespace cpuid
     {
         int registers[4];
 
-        __cpuid(ex_registers, 1);
+        __cpuid(registers, 1);
 
         /// According to the msvc docs eax, ebx, ecx and edx are
         /// stored (in that order) in the array passed to the __cpuid
