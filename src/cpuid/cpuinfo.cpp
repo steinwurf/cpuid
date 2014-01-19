@@ -9,14 +9,22 @@
 #include "config.hpp"
 #include "cpuinfo_impl.hpp"
 
-#if defined(CPUID_GCC_X86)
-    #include "init_cpuinfo_gcc_x86.hpp"
-#elif defined(CPUID_CLANG_X86)
-    #include "init_cpuinfo_gcc_x86.hpp"
-#elif defined(CPUID_MSVC_X86)
-    #include "init_cpuinfo_msvc_x86.hpp"
+#if defined(CPUID_LINUX_GCC_X86)
+    #include "init_linux_gcc_x86.hpp"
+#elif defined(CPUID_LINUX_CLANG_X86)
+    #include "init_linux_gcc_x86.hpp"
+#elif defined(CPUID_LINUX_GCC_ARM)
+    #include "init_linux_gcc_arm.hpp"
+#elif defined(CPUID_LINUX_CLANG_ARM)
+    #include "init_linux_gcc_arm.hpp"
+#elif defined(CPUID_ANDROID_GCC_ARM)
+    #include "init_linux_gcc_arm.hpp"
+#elif defined(CPUID_ANDROID_CLANG_ARM)
+    #include "init_linux_gcc_arm.hpp"
+#elif defined(CPUID_WIN32_MSVC_X86)
+    #include "init_win32_msvc_x86.hpp"
 #else
-    #include "init_cpuinfo_unknown.hpp"
+    #include "init_unknown.hpp"
 #endif
 
 namespace cpuid
