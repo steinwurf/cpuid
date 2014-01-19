@@ -8,6 +8,8 @@
 #pragma once
 
 #include <cstdio>
+#include <cassert>
+
 #include "cpuinfo.hpp"
 
 namespace cpuid
