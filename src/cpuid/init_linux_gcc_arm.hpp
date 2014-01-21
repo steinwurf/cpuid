@@ -11,7 +11,6 @@
 #include <cassert>
 #include <cstring>
 
-#include <iostream>
 #include "cpuinfo.hpp"
 
 namespace cpuid
@@ -23,13 +22,10 @@ namespace cpuid
         auto cpufile = fopen("/proc/cpuinfo","r");
         assert(cpufile);
 
-        char buffer[16];
+        char buffer[1024];
 
-        while(fgets(buffer, 16, cpufile))
+        while(fgets(buffer, 1024, cpufile))
         {
-            std::string str(buffer);
-            std::cout << str << "\n";
-
             if(memcmp(buffer, "Features", 8) == 0)
             {
                 char* neon = strstr(buffer, "neon");
