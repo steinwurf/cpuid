@@ -23,8 +23,14 @@ namespace cpuid
         assert(cpufile);
 
         char buffer[512];
+        std::string str(buffer);
+
+        std::cout << str << "\n";
+
         while(fgets(buffer, 511, cpufile))
         {
+
+
             if(memcmp(buffer, "Features", 8) == 0)
             {
                 char* neon = strstr(buffer, "neon");
