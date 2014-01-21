@@ -23,9 +23,9 @@ namespace cpuid
         auto cpufile = fopen("/proc/cpuinfo","r");
         assert(cpufile);
 
-        char buffer[512];
+        char buffer[16];
 
-        while(fgets(buffer, 511, cpufile))
+        while(fgets(buffer, 16, cpufile))
         {
             std::string str(buffer);
             std::cout << str << "\n";
