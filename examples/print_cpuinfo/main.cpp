@@ -7,6 +7,8 @@ int main()
 {
     cpuid::cpuinfo m_cpuid;
 
+    std::cout << "Platform: " << m_cpuid.platform() << std::endl;
+
     std::cout << "CPU has FPU?: "
         << (m_cpuid.has_fpu() ? "Yes" : "No") << std::endl;
 
