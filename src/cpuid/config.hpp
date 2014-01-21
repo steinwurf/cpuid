@@ -20,7 +20,7 @@
     #define CPUID_ANDROID
 #elif defined(_WIN32)
     #define CPUID_WIN32
-#elif defined(__APPLE__) && defined(__MACH__)
+#elif defined(__APPLE__)
     #define CPUID_MAC
 #endif
 
