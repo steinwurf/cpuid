@@ -94,7 +94,7 @@
         #define CPUID_PLATFORM "win32_msvc_arm"
     #endif
 #elif defined(CPUID_MAC_LLVM)
-    #if defined__i386__() || defined(__x86_64__)
+    #if defined(__i386__) || defined(__x86_64__)
         #define CPUID_MAC_LLVM_X86
         #define CPUID_PLATFORM "mac_llvm_x86"
     #endif
