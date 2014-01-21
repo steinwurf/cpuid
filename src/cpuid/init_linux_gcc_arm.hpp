@@ -27,6 +27,8 @@ namespace cpuid
 
         while(fgets(buffer, 511, cpufile))
         {
+            std::string str(buffer);
+            std::cout << str << "\n";
 
             if(memcmp(buffer, "Features", 8) == 0)
             {
@@ -38,9 +40,6 @@ namespace cpuid
                 info.m_has_neon = false;
             }
         }
-
-        std::string str(buffer);
-        std::cout << str << "\n";
 
         fclose(cpufile);
     }
