@@ -11,6 +11,7 @@
 #include <cassert>
 #include <cstring>
 
+#include <iostream>
 #include "cpuinfo.hpp"
 
 namespace cpuid
