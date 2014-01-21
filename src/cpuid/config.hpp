@@ -99,7 +99,7 @@
         #define CPUID_PLATFORM "mac_llvm_x86"
     #endif
 #elif defined(CPUID_MAC_GCC)
-    #if defined__i386__() || defined(__x86_64__)
+    #if defined(__i386__) || defined(__x86_64__)
         #define CPUID_MAC_GCC_X86
         #define CPUID_PLATFORM "mac_gcc_x86"
     #endif
