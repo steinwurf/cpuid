@@ -9,7 +9,7 @@ TEST(cpuinfo_tests, check_instruction_sets)
 {
     cpuid::cpuinfo m_cpuinfo;
 
-    std::cout << "Platform: " << m_cpuinfo.platform() << endl;
+    std::cout << "Platform: " << m_cpuinfo.platform() << std::endl;
 
     EXPECT_EQ(variable_map["has_fpu"].as<bool>(), m_cpuinfo.has_fpu());
     EXPECT_EQ(variable_map["has_mmx"].as<bool>(), m_cpuinfo.has_mmx());

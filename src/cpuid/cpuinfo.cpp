@@ -95,7 +95,7 @@ namespace cpuid
         return m_impl->m_has_neon;
     }
 
-    std::string platform() const
+    std::string cpuinfo::platform() const
     {
         return CPUID_PLATFORM;
     }
