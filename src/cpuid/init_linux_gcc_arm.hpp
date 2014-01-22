@@ -11,6 +11,12 @@
 #include <cassert>
 #include <cstring>
 
+#include <unistd.h>
+#include <fcntl.h>
+#include <elf.h>
+#include <linux/auxvec.h>
+#include <asm/hwcap.h>
+
 #include "cpuinfo.hpp"
 
 namespace cpuid
@@ -19,25 +25,30 @@ namespace cpuid
     /// @todo docs
     void init_cpuinfo(cpuinfo::impl& info)
     {
-        auto cpufile = fopen("/proc/cpuinfo","r");
+        auto cpufile = open("/proc/self/auxv", O_RDONLY);
         assert(cpufile);
 
-        char buffer[1024];
+        Elf32_auxv_t auxv;
 
-        while(fgets(buffer, 1024, cpufile))
+        if (cpufile >= 0)
         {
-            if(memcmp(buffer, "Features", 8) == 0)
+            const auto size_auxv_t = sizeof(Elf32_auxv_t);
+            while (read(cpufile, &auxv, size_auxv_t) == size_auxv_t)
             {
-                char* neon = strstr(buffer, "neon");
-                info.m_has_neon = neon != 0;
+                if (auxv.a_type == AT_HWCAP)
+                {
+                    info.m_has_neon = (auxv.a_un.a_val & HWCAP_NEON)?true:false;
+                    break;
+                }
             }
-            else
-            {
-                info.m_has_neon = false;
-            }
+
+            close (cpufile);
+        }
+        else
+        {
+            info.m_has_neon = flase
         }
 
-        fclose(cpufile);
     }
 
 }
