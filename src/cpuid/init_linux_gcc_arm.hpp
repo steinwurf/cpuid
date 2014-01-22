@@ -15,7 +15,6 @@
 #include <fcntl.h>
 #include <elf.h>
 #include <linux/auxvec.h>
-#include <asm/hwcap.h>
 
 #include "cpuinfo.hpp"
 
@@ -37,7 +36,7 @@ namespace cpuid
             {
                 if (auxv.a_type == AT_HWCAP)
                 {
-                    info.m_has_neon = (auxv.a_un.a_val & HWCAP_NEON)?true:false;
+                    info.m_has_neon = (auxv.a_un.a_val & 4096) ? true : false;
                     break;
                 }
             }
@@ -46,7 +45,7 @@ namespace cpuid
         }
         else
         {
-            info.m_has_neon = flase
+            info.m_has_neon = false;
         }
 
     }
