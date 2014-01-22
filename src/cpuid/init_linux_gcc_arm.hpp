@@ -24,6 +24,10 @@ namespace cpuid
     /// @todo docs
     void init_cpuinfo(cpuinfo::impl& info)
     {
+        // Follow recommendation from Cortex-A Series Programmer's guide
+        // on Section 20.1.7 Detecting NEON. The guide is available at:
+        // Steinwurf's Google drive: steinwurf/technical/experimental/cpuid
+
         auto cpufile = open("/proc/self/auxv", O_RDONLY);
         assert(cpufile);
 
@@ -36,7 +40,7 @@ namespace cpuid
             {
                 if (auxv.a_type == AT_HWCAP)
                 {
-                    info.m_has_neon = (auxv.a_un.a_val & 4096) ? true : false;
+                    info.m_has_neon = (auxv.a_un.a_val & 4096) != 0;
                     break;
                 }
             }
