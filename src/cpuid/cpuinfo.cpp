@@ -26,7 +26,7 @@
 #elif defined(CPUID_WIN32_MSVC_X86)
     #include "init_win32_msvc_x86.hpp"
 #elif defined(CPUID_MAC_LLVM_X86)
-    #include "init_mac_llvm_x86.hpp"
+    #include "init_linux_gcc_x86.hpp"
 #elif defined(CPUID_MAC_GCC_X86)
     #include "init_linux_gcc_x86.hpp"
 #else
