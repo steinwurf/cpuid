@@ -15,6 +15,8 @@
     #include "init_linux_gcc_x86.hpp"
 #elif defined(CPUID_LINUX_GCC_ARM)
     #include "init_linux_gcc_arm.hpp"
+#elif defined(CPUID_LINUX_GCC_MIPS)
+    #include "init_unknown.hpp"
 #elif defined(CPUID_LINUX_CLANG_ARM)
     #include "init_linux_gcc_arm.hpp"
 #elif defined(CPUID_ANDROID_GCC_ARM)
@@ -23,6 +25,10 @@
     #include "init_linux_gcc_arm.hpp"
 #elif defined(CPUID_WIN32_MSVC_X86)
     #include "init_win32_msvc_x86.hpp"
+#elif defined(CPUID_MAC_LLVM_X86)
+    #include "init_linux_gcc_x86.hpp"
+#elif defined(CPUID_MAC_GCC_X86)
+    #include "init_linux_gcc_x86.hpp"
 #else
     #include "init_unknown.hpp"
 #endif
@@ -93,6 +99,11 @@ namespace cpuid
     bool cpuinfo::has_neon() const
     {
         return m_impl->m_has_neon;
+    }
+
+    std::string cpuinfo::platform() const
+    {
+        return CPUID_PLATFORM;
     }
 
 }

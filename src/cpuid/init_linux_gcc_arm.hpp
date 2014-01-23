@@ -11,6 +11,11 @@
 #include <cassert>
 #include <cstring>
 
+#include <unistd.h>
+#include <fcntl.h>
+#include <elf.h>
+#include <linux/auxvec.h>
+
 #include "cpuinfo.hpp"
 
 namespace cpuid
@@ -19,24 +24,34 @@ namespace cpuid
     /// @todo docs
     void init_cpuinfo(cpuinfo::impl& info)
     {
-        auto cpufile = fopen("/proc/cpuinfo","r");
+        // Follow recommendation from Cortex-A Series Programmer's guide
+        // on Section 20.1.7 Detecting NEON. The guide is available at:
+        // Steinwurf's Google drive: steinwurf/technical/experimental/cpuid
+
+        auto cpufile = open("/proc/self/auxv", O_RDONLY);
         assert(cpufile);
 
-        char buffer[512];
-        while(fgets(buffer, 511, cpufile))
+        Elf32_auxv_t auxv;
+
+        if (cpufile >= 0)
         {
-            if(memcmp(buffer, "Features", 8) == 0)
+            const auto size_auxv_t = sizeof(Elf32_auxv_t);
+            while (read(cpufile, &auxv, size_auxv_t) == size_auxv_t)
             {
-                char* neon = strstr(buffer, "neon");
-                info.m_has_neon = neon != 0;
+                if (auxv.a_type == AT_HWCAP)
+                {
+                    info.m_has_neon = (auxv.a_un.a_val & 4096) != 0;
+                    break;
+                }
             }
-            else
-            {
-                info.m_has_neon = false;
-            }
+
+            close (cpufile);
+        }
+        else
+        {
+            info.m_has_neon = false;
         }
 
-        fclose(cpufile);
     }
 
 }

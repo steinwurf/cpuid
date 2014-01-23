@@ -8,6 +8,7 @@
 #pragma once
 
 #include <memory>
+#include <string>
 
 namespace cpuid
 {
@@ -35,6 +36,9 @@ namespace cpuid
 
         /// ARM member functions
         bool has_neon() const;
+
+        /// CPU Platform
+        std::string platform() const;
 
     public:
 
