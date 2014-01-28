@@ -20,8 +20,15 @@
     #define CPUID_ANDROID
 #elif defined(_WIN32)
     #define CPUID_WIN32
-#elif defined(__APPLE__) && defined(__MACH__)
-    #define CPUID_MAC
+#elif defined(__APPLE__)
+    // Detect iOS before MacOSX (__MACH__ is also defined for iOS)
+    #if defined(IPHONE)
+        #define CPUID_IOS
+    #elif defined(__MACH__)
+        #define CPUID_MAC
+    #endif
+#else
+    #error "Unable to determine operating system"
 #endif
 
 // Then we differentiate between compilers
@@ -46,6 +53,10 @@
         #define CPUID_MAC_LLVM
     #elif defined(__GNUC__)
         #define CPUID_MAC_GCC
+    #endif
+#elif defined(CPUID_IOS)
+    #if defined(__llvm__)
+        #define CPUID_IOS_LLVM
     #endif
 #endif
 
@@ -103,12 +114,17 @@
         #define CPUID_MAC_GCC_X86
         #define CPUID_PLATFORM "mac_gcc_x86"
     #endif
+#elif defined(CPUID_IOS_LLVM)
+    #if defined(__arm__)
+        #define CPUID_IOS_LLVM_ARM
+        #define CPUID_PLATFORM "ios_llvm_arm"
+    #endif
 #else
     #define CPUID_UNKNOWN
     #define CPUID_PLATFORM "unknown"
+    #pragma message "Warning: CPUID_PLATFORM is unknown"
 #endif
 
 #if !defined(CPUID_PLATFORM)
-    #error "Remember to specify the cpuid string"
+    #error "CPUID_PLATFORM is not defined"
 #endif
-
