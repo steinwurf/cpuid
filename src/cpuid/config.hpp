@@ -20,12 +20,15 @@
     #define CPUID_ANDROID
 #elif defined(_WIN32)
     #define CPUID_WIN32
-#elif defined(__APPLE__) && defined(TARGET_OS_MAC)
-    #pragma message "CPUID_MAC"
-    #define CPUID_MAC
-#elif (defined(__APPLE__) && defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE != 0)
-    #pragma message "CPUID_IOS"
-    #define CPUID_IOS
+#elif defined(__APPLE__)
+    // Detect iOS before MacOSX (__MACH__ is also defined for iOS)
+    #if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE != 0)
+        #pragma message "CPUID_IOS"
+        #define CPUID_IOS
+    #elif defined (__MACH__)
+        #pragma message "CPUID_MAC"
+        #define CPUID_MAC
+    #endif
 #else
     #error "Unable to determine operating system"
 #endif
