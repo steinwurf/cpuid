@@ -110,10 +110,8 @@
         #define CPUID_PLATFORM "mac_gcc_x86"
     #endif
 #elif defined(CPUID_IOS_LLVM)
-    #if defined(__arm__)
-        #define CPUID_IOS_LLVM_ARM
-        #define CPUID_PLATFORM "mac_llvm_arm"
-    #endif
+    #define CPUID_IOS_LLVM_ARM
+    #define CPUID_PLATFORM "ios_llvm_arm"
 #else
     #define CPUID_UNKNOWN
     #define CPUID_PLATFORM "unknown"
