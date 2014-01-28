@@ -20,7 +20,7 @@
     #define CPUID_ANDROID
 #elif defined(_WIN32)
     #define CPUID_WIN32
-#elif defined(__APPLE__) && defined(__MACH__)
+#elif defined(__APPLE__) && defined(TARGET_OS_MAC)
     #pragma message "CPUID_MAC"
     #define CPUID_MAC
 #elif (defined(__APPLE__) && defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE != 0)
