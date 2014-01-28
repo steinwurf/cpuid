@@ -29,6 +29,8 @@
     #include "init_linux_gcc_x86.hpp"
 #elif defined(CPUID_MAC_GCC_X86)
     #include "init_linux_gcc_x86.hpp"
+#elif defined(CPUID_IOS_LLVM_ARM)
+    #include "init_ios_llvm_arm.hpp"
 #else
     #include "init_unknown.hpp"
 #endif

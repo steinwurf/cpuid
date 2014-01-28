@@ -22,6 +22,8 @@
     #define CPUID_WIN32
 #elif defined(__APPLE__) && defined(__MACH__)
     #define CPUID_MAC
+#elif (defined(__APPLE__) && defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE != 0)
+    #define CPUID_IOS
 #endif
 
 // Then we differentiate between compilers
@@ -46,6 +48,10 @@
         #define CPUID_MAC_LLVM
     #elif defined(__GNUC__)
         #define CPUID_MAC_GCC
+    #endif
+#elif defined(CPUID_IOS)
+    #if defined(__llvm__)
+        #define CPUID_IOS_LLVM
     #endif
 #endif
 
@@ -103,6 +109,11 @@
         #define CPUID_MAC_GCC_X86
         #define CPUID_PLATFORM "mac_gcc_x86"
     #endif
+#elif defined(CPUID_IOS_LLVM)
+    #if defined(__arm__)
+        #define CPUID_IOS_LLVM_ARM
+        #define CPUID_PLATFORM "mac_llvm_arm"
+    #endif
 #else
     #define CPUID_UNKNOWN
     #define CPUID_PLATFORM "unknown"
@@ -111,4 +122,3 @@
 #if !defined(CPUID_PLATFORM)
     #error "Remember to specify the cpuid string"
 #endif
-
