@@ -22,10 +22,10 @@
     #define CPUID_WIN32
 #elif defined(__APPLE__)
     // Detect iOS before MacOSX (__MACH__ is also defined for iOS)
-    #if defined(TARGET_OS_IPHONE) && (TARGET_OS_IPHONE != 0)
+    #if defined(IPHONE)
         #pragma message "CPUID_IOS"
         #define CPUID_IOS
-    #elif defined (__MACH__)
+    #elif defined(__MACH__)
         #pragma message "CPUID_MAC"
         #define CPUID_MAC
     #endif
