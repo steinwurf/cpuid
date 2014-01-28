@@ -23,10 +23,8 @@
 #elif defined(__APPLE__)
     // Detect iOS before MacOSX (__MACH__ is also defined for iOS)
     #if defined(IPHONE)
-        #pragma message "CPUID_IOS"
         #define CPUID_IOS
     #elif defined(__MACH__)
-        #pragma message "CPUID_MAC"
         #define CPUID_MAC
     #endif
 #else
@@ -58,7 +56,6 @@
     #endif
 #elif defined(CPUID_IOS)
     #if defined(__llvm__)
-        #pragma message "CPUID_IOS_LLVM"
         #define CPUID_IOS_LLVM
     #endif
 #endif
@@ -118,9 +115,10 @@
         #define CPUID_PLATFORM "mac_gcc_x86"
     #endif
 #elif defined(CPUID_IOS_LLVM)
-    #pragma message "CPUID_IOS_LLVM"
-    #define CPUID_IOS_LLVM_ARM
-    #define CPUID_PLATFORM "ios_llvm_arm"
+    #if defined(__arm__)
+        #define CPUID_IOS_LLVM_ARM
+        #define CPUID_PLATFORM "ios_llvm_arm"
+    #endif
 #else
     #define CPUID_UNKNOWN
     #define CPUID_PLATFORM "unknown"
