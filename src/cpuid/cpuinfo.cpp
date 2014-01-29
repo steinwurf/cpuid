@@ -98,6 +98,7 @@ namespace cpuid
         return m_impl->m_has_avx;
     }
 
+    // ARM functions
     bool cpuinfo::has_neon() const
     {
         return m_impl->m_has_neon;
@@ -108,4 +109,13 @@ namespace cpuid
         return CPUID_PLATFORM;
     }
 
+    uint32_t cpuinfo::physical_cores() const
+    {
+        return m_impl->m_physical_cores;
+    }
+
+    uint32_t cpuinfo::logical_cores() const
+    {
+        return m_impl->m_logical_cores;
+    }
 }

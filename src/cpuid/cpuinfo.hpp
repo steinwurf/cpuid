@@ -40,6 +40,10 @@ namespace cpuid
         /// CPU Platform
         std::string platform() const;
 
+        /// Amount of cores
+        uint32_t physical_cores() const;
+        uint32_t logical_cores() const;
+
     public:
 
         struct impl;

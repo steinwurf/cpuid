@@ -9,6 +9,7 @@
 
 #include "cpuinfo.hpp"
 #include "extract_x86_flags.hpp"
+#include "x86_logic_core.hpp"
 
 namespace cpuid
 {
@@ -29,6 +30,8 @@ namespace cpuid
                 : "a"(1) );
 
         extract_x86_flags(info, ecx, edx);
+
+        x86_logic_core(info, ebx);
     }
 
 }

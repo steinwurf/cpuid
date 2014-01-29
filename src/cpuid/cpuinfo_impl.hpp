@@ -24,7 +24,9 @@ namespace cpuid
               m_has_sse4_2(false),
               m_has_pclmulqdq(false),
               m_has_avx(false),
-              m_has_neon(false)
+              m_has_neon(false),
+              m_physical_cores(0),
+              m_logical_cores(0)
         { }
 
         bool m_has_fpu;
@@ -38,6 +40,9 @@ namespace cpuid
         bool m_has_pclmulqdq;
         bool m_has_avx;
         bool m_has_neon;
+
+        uint32_t m_physical_cores;
+        uint32_t m_logical_cores;
 
     };
 
