@@ -11,6 +11,8 @@ TEST(cpuinfo_tests, check_instruction_sets)
 
     //std::cout << "Platform: " << m_cpuinfo.platform() << std::endl;
 
+    std::cout << "Vendor ID: " << m_cpuinfo.vendor_id() << std::endl;
+
     EXPECT_EQ(variable_map["has_fpu"].as<bool>(), m_cpuinfo.has_fpu());
     EXPECT_EQ(variable_map["has_mmx"].as<bool>(), m_cpuinfo.has_mmx());
     EXPECT_EQ(variable_map["has_sse"].as<bool>(), m_cpuinfo.has_sse());

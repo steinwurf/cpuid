@@ -13,7 +13,7 @@ namespace cpuid
 {
 
     /// @todo docs
-    void x86_logic_core(cpuinfo::impl& info, uint32_t ebx)
+    void extract_x86_logic_core(cpuinfo::impl& info, uint32_t ebx)
     {
         // Check the logical core count from EBX[23:16] and when cpuid input is
         // "1". Source: http://stackoverflow.com/questions/2901694

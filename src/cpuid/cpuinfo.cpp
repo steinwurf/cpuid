@@ -109,6 +109,14 @@ namespace cpuid
         return CPUID_PLATFORM;
     }
 
+    // Vendor ID (x86)
+    std::string cpuinfo::vendor_id() const
+    {
+        return m_impl->m_vendor_id;
+    }
+
+    // Core counts
+
     uint32_t cpuinfo::physical_cores() const
     {
         return m_impl->m_physical_cores;

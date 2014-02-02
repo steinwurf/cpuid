@@ -8,8 +8,9 @@
 #pragma once
 
 #include "cpuinfo.hpp"
-#include "extract_x86_flags.hpp"
-#include "x86_logic_core.hpp"
+#include "cpuid_0_calls.hpp"
+#include "cpuid_1_calls.hpp"
+//#include "cpuid_4_calls.hpp"
 
 namespace cpuid
 {
@@ -17,21 +18,16 @@ namespace cpuid
     /// @todo docs
     void init_cpuinfo(cpuinfo::impl& info)
     {
-        /// @todo why do we get all the registers when we
-        ///       only use ecx and edx?
-        uint32_t eax;
-        uint32_t ebx;
-        uint32_t ecx;
-        uint32_t edx;
 
-        __asm__("cpuid"
-                : "=a"(eax), "=b"(ebx),
-                  "=c"(ecx), "=d"(edx)
-                : "a"(1) );
+        // Get vendor ID string
+        cpuid_0_calls(info);
 
-        extract_x86_flags(info, ecx, edx);
+        // Get flags and logical cores count
+        cpuid_1_calls(info);
 
-        x86_logic_core(info, ebx);
+        // Get physical cores count
+        // cpuid_4_calls(info);
+
     }
 
 }
