@@ -26,6 +26,8 @@ TEST(cpuinfo_tests, check_instruction_sets)
     EXPECT_EQ(variable_map["has_avx"].as<bool>(), m_cpuinfo.has_avx());
     EXPECT_EQ(variable_map["has_neon"].as<bool>(), m_cpuinfo.has_neon());
 
+    std::cout << "Number of physical cores: " << m_cpuinfo.physical_cores()
+    << std::endl;
     std::cout << "Number of logical cores: " << m_cpuinfo.logical_cores()
     << std::endl;
 }

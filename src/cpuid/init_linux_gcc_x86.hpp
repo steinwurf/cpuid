@@ -10,7 +10,8 @@
 #include "cpuinfo.hpp"
 #include "cpuid_0_calls.hpp"
 #include "cpuid_1_calls.hpp"
-//#include "cpuid_4_calls.hpp"
+#include "cpuid_4_calls.hpp"
+#include "cpuid_80000008_calls.hpp"
 
 namespace cpuid
 {
@@ -25,8 +26,15 @@ namespace cpuid
         // Get flags and logical cores count
         cpuid_1_calls(info);
 
-        // Get physical cores count
-        // cpuid_4_calls(info);
+        // Get physical cores count (Vendor dependent)
+        if(info.m_vendor_id == "GenuineIntel")
+        {
+            cpuid_4_calls(info);
+        }
+        else if(info.m_vendor_id == "AuthenticAMD")
+        {
+            cpuid_80000008_calls(info);
+        }
 
     }
 

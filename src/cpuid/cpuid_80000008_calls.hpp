@@ -13,7 +13,7 @@ namespace cpuid
 {
 
     /// @todo docs
-    void cpuid_4_calls(cpuinfo::impl& info)
+    void cpuid_80000008_calls(cpuinfo::impl& info)
     {
         /// @todo why do we get all the registers when we
         ///       only use ecx and edx?
@@ -25,12 +25,10 @@ namespace cpuid
         __asm__("cpuid"
                 : "=a"(eax), "=b"(ebx),
                   "=c"(ecx), "=d"(edx)
-                : "a"(4), "c"(0) );
+                : "a"(0x80000008), "c"(0) );
 
         // Get physical core count for AMD according to
         // http://stackoverflow.com/questions/2901694/
-        info.m_physical_cores = ((eax >> 26) & 0x3f) + 1; // EAX[31:26] + 1
-
-
+        info.m_physical_cores = ((uint32_t)(ecx & 0xff)) + 1; // ECX[7:0] + 1
     }
 }
