@@ -43,8 +43,10 @@ namespace cpuid
         /// CPU vendor id (x86)
         std::string vendor_id() const;
 
-        /// Amount of cores
+        /// Count how many physical processors are per arch
         uint32_t physical_cores() const;
+
+        /// Count how many logical processors (thread addresables) are per arch
         uint32_t logical_cores() const;
 
     public:
