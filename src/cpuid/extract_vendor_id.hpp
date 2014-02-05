@@ -13,11 +13,17 @@ namespace cpuid
 {
 
     /// @todo docs
-    void extract_vendor_id(cpuinfo::impl& info,
-                           uint32_t ebx,
-                           uint32_t ecx,
-                           uint32_t edx)
+    void extract_vendor_id(cpuinfo::impl& info)
     {
+        uint32_t ebx;
+        uint32_t ecx;
+        uint32_t edx;
+
+        __asm__("cpuid"
+                : "=b"(ebx), "=c"(ecx), "=d"(edx)
+                : "a"(0)
+                : "eax" );
+
         // Get vendor ID
 
         std::string vendor_id;
