@@ -20,7 +20,6 @@
 
 namespace cpuid
 {
-
     /// @todo docs
     void init_cpuinfo(cpuinfo::impl& info)
     {
@@ -58,7 +57,5 @@ namespace cpuid
 
         info.m_physical_cores = sysconf( _SC_NPROCESSORS_ONLN );
         info.m_logical_cores = std::thread::hardware_concurrency();
-
     }
-
 }

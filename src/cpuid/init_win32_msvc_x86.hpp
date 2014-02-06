@@ -14,7 +14,6 @@
 
 namespace cpuid
 {
-
     /// @todo docs
     void init_cpuinfo(cpuinfo::impl& info)
     {
@@ -37,19 +36,17 @@ namespace cpuid
         // Get physical cores count (Vendor dependent)
         // Source: http://stackoverflow.com/questions/2901694
 
-        if(info.m_vendor_id == "GenuineIntel")
+        if (info.m_vendor_id == "GenuineIntel")
         {
             __cpuid(registers, 4);
             info.m_physical_cores = ((registers[0] >> 26) & 0x3f) + 1;
             // EAX[31:26] + 1
         }
-        else if(info.m_vendor_id == "AuthenticAMD")
+        else if (info.m_vendor_id == "AuthenticAMD")
         {
             __cpuid(registers, 0x80000008);
             info.m_physical_cores = ((uint32_t)(registers[2] & 0xff)) + 1;
             // ECX[7:0] + 1
         }
-
     }
-
 }

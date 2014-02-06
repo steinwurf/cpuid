@@ -13,7 +13,6 @@ namespace cpuid
     void extract_vendor_id(cpuinfo::impl& info,
                            uint32_t ebx, uint32_t ecx, uint32_t edx)
     {
-
         std::string vendor_id;
 
         vendor_id += std::string((const char *)&ebx, 4);
@@ -26,7 +25,6 @@ namespace cpuid
     void extract_x86_features(cpuinfo::impl& info,
                               uint32_t ebx, uint32_t ecx, uint32_t edx)
     {
-
         // Instruction set flags
 
         info.m_has_fpu = (edx & (1 << 0)) != 0;
@@ -44,6 +42,5 @@ namespace cpuid
         // Source: http://stackoverflow.com/questions/2901694
 
         info.m_logical_cores = (ebx >> 16) & 0xff;
-
     }
 }
