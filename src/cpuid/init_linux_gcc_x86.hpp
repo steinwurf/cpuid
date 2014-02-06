@@ -34,7 +34,7 @@ namespace cpuid
         info.m_vendor_id = vendor_id;
     }
 
-    void extract_x86_info(cpuinfo::impl& info
+    void extract_x86_info(cpuinfo::impl& info,
                           uint32_t ebx, uint32_t ecx, uint32_t edx)
     {
 
