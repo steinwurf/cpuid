@@ -15,6 +15,7 @@
 #include <fcntl.h>
 #include <elf.h>
 #include <linux/auxvec.h>
+#include <thread>
 
 #include "cpuinfo.hpp"
 
@@ -55,7 +56,7 @@ namespace cpuid
         // Get physical count of cores according to Stackoverflow's
         // http://stackoverflow.com/questions/150355/
 
-        info.m_physical_cores = sysconf( _SC_NPROCESSORS_ONLN );
+        info.m_physical_cores = sysconf( _SC_NPROCESSORS_CONF );
         info.m_logical_cores = std::thread::hardware_concurrency();
     }
 }
