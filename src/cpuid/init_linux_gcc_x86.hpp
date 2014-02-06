@@ -12,8 +12,8 @@
 namespace cpuid
 {
 
-    void invoke_cpuid(uint32_t& eax = 0, uint32_t& ebx = 0,
-                      uint32_t& ecx = 0, uint32_t& edx = 0,
+    void invoke_cpuid(uint32_t& eax, uint32_t& ebx,
+                      uint32_t& ecx, uint32_t& edx,
                       uint32_t input)
     {
         __asm__("cpuid"
@@ -65,12 +65,12 @@ namespace cpuid
 
         if(info.m_vendor_id == "GenuineIntel")
         {
-            invoke_cpuid(eax,0,0,0,4);
+            invoke_cpuid(eax,ebx,ecx,edx,4);
             info.m_physical_cores = ((eax >> 26) & 0x3f) + 1; // EAX[31:26] + 1
         }
         else if(info.m_vendor_id == "AuthenticAMD")
         {
-            invoke_cpuid(0,0,ecx,0,0x80000008);
+            invoke_cpuid(eax,ebx,ecx,edx,0x80000008);
             info.m_physical_cores = ((uint32_t)(ecx & 0xff)) + 1;// ECX[7:0] + 1
         }
 
