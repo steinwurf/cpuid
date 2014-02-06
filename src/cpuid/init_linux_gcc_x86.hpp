@@ -12,8 +12,8 @@
 namespace cpuid
 {
 
-    void invoke_cpuid(uint32_t& eax, uint32_t& ebx,
-                      uint32_t& ecx, uint32_t& edx,
+    void invoke_cpuid(uint32_t& eax = 0, uint32_t& ebx = 0,
+                      uint32_t& ecx = 0, uint32_t& edx = 0,
                       uint32_t input)
     {
         __asm__("cpuid"
@@ -57,7 +57,8 @@ namespace cpuid
 
 
     void extract_x86_physical_cores(cpuinfo::impl& info,
-                                    uint32_t eax, uint32_t ecx)
+                                    uint32_t eax, uint32_t ebx,
+                                    uint32_t ecx, uint32_t edx)
     {
         // Get physical core count for AMD according to
         // http://stackoverflow.com/questions/2901694/
@@ -85,15 +86,15 @@ namespace cpuid
         uint32_t edx;
 
         // Get vendor ID string
-        invoke_cpuid(0,ebx,ecx,edx,0);
+        invoke_cpuid(eax,ebx,ecx,edx,0);
         extract_vendor_id(info,ebx,ecx,edx);
 
         // Get flags and logical cores count
-        invoke_cpuid(0,ebx,ecx,edx,1);
+        invoke_cpuid(eax,ebx,ecx,edx,1);
         extract_x86_info(info,ebx,ecx,edx);
 
         // Get physical cores count (Vendor dependent)
-        extract_x86_physical_cores(info,eax,ecx);
+        extract_x86_physical_cores(info,eax,ebx,ecx,edx);
 
     }
 
