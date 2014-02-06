@@ -45,7 +45,7 @@ namespace cpuid
         }
         else if(info.m_vendor_id == "AuthenticAMD")
         {
-            invoke_cpuid(eax,ebx,ecx,edx,0x80000008);
+            __cpuid(registers, 0x80000008);
             info.m_physical_cores = ((uint32_t)(registers[2] & 0xff)) + 1;
             // ECX[7:0] + 1
         }
