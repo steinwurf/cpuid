@@ -24,6 +24,7 @@ namespace cpuid
     /// @todo docs
     void init_cpuinfo(cpuinfo::impl& info)
     {
+        // Check NEON instruction set flag
         // Follow recommendation from Cortex-A Series Programmer's guide
         // on Section 20.1.7 Detecting NEON. The guide is available at:
         // Steinwurf's Google drive: steinwurf/technical/experimental/cpuid
@@ -51,6 +52,12 @@ namespace cpuid
         {
             info.m_has_neon = false;
         }
+
+        // Get physical count of cores according to Stackoverflow's
+        // http://stackoverflow.com/questions/150355/
+
+        info.m_physical_cores = sysconf( _SC_NPROCESSORS_ONLN );
+        info.m_logical_cores = std::thread::hardware_concurrency();
 
     }
 
