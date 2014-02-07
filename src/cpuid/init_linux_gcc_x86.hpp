@@ -16,9 +16,10 @@ namespace cpuid
                       uint32_t& ecx, uint32_t& edx,
                       uint32_t input)
     {
+        // ECX should be set to zero for CPUID function 4
         __asm__("cpuid"
                 : "=a"(eax), "=b"(ebx), "=c"(ecx), "=d"(edx)
-                : "a"(input));
+                : "a"(input), "c"(0));
     }
 
     /// @todo Document
