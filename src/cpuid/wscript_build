@@ -7,5 +7,5 @@ bld.stlib \
     source          = bld.path.ant_glob('**/*.cpp'),
     target          = 'cpuid',
     export_includes = ['..'],
-    use             = ['boost_includes', 'boost_thread']
+    use             = ['boost_includes', 'boost_thread', 'boost_system']
 )
