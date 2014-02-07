@@ -13,21 +13,21 @@ namespace cpuid
 
     struct cpuinfo::impl
     {
-        impl()
-            : m_has_fpu(false),
-              m_has_mmx(false),
-              m_has_sse(false),
-              m_has_sse2(false),
-              m_has_sse3(false),
-              m_has_ssse3(false),
-              m_has_sse4_1(false),
-              m_has_sse4_2(false),
-              m_has_pclmulqdq(false),
-              m_has_avx(false),
-              m_has_neon(false),
-              m_vendor_id(""),
-              m_physical_cores(1),
-              m_logical_cores(1)
+        impl() :
+            m_has_fpu(false),
+            m_has_mmx(false),
+            m_has_sse(false),
+            m_has_sse2(false),
+            m_has_sse3(false),
+            m_has_ssse3(false),
+            m_has_sse4_1(false),
+            m_has_sse4_2(false),
+            m_has_pclmulqdq(false),
+            m_has_avx(false),
+            m_has_neon(false),
+            m_vendor_id(""),
+            m_physical_cores(1),
+            m_logical_cores(1)
         { }
 
         bool m_has_fpu;

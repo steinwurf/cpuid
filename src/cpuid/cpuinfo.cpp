@@ -5,6 +5,8 @@
 // The copyright notice above does not evidence any
 // actual or intended publication of such source code.
 
+#include <boost/thread.hpp>
+
 #include "cpuinfo.hpp"
 #include "config.hpp"
 #include "cpuinfo_impl.hpp"
@@ -38,9 +40,10 @@
 namespace cpuid
 {
 
-    cpuinfo::cpuinfo()
-        : m_impl(new impl)
+    cpuinfo::cpuinfo() :
+        m_impl(new impl)
     {
+        m_impl->m_logical_cores = boost::thread::hardware_concurrency();
         init_cpuinfo(*m_impl);
     }
 

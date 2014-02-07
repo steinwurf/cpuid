@@ -41,6 +41,7 @@ namespace cpuid
         // Check the logical core count from EBX[23:16]
         // Source: http://stackoverflow.com/questions/2901694
 
-        info.m_logical_cores = (ebx >> 16) & 0xff;
+        (void) ebx;
+        //info.m_logical_cores = (ebx >> 16) & 0xff;
     }
 }
