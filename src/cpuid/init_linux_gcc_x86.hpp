@@ -46,7 +46,8 @@ namespace cpuid
         if (info.m_vendor_id == "GenuineIntel")
         {
             invoke_cpuid(eax, ebx, ecx, edx, 4);
-            info.m_physical_cores = ((eax >> 26) & 0x3f) + 1; // EAX[31:26] + 1
+            info.m_physical_cores = ((eax & 0xFC000000) >> 26) + 1;
+            // EAX[31:26] + 1
         }
         else if (info.m_vendor_id == "AuthenticAMD")
         {
