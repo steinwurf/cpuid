@@ -17,7 +17,7 @@ namespace cpuid
     {
     public:
 
-        /// Constructor for feature detection with default values per arch
+        /// Constructor for feature detection with default values
         cpuinfo();
 
         ~cpuinfo();
@@ -43,10 +43,10 @@ namespace cpuid
         /// CPU vendor id (x86)
         std::string vendor_id() const;
 
-        /// Count how many physical processors are per arch
+        /// Number of physical processors
         uint32_t physical_cores() const;
 
-        /// Count how many logical processors (thread addresables) are per arch
+        /// Number of logical processors (thread addressables)
         uint32_t logical_cores() const;
 
     public:
