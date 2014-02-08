@@ -1,5 +1,4 @@
-// Copyright (c) 2011-2014 Steinwurf ApS:w
-
+// Copyright (c) 2011-2014 Steinwurf ApS
 // All Rights Reserved
 //
 // THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF STEINWURF
