@@ -39,7 +39,7 @@ namespace cpuid
         if (info.m_vendor_id == "GenuineIntel")
         {
             __cpuid(registers, 4);
-            info.m_physical_cores = ((registers[0] >> 26) & 0x3f) + 1;
+            info.m_physical_cores = ((registers[0] & 0xFC000000) >> 26) + 1;
             // EAX[31:26] + 1
         }
         else if (info.m_vendor_id == "AuthenticAMD")
