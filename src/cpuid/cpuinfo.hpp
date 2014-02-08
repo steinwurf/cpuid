@@ -40,12 +40,6 @@ namespace cpuid
         /// CPU Platform
         std::string platform() const;
 
-        /// CPU vendor id (x86)
-        std::string vendor_id() const;
-
-        /// Number of physical processors
-        uint32_t physical_cores() const;
-
         /// Number of logical processors (thread addressables)
         uint32_t logical_cores() const;
 

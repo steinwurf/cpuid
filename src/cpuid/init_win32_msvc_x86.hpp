@@ -10,7 +10,7 @@
 #include <intrin.h>
 
 #include "cpuinfo.hpp"
-#include "extract_info.hpp"
+#include "extract_x86_flags.hpp"
 
 namespace cpuid
 {
@@ -23,30 +23,9 @@ namespace cpuid
         /// stored (in that order) in the array passed to the __cpuid
         /// function.
 
-        // Get vendor ID string
-
-        __cpuid(registers, 0);
-        extract_vendor_id(info, registers[1], registers[2], registers[3]);
-
-        // Get flags and logical cores count
+        // Get flags
 
         __cpuid(registers, 1);
-        extract_x86_features(info, registers[1], registers[2], registers[3]);
-
-        // Get physical cores count (Vendor dependent)
-        // Source: http://stackoverflow.com/questions/2901694
-
-        if (info.m_vendor_id == "GenuineIntel")
-        {
-            __cpuid(registers, 4);
-            info.m_physical_cores = ((registers[0] & 0xFC000000) >> 26) + 1;
-            // EAX[31:26] + 1
-        }
-        else if (info.m_vendor_id == "AuthenticAMD")
-        {
-            __cpuid(registers, 0x80000008);
-            info.m_physical_cores = ((uint32_t)(registers[2] & 0xff)) + 1;
-            // ECX[7:0] + 1
-        }
+        extract_x86_flags(info, registers[2], registers[3]);
     }
 }

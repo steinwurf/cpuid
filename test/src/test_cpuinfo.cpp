@@ -9,10 +9,6 @@ TEST(cpuinfo_tests, check_instruction_sets)
 {
     cpuid::cpuinfo m_cpuinfo;
 
-    //std::cout << "Platform: " << m_cpuinfo.platform() << std::endl;
-
-    std::cout << "Vendor ID: " << m_cpuinfo.vendor_id() << std::endl;
-
     // Check CPU capabilities
     EXPECT_EQ(variable_map["has_fpu"].as<bool>(), m_cpuinfo.has_fpu());
     EXPECT_EQ(variable_map["has_mmx"].as<bool>(), m_cpuinfo.has_mmx());
@@ -28,8 +24,6 @@ TEST(cpuinfo_tests, check_instruction_sets)
     EXPECT_EQ(variable_map["has_neon"].as<bool>(), m_cpuinfo.has_neon());
 
     // Check the number of CPU cores
-    EXPECT_EQ(variable_map["has_physical_cores"].as<uint32_t>(),
-              m_cpuinfo.physical_cores());
     EXPECT_EQ(variable_map["has_logical_cores"].as<uint32_t>(),
               m_cpuinfo.logical_cores());
 }

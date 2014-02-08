@@ -25,8 +25,6 @@ namespace cpuid
             m_has_pclmulqdq(false),
             m_has_avx(false),
             m_has_neon(false),
-            m_vendor_id(""),
-            m_physical_cores(1),
             m_logical_cores(1)
         { }
 
@@ -42,9 +40,6 @@ namespace cpuid
         bool m_has_avx;
         bool m_has_neon;
 
-        std::string m_vendor_id;
-
-        uint32_t m_physical_cores;
         uint32_t m_logical_cores;
 
     };
