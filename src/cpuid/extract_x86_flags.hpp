@@ -7,14 +7,12 @@
 
 #pragma once
 
-#include <cstdint>
-
 namespace cpuid
 {
-
-    /// @todo docs
     void extract_x86_flags(cpuinfo::impl& info, uint32_t ecx, uint32_t edx)
     {
+        // Instruction set flags
+
         info.m_has_fpu = (edx & (1 << 0)) != 0;
         info.m_has_mmx = (edx & (1 << 23)) != 0;
         info.m_has_sse = (edx & (1 << 25)) != 0;

@@ -12,12 +12,11 @@
 
 namespace cpuid
 {
-
-    /// @todo docs
+    /// @todo Document
     void init_cpuinfo(cpuinfo::impl& info)
     {
-        /// @todo why do we get all the registers when we
-        ///       only use ecx and edx?
+        // Note: We need to capture these 4 registers, otherwise we get
+        // a segmentation fault on 32-bit Linux
         uint32_t eax;
         uint32_t ebx;
         uint32_t ecx;
@@ -28,7 +27,7 @@ namespace cpuid
                   "=c"(ecx), "=d"(edx)
                 : "a"(1) );
 
+        // Get flags
         extract_x86_flags(info, ecx, edx);
     }
-
 }

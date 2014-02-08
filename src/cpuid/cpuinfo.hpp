@@ -17,7 +17,7 @@ namespace cpuid
     {
     public:
 
-        /// Constructor for feature detection with default values per arch
+        /// Constructor for feature detection with default values
         cpuinfo();
 
         ~cpuinfo();
@@ -39,6 +39,9 @@ namespace cpuid
 
         /// CPU Platform
         std::string platform() const;
+
+        /// Number of logical processors (thread addressables)
+        uint32_t logical_cores() const;
 
     public:
 

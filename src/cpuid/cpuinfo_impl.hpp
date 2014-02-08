@@ -13,18 +13,19 @@ namespace cpuid
 
     struct cpuinfo::impl
     {
-        impl()
-            : m_has_fpu(false),
-              m_has_mmx(false),
-              m_has_sse(false),
-              m_has_sse2(false),
-              m_has_sse3(false),
-              m_has_ssse3(false),
-              m_has_sse4_1(false),
-              m_has_sse4_2(false),
-              m_has_pclmulqdq(false),
-              m_has_avx(false),
-              m_has_neon(false)
+        impl() :
+            m_has_fpu(false),
+            m_has_mmx(false),
+            m_has_sse(false),
+            m_has_sse2(false),
+            m_has_sse3(false),
+            m_has_ssse3(false),
+            m_has_sse4_1(false),
+            m_has_sse4_2(false),
+            m_has_pclmulqdq(false),
+            m_has_avx(false),
+            m_has_neon(false),
+            m_logical_cores(1)
         { }
 
         bool m_has_fpu;
@@ -38,6 +39,8 @@ namespace cpuid
         bool m_has_pclmulqdq;
         bool m_has_avx;
         bool m_has_neon;
+
+        uint32_t m_logical_cores;
 
     };
 

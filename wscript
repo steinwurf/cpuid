@@ -59,6 +59,7 @@ def configure(conf):
 
 def build(bld):
 
+    bld.recurse('src/cpuid')
 
     if bld.is_toplevel():
 
@@ -73,4 +74,4 @@ def build(bld):
         bld.recurse('test')
         bld.recurse('examples/print_cpuinfo')
 
-    bld.recurse('src/cpuid')
+

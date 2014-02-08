@@ -20,10 +20,10 @@
 
 namespace cpuid
 {
-
     /// @todo docs
     void init_cpuinfo(cpuinfo::impl& info)
     {
+        // Check NEON instruction set flag
         // Follow recommendation from Cortex-A Series Programmer's guide
         // on Section 20.1.7 Detecting NEON. The guide is available at:
         // Steinwurf's Google drive: steinwurf/technical/experimental/cpuid
@@ -51,7 +51,5 @@ namespace cpuid
         {
             info.m_has_neon = false;
         }
-
     }
-
 }
