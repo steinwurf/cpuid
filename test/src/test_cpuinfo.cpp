@@ -22,8 +22,4 @@ TEST(cpuinfo_tests, check_instruction_sets)
               m_cpuinfo.has_pclmulqdq());
     EXPECT_EQ(variable_map["has_avx"].as<bool>(), m_cpuinfo.has_avx());
     EXPECT_EQ(variable_map["has_neon"].as<bool>(), m_cpuinfo.has_neon());
-
-    // Check the number of CPU cores
-    EXPECT_EQ(variable_map["has_logical_cores"].as<uint32_t>(),
-              m_cpuinfo.logical_cores());
 }

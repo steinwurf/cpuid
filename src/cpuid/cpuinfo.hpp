@@ -12,7 +12,6 @@
 
 namespace cpuid
 {
-
     class cpuinfo
     {
     public:
@@ -39,9 +38,6 @@ namespace cpuid
 
         /// CPU Platform
         std::string platform() const;
-
-        /// Number of logical processors (thread addressables)
-        uint32_t logical_cores() const;
 
     public:
 
