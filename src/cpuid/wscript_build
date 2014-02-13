@@ -7,8 +7,7 @@ bld.stlib \
     source          = bld.path.ant_glob('**/*.cpp'),
     target          = 'cpuid',
     export_includes = ['..'],
-    use             = ['boost_includes', 'boost_thread',
-                       'boost_chrono', 'boost_timer', 'boost_system']
+    use             = [ ]
 )
 
 # Add a manual dependency to rebuild cpuinfo.cpp if a header file changes.
