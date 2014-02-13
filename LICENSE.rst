@@ -2,7 +2,7 @@ cpuid license
 -------------
 cpuid is provided under the "New BSD License":
 ::
-  Copyright (c) 2013, Steinwurf ApS
+  Copyright (c) 2011-2014, Steinwurf ApS
   All rights reserved.
 
   Redistribution and use in source and binary forms, with or without
