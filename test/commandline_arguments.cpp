@@ -8,7 +8,6 @@ namespace po = boost::program_options;
 commandline_arguments::commandline_arguments()
 {
     m_options.add_options()
-        ("has_logical_cores", po::value<uint32_t>()->default_value(1))
         ("has_fpu", po::value<bool>()->default_value(false))
         ("has_mmx", po::value<bool>()->default_value(false))
         ("has_sse", po::value<bool>()->default_value(false))
