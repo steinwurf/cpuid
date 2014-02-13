@@ -1,10 +1,10 @@
 Introduction
 ------------
-cpuid is a C++ library for CPU dispatching functionality testing. Currently, the
-project checks the following cpu capabilities:
+cpuid is a C++ library for CPU dispatching. Currently, the
+project checks the following CPU capabilities:
 
-* Available instruction sets for x86: FPU, MMX, SSE, SSE2, SSE3, SSSE3, SSE 4.1,
-  SSE 4.2, PCLMULQDQ and AVX
+* Available instruction sets checked for x86: FPU, MMX, SSE, SSE2, SSE3, SSSE3,
+  SSE 4.1, SSE 4.2, PCLMULQDQ and AVX
 * Available instruction sets checked for ARM: NEON
 
 License
@@ -15,10 +15,10 @@ for more details.
 Platforms
 ---------
 We have tested cpuid on various versions of Windows, Linux and Mac. Also, we
-have tested it in x86 and ARM architectures with different compilers like GCC,
-Microsoft Visual Studio, CLang and LLVM. You can see the status by selecting
+have tested it on x86 and ARM architectures with different compilers like g++,
+Microsoft Visual Studio, clang. You can see the status by selecting
 the cpuid project on the Steinwurf
-`buildbot page <http://176.28.49.184:12344/>`_:
+`buildbot page <http://buildbot.steinwurf.dk:12344/>`_:
 
 Build
 -----
