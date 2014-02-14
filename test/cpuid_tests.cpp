@@ -16,6 +16,9 @@ GTEST_API_ int main(int argc, char** argv)
 
     variable_map = cmd_args.parse(argc,argv);
 
-    return RUN_ALL_TESTS();
-
+    int result = RUN_ALL_TESTS();
+    // The no_fail option is used when the CPU instruction sets are not
+    // well-known, e.g. when running with valgrind or on a virtual machine
+    if (variable_map.count("no_fail")) result = 0;
+    return result;
 }

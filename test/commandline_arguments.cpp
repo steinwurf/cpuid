@@ -8,6 +8,7 @@ namespace po = boost::program_options;
 commandline_arguments::commandline_arguments()
 {
     m_options.add_options()
+        ("no_fail", "The test should always return 0")
         ("has_fpu", po::value<bool>()->default_value(false))
         ("has_mmx", po::value<bool>()->default_value(false))
         ("has_sse", po::value<bool>()->default_value(false))

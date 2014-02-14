@@ -23,6 +23,7 @@ waf-*
 .lock-*
 build
 bundle_dependencies
+*.sh
 
 # Gnu Global tag files
 GPATH
