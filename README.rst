@@ -3,20 +3,20 @@ Introduction
 cpuid is a C++ library for CPU dispatching. Currently the
 project can detect the following CPU capabilities:
 
-- Available instruction sets checked for x86: FPU, MMX, SSE, SSE2, SSE3, SSSE3,
-  SSE 4.1, SSE 4.2, PCLMULQDQ and AVX
-- Available instruction sets checked for ARM: NEON
+- Instruction sets detected on x86: FPU, MMX, SSE, SSE2, SSE3, SSSE3,
+  SSE 4.1, SSE 4.2, PCLMULQDQ, AVX
+- Instruction sets detected on ARM: NEON
 
 License
 -------
-cpuid license is based on the BSD License. Please refer to LICENSE.rst file
-for more details.
+cpuid license is based on the BSD License. Please refer to the LICENSE.rst
+file for more details.
 
 Platforms
 ---------
 We have tested cpuid on various versions of Windows, Linux and Mac. We run
-automated tests on x86 and ARM architectures with different compilers like g++,
-clang and Microsoft Visual Studio.
+automated tests on x86 and ARM architectures with different compilers like 
+g++, clang and Microsoft Visual Studio.
 
 You can see the status by selecting the cpuid project on the 
 `Steinwurf buildbot page <http://buildbot.steinwurf.dk:12344/>`_.
@@ -24,11 +24,11 @@ You can see the status by selecting the cpuid project on the
 Build
 -----
 We use the ``waf`` build system to build the cpuid static library.
-We have some additional waf tools which can be found at external-waf_
+We have some additional waf tools which can be found at external-waf_.
 
 .. _external-waf: https://github.com/steinwurf/external-waf
 
-To configure and build cpuid, run the following command::
+To configure and build cpuid, run the following commands::
 
   python waf configure
   python waf build
