@@ -1,3 +1,8 @@
+// Copyright (c) 2011-2014 Steinwurf ApS
+// All Rights Reserved
+//
+// Distributed under the "BSD License". See accompanying file LICENSE.rst
+
 #include <cstdint>
 #include <iostream>
 #include <gtest/gtest.h>

@@ -1,3 +1,8 @@
+// Copyright (c) 2011-2014 Steinwurf ApS
+// All Rights Reserved
+//
+// Distributed under the "BSD License". See accompanying file LICENSE.rst
+
 #include <iostream>
 
 #include <cpuid/cpuinfo.hpp>
