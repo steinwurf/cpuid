@@ -1,7 +1,11 @@
+// Copyright (c) 2013 Steinwurf ApS
+// All Rights Reserved
+//
+// Distributed under the "BSD License". See the accompanying LICENSE.rst file.
+
 #include <iostream>
 
 #include <cpuid/cpuinfo.hpp>
-
 
 int main()
 {
@@ -44,4 +48,3 @@ int main()
 
     return 0;
 }
-
