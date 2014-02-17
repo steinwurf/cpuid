@@ -23,12 +23,12 @@
     #include "init_linux_gcc_arm.hpp"
 #elif defined(CPUID_WIN32_MSVC_X86)
     #include "init_win32_msvc_x86.hpp"
-#elif defined(CPUID_MAC_LLVM_X86)
+#elif defined(CPUID_MAC_CLANG_X86)
     #include "init_linux_gcc_x86.hpp"
 #elif defined(CPUID_MAC_GCC_X86)
     #include "init_linux_gcc_x86.hpp"
-#elif defined(CPUID_IOS_LLVM_ARM)
-    #include "init_ios_llvm_arm.hpp"
+#elif defined(CPUID_IOS_CLANG_ARM)
+    #include "init_ios_clang_arm.hpp"
 #else
     #include "init_unknown.hpp"
 #endif

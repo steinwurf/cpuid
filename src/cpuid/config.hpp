@@ -48,13 +48,13 @@
     #endif
 #elif defined(CPUID_MAC)
     #if defined(__llvm__)
-        #define CPUID_MAC_LLVM
+        #define CPUID_MAC_CLANG
     #elif defined(__GNUC__)
         #define CPUID_MAC_GCC
     #endif
 #elif defined(CPUID_IOS)
     #if defined(__llvm__)
-        #define CPUID_IOS_LLVM
+        #define CPUID_IOS_CLANG
     #endif
 #endif
 
@@ -102,20 +102,20 @@
         #define CPUID_WIN32_MSVC_ARM
         #define CPUID_PLATFORM "win32_msvc_arm"
     #endif
-#elif defined(CPUID_MAC_LLVM)
+#elif defined(CPUID_MAC_CLANG)
     #if defined(__i386__) || defined(__x86_64__)
-        #define CPUID_MAC_LLVM_X86
-        #define CPUID_PLATFORM "mac_llvm_x86"
+        #define CPUID_MAC_CLANG_X86
+        #define CPUID_PLATFORM "mac_clang_x86"
     #endif
 #elif defined(CPUID_MAC_GCC)
     #if defined(__i386__) || defined(__x86_64__)
         #define CPUID_MAC_GCC_X86
         #define CPUID_PLATFORM "mac_gcc_x86"
     #endif
-#elif defined(CPUID_IOS_LLVM)
+#elif defined(CPUID_IOS_CLANG)
     #if defined(__arm__)
-        #define CPUID_IOS_LLVM_ARM
-        #define CPUID_PLATFORM "ios_llvm_arm"
+        #define CPUID_IOS_CLANG_ARM
+        #define CPUID_PLATFORM "ios_clang_arm"
     #endif
 #else
     #define CPUID_UNKNOWN
