@@ -6,8 +6,9 @@ every change, see the Git log.
 
 Latest
 ------
-* TBD
+* Major: Renamed Clang detection macros to always use the name CLANG instead of
+  LLVM.
 
 1.0.0
 -----
-* Initial release with support for x86 and ARM architectures.
+* Major: Initial release with support for x86 and ARM architectures.
