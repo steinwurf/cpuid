@@ -6,6 +6,10 @@ every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+2.0.0
+-----
 * Major: Renamed Clang detection macros to always use the name CLANG instead of
   LLVM.
 
