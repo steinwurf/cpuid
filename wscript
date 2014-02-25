@@ -38,6 +38,12 @@ def options(opt):
             git_repository = 'github.com/steinwurf/external-boost-light.git',
             major_version = 1))
 
+    bundle.add_dependency(opt,
+        resolve.ResolveGitMajorVersion(
+            name = 'platform',
+            git_repository = 'github.com/steinwurf/platform.git',
+            major_version = 1))
+
     opt.load('wurf_dependency_bundle')
     opt.load('wurf_tools')
 
@@ -56,6 +62,7 @@ def configure(conf):
 
         recurse_helper(conf, 'boost')
         recurse_helper(conf, 'gtest')
+        recurse_helper(conf, 'platform')
 
 def build(bld):
 
@@ -67,6 +74,7 @@ def build(bld):
 
         recurse_helper(bld, 'boost')
         recurse_helper(bld, 'gtest')
+        recurse_helper(bld, 'platform')
 
         # Only build test when executed from the
         # top-level wscript i.e. not when included as a dependency

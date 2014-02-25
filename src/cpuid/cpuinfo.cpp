@@ -3,32 +3,19 @@
 //
 // Distributed under the "BSD License". See the accompanying LICENSE.rst file.
 
+#include <platform/config.hpp>
+
 #include "cpuinfo.hpp"
-#include "config.hpp"
 #include "cpuinfo_impl.hpp"
 
-#if defined(CPUID_LINUX_GCC_X86)
-    #include "init_linux_gcc_x86.hpp"
-#elif defined(CPUID_LINUX_CLANG_X86)
-    #include "init_linux_gcc_x86.hpp"
-#elif defined(CPUID_LINUX_GCC_ARM)
-    #include "init_linux_gcc_arm.hpp"
-#elif defined(CPUID_LINUX_GCC_MIPS)
-    #include "init_unknown.hpp"
-#elif defined(CPUID_LINUX_CLANG_ARM)
-    #include "init_linux_gcc_arm.hpp"
-#elif defined(CPUID_ANDROID_GCC_ARM)
-    #include "init_linux_gcc_arm.hpp"
-#elif defined(CPUID_ANDROID_CLANG_ARM)
-    #include "init_linux_gcc_arm.hpp"
-#elif defined(CPUID_WIN32_MSVC_X86)
-    #include "init_win32_msvc_x86.hpp"
-#elif defined(CPUID_MAC_CLANG_X86)
-    #include "init_linux_gcc_x86.hpp"
-#elif defined(CPUID_MAC_GCC_X86)
-    #include "init_linux_gcc_x86.hpp"
-#elif defined(CPUID_IOS_CLANG_ARM)
+#if defined(PLATFORM_GCC_COMPATIBLE_X86)
+    #include "init_gcc_x86.hpp"
+#elif defined(PLATFORM_MSVC_X86)
+    #include "init_msvc_x86.hpp"
+#elif defined(PLATFORM_CLANG_ARM) && defined(PLATFORM_IOS)
     #include "init_ios_clang_arm.hpp"
+#elif defined(PLATFORM_GCC_COMPATIBLE_ARM) && defined(PLATFORM_LINUX)
+    #include "init_linux_gcc_arm.hpp"
 #else
     #include "init_unknown.hpp"
 #endif
@@ -99,10 +86,5 @@ namespace cpuid
     bool cpuinfo::has_neon() const
     {
         return m_impl->m_has_neon;
-    }
-
-    std::string cpuinfo::platform() const
-    {
-        return CPUID_PLATFORM;
     }
 }
