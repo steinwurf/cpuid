@@ -8,6 +8,10 @@ Latest
 ------
 * tbd
 
+3.0.0
+-----
+* Major: Platform detection is now handled by the 'platform' library
+
 2.0.0
 -----
 * Major: Renamed Clang detection macros to always use the name CLANG instead of

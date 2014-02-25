@@ -4,7 +4,7 @@
 import os
 
 APPNAME = 'cpuid'
-VERSION = '2.0.0'
+VERSION = '3.0.0'
 
 
 def recurse_helper(ctx, name):
