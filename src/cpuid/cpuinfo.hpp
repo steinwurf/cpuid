@@ -34,9 +34,6 @@ namespace cpuid
         /// ARM member functions
         bool has_neon() const;
 
-        /// CPU Platform
-        std::string platform() const;
-
     public:
 
         struct impl;

@@ -8,6 +8,7 @@ project_dependencies = \
 [
     'waf-tools',
     'gtest',
+    'platform',
 ]
 
 # Importing a dynamically generated module
