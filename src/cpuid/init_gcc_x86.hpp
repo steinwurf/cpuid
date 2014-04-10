@@ -21,6 +21,7 @@ namespace cpuid
         uint32_t ebx = 0;
         uint32_t ecx = 0;
         uint32_t edx = 0;
+
         __get_cpuid(1, &eax, &ebx, &ecx, &edx);
 
         // Get flags
