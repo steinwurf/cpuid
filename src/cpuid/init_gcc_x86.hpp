@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include <cpuid.h>
+
 #include "cpuinfo.hpp"
 #include "extract_x86_flags.hpp"
 
@@ -15,15 +17,11 @@ namespace cpuid
     {
         // Note: We need to capture these 4 registers, otherwise we get
         // a segmentation fault on 32-bit Linux
-        uint32_t eax;
-        uint32_t ebx;
-        uint32_t ecx;
-        uint32_t edx;
-
-        __asm__("cpuid"
-                : "=a"(eax), "=b"(ebx),
-                  "=c"(ecx), "=d"(edx)
-                : "a"(1) );
+        uint32_t eax = 0;
+        uint32_t ebx = 0;
+        uint32_t ecx = 0;
+        uint32_t edx = 0;
+        __get_cpuid(1, &eax, &ebx, &ecx, &edx);
 
         // Get flags
         extract_x86_flags(info, ecx, edx);
