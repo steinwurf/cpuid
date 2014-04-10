@@ -6,7 +6,7 @@ every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Bug: Fixed issue with the -fPIC compile flag and x86 architecture.
 
 3.0.0
 -----
