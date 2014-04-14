@@ -22,9 +22,12 @@ namespace cpuid
         uint32_t ecx = 0;
         uint32_t edx = 0;
 
+        // Set registers for basic flag extraction
         __get_cpuid(1, &eax, &ebx, &ecx, &edx);
-
-        // Get flags
         extract_x86_flags(info, ecx, edx);
+
+        // Set registers for extended flags extraction
+        __get_cpuid(7, &eax, &ebx, &ecx, &edx);
+        extract_x86_extended_flags(info, ebx);
     }
 }

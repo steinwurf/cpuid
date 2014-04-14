@@ -41,6 +41,9 @@ int main()
     std::cout << "CPU has AVX?: "
         << (m_cpuid.has_avx() ? "Yes" : "No") << std::endl;
 
+    std::cout << "CPU has AVX2?: "
+        << (m_cpuid.has_avx2() ? "Yes" : "No") << std::endl;
+
     std::cout << "CPU has ARM NEON?: "
         << (m_cpuid.has_neon() ? "Yes" : "No") << std::endl;
 

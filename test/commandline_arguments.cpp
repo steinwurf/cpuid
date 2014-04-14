@@ -24,6 +24,7 @@ commandline_arguments::commandline_arguments()
         ("has_sse4_2", po::value<bool>()->default_value(false))
         ("has_pclmulqdq", po::value<bool>()->default_value(false))
         ("has_avx", po::value<bool>()->default_value(false))
+        ("has_avx2", po::value<bool>()->default_value(false))
         ("has_neon", po::value<bool>()->default_value(false));
 }
 
