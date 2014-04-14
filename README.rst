@@ -4,7 +4,7 @@ cpuid is a C++ library for CPU dispatching. Currently the
 project can detect the following CPU capabilities:
 
 - Instruction sets detected on x86: FPU, MMX, SSE, SSE2, SSE3, SSSE3,
-  SSE 4.1, SSE 4.2, PCLMULQDQ, AVX
+  SSE 4.1, SSE 4.2, PCLMULQDQ, AVX, AVX2
 - Instruction sets detected on ARM: NEON
 
 License
@@ -15,10 +15,10 @@ file for more details.
 Platforms
 ---------
 We have tested cpuid on various versions of Windows, Linux and Mac. We run
-automated tests on x86 and ARM architectures with different compilers like 
+automated tests on x86 and ARM architectures with different compilers like
 g++, clang and Microsoft Visual Studio.
 
-You can see the status by selecting the cpuid project on the 
+You can see the status by selecting the cpuid project on the
 `Steinwurf buildbot page <http://buildbot.steinwurf.dk:12344/>`_.
 
 Build
@@ -33,17 +33,17 @@ To configure and build cpuid, run the following commands::
   python waf configure
   python waf build
 
-The ``waf configure`` command will download several auxiliary libraries 
+The ``waf configure`` command will download several auxiliary libraries
 into a folder called ``bundle_dependencies`` within the cpuid folder.
-You can also use the ``--bundle-path`` option to specify the download 
+You can also use the ``--bundle-path`` option to specify the download
 location for the project dependencies::
- 
+
   python waf configure --bundle-path=/my/path/to/bundle_dependencies
 
 When building the static lib, waf will also build the ``print_cpuinfo_example``
 executable which is useful to print the available CPU instruction sets.
 The compiled binary is located in the ``build/[platform]/examples/print_cpuinfo``
-folder (where ``[platform]`` denotes your current platform, 
+folder (where ``[platform]`` denotes your current platform,
 e.g. ``linux``, ``win32`` or ``darwin``).
 
 Credits
