@@ -22,6 +22,9 @@ namespace cpuid
         uint32_t ecx = 0;
         uint32_t edx = 0;
 
+        // The register information per input can be extracted from here:
+        // http://en.wikipedia.org/wiki/CPUID
+
         // Set registers for basic flag extraction
         __get_cpuid(1, &eax, &ebx, &ecx, &edx);
         extract_x86_flags(info, ecx, edx);

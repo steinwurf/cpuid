@@ -21,6 +21,9 @@ namespace cpuid
         /// stored (in that order) in the array passed to the __cpuid
         /// function.
 
+        // The register information per input can be extracted from here:
+        // http://en.wikipedia.org/wiki/CPUID
+
         // Set registers for basic flag extraction
         __cpuid(registers, 1);
         extract_x86_flags(info, registers[2], registers[3]);
