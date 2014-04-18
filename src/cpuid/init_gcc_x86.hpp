@@ -12,26 +12,26 @@
 
 namespace cpuid
 {
-    void get_cpuid(unsigned int index, int output[4])
+    void get_cpuid(uint32_t index, uint32_t output[4])
     {
-        int a, b, c, d;
+        uint32_t a, b, c, d;
 
         __asm__ __volatile__(
 #if defined(__x86_64__)
-                "pushq %%rbx        \n\t"  // Save %rbx
+                "pushq %%rbx;"          // Save %rbx
 #else
-                "pushl %%ebx        \n\t"  // Save %ebx
+                "pushl %%ebx;"          // Save %ebx
 #endif
-                "cpuid              \n\t"
-                "movl %%ebx, %[ebx] \n\t"  // Copy ebx into output variable
+                "cpuid;"
+                "movl %%ebx, %[ebx];"   // Copy ebx into output variable
 #if defined(__x86_64__)
-                "popq %%rbx         \n\t"  // Restore %rbx
+                "popq %%rbx;"           // Restore %rbx
 #else
-                "popl %%ebx         \n\t"  // Restore %ebx
+                "popl %%ebx;"           // Restore %ebx
 #endif
                 : "=a"(a), [ebx]"=r"(b),
                   "=c"(c), "=d"(d)
-                : "a"(index), "c"(0));
+                : "a"(index), "b"(0), "c"(0), "d"(0));
 
         output[0] = a;
         output[1] = b;
@@ -45,7 +45,7 @@ namespace cpuid
     {
         // Note: We need to capture these 4 registers, otherwise we get
         // a segmentation fault on 32-bit Linux
-        int output[4] = {0,0,0,0};
+        uint32_t output[4] = {0,0,0,0};
 
         // The register information per input can be extracted from here:
         // http://en.wikipedia.org/wiki/CPUID
