@@ -17,22 +17,21 @@ namespace cpuid
         int a, b, c, d;
 
         __asm__ __volatile__(
-//#if defined(__x86_64__)
-//                "pushq %%rbx        \n\t"  // Save %rbx
-//#else
-//                "pushl %%ebx        \n\t"  // Save %ebx
-//#endif
+#if defined(__x86_64__)
+                "pushq %%rbx        \n\t"  // Save %rbx
+#else
+                "pushl %%ebx        \n\t"  // Save %ebx
+#endif
                 "cpuid              \n\t"
-//                "movl %%ebx, %[ebx] \n\t"  // Copy ebx into output variable
-//#if defined(__x86_64__)
-//                "popq %%rbx         \n\t"  // Restore %rbx
-//#else
-//                "popl %%ebx         \n\t"  // Restore %ebx
-//#endif
-                : "=a"(a), "=b"(b),
+                "movl %%ebx, %[ebx] \n\t"  // Copy ebx into output variable
+#if defined(__x86_64__)
+                "popq %%rbx         \n\t"  // Restore %rbx
+#else
+                "popl %%ebx         \n\t"  // Restore %ebx
+#endif
+                : "=a"(a), [ebx]"=r"(b),
                   "=c"(c), "=d"(d)
-                : "a"(index), "c"(0)
-                : "%ebx","%ecx","%edx");  // Clobbered registers
+                : "a"(index), "c"(0));
 
         output[0] = a;
         output[1] = b;
