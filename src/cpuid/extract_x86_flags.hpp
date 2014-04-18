@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include "cpuinfo.hpp"
+
 namespace cpuid
 {
     void extract_x86_flags(cpuinfo::impl& info, uint32_t ecx, uint32_t edx)

@@ -4,6 +4,7 @@
 // Distributed under the "BSD License". See the accompanying LICENSE.rst file.
 
 #pragma once
+
 #include "cpuinfo.hpp"
 
 namespace cpuid
