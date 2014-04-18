@@ -12,9 +12,9 @@
 
 namespace cpuid
 {
-    void get_cpuid(uint32_t index, uint32_t output[4])
+    void get_cpuid(unsigned int index, int output[4])
     {
-        uint32_t a, b, c, d;
+        int a, b, c, d;
 
         __asm__ __volatile__(
 #if defined(__x86_64__)
@@ -45,7 +45,7 @@ namespace cpuid
     {
         // Note: We need to capture these 4 registers, otherwise we get
         // a segmentation fault on 32-bit Linux
-        uint32_t output[4] = {0,0,0,0};
+        int output[4] = {0,0,0,0};
 
         // The register information per input can be extracted from here:
         // http://en.wikipedia.org/wiki/CPUID
