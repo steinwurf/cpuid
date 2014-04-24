@@ -10,6 +10,8 @@
 
 namespace cpuid
 {
+    // Reference for this code is Intel's recommendation for detecting AVX2
+    // on Haswell located here: http://goo.gl/c6IkGX
     void run_cpuid(uint32_t eax, uint32_t ecx, uint32_t* abcd)
     {
         uint32_t ebx, edx;
@@ -18,7 +20,7 @@ namespace cpuid
         // If PIC used under 32-bit, EBX cannot be clobbered
         // EBX is saved to EDI and later restored
         __asm__ ( "movl %%ebx, %%edi;"
-                  "cpuid;
+                  "cpuid;"
                   "xchgl %%ebx, %%edi;"
                   : "=D"(ebx),
 # else
