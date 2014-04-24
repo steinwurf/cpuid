@@ -5,57 +5,50 @@
 
 #pragma once
 
-#include <cpuid.h>
-
 #include "cpuinfo.hpp"
 #include "extract_x86_flags.hpp"
 
 namespace cpuid
 {
-    void get_cpuid(unsigned int index, int output[4])
+    void run_cpuid(uint32_t eax, uint32_t ecx, uint32_t* abcd)
     {
-        int a, b, c, d;
+        uint32_t ebx, edx;
 
-        __asm__ __volatile__(
-#if defined(__x86_64__)
-                "pushq %%rbx;"          // Save %rbx
-#else
-                "pushl %%ebx;"          // Save %ebx
-#endif
-                "cpuid;"
-                "movl %%ebx, %[ebx];"   // Copy ebx into output variable
-#if defined(__x86_64__)
-                "popq %%rbx;"           // Restore %rbx
-#else
-                "popl %%ebx;"           // Restore %ebx
-#endif
-                : "=a"(a), [ebx]"=r"(b),
-                  "=c"(c), "=d"(d)
-                : "a"(index), "b"(0), "c"(0), "d"(0));
+# if defined( __i386__ ) && defined ( __PIC__ )
+        // If PIC used under 32-bit, EBX cannot be clobbered
+        // EBX is saved to EDI and later restored
+        __asm__ ( "movl %%ebx, %%edi;"
+                  "cpuid;
+                  "xchgl %%ebx, %%edi;"
+                  : "=D"(ebx),
+# else
+        __asm__ ( "cpuid;"
+                  : "+b"(ebx),
+# endif
+                  "+a"(eax), "+c"(ecx), "=d"(edx));
 
-        output[0] = a;
-        output[1] = b;
-        output[2] = c;
-        output[3] = d;
+        abcd[0] = eax;
+        abcd[1] = ebx;
+        abcd[2] = ecx;
+        abcd[3] = edx;
     }
-
 
     /// @todo Document
     void init_cpuinfo(cpuinfo::impl& info)
     {
         // Note: We need to capture these 4 registers, otherwise we get
         // a segmentation fault on 32-bit Linux
-        int output[4] = {0,0,0,0};
+        uint32_t output[4];
 
         // The register information per input can be extracted from here:
         // http://en.wikipedia.org/wiki/CPUID
 
         // Set registers for basic flag extraction
-        get_cpuid(1, output);
+        run_cpuid(1, 0, output);
         extract_x86_flags(info, output[2], output[3]);
 
         // Set registers for extended flags extraction
-        get_cpuid(7, output);
+        run_cpuid(7, 0, output);
         extract_x86_extended_flags(info, output[1]);
     }
 }
