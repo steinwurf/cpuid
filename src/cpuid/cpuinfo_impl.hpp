@@ -4,6 +4,7 @@
 // Distributed under the "BSD License". See the accompanying LICENSE.rst file.
 
 #pragma once
+
 #include "cpuinfo.hpp"
 
 namespace cpuid
@@ -21,6 +22,7 @@ namespace cpuid
             m_has_sse4_2(false),
             m_has_pclmulqdq(false),
             m_has_avx(false),
+            m_has_avx2(false),
             m_has_neon(false)
         { }
 
@@ -34,6 +36,7 @@ namespace cpuid
         bool m_has_sse4_2;
         bool m_has_pclmulqdq;
         bool m_has_avx;
+        bool m_has_avx2;
         bool m_has_neon;
     };
 }

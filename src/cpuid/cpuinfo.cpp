@@ -82,6 +82,11 @@ namespace cpuid
         return m_impl->m_has_avx;
     }
 
+    bool cpuinfo::has_avx2() const
+    {
+        return m_impl->m_has_avx2;
+    }
+
     // ARM functions
     bool cpuinfo::has_neon() const
     {

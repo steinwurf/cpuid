@@ -30,6 +30,7 @@ namespace cpuid
         bool has_sse4_2() const;
         bool has_pclmulqdq() const;
         bool has_avx() const;
+        bool has_avx2() const;
 
         /// ARM member functions
         bool has_neon() const;
