@@ -14,7 +14,7 @@ namespace cpuid
     // on Haswell located here: http://goo.gl/c6IkGX
     void run_cpuid(uint32_t eax, uint32_t ecx, uint32_t* abcd)
     {
-        uint32_t ebx, edx;
+        uint32_t ebx = 0, edx = 0;
 
 # if defined( __i386__ ) && defined ( __PIC__ )
         // If PIC used under 32-bit, EBX cannot be clobbered
