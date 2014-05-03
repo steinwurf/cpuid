@@ -6,7 +6,12 @@ every change, see the Git log.
 
 Latest
 ------
-* Bug: Fixed issue with the -fPIC compile flag and x86 architecture.
+* tbd
+
+3.1.0
+-----
+* Minor: Added detection for AVX2 instruction set
+* Bug: Fixed issue with the -fPIC compiler flag on x86.
 
 3.0.0
 -----
