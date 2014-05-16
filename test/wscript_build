@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 bld.program(
-    features = 'cxx test',
-    source   = bld.path.ant_glob('**/*.cpp'),
-    target   = 'cpuid_tests',
-    use      = ['cpuid', 'gtest', 'boost_program_options'])
+    features='cxx test',
+    source=bld.path.ant_glob('**/*.cpp'),
+    target='cpuid_tests',
+    use=['cpuid', 'gtest', 'boost_program_options'])
