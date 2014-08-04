@@ -7,6 +7,9 @@ project can detect the following CPU capabilities:
   SSE 4.1, SSE 4.2, PCLMULQDQ, AVX, AVX2
 - Instruction sets detected on ARM: NEON
 
+.. image:: http://buildbot.steinwurf.dk/svgstatus?project=cpuid
+    :target: http://buildbot.steinwurf.dk/stats?projects=cpuid
+
 License
 -------
 cpuid license is based on the BSD License. Please refer to the LICENSE.rst
