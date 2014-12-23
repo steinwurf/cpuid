@@ -3,14 +3,14 @@
 
 from waflib import Context
 
+VERSION = Context.g_module.VERSION
+
 bld.stlib(
     features='cxx',
     source=bld.path.ant_glob('**/*.cpp'),
     target='cpuid',
     export_includes=['..'],
-    export_defines=[
-        'STEINWURF_{}_VERSION="{}"'.format(
-            Context.g_module.APPNAME.upper(), Context.g_module.VERSION)],
+    export_defines=['STEINWURF_CPUID_VERSION="{}"'.format(VERSION)],
     use=['platform_includes']
 )
 
