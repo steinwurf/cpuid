@@ -24,12 +24,14 @@ namespace cpuid
         // The register information per input can be extracted from here:
         // http://en.wikipedia.org/wiki/CPUID
 
-        // Set registers for basic flag extraction
+        // Set registers for basic flag extraction, eax=1
         __cpuid(registers, 1);
         extract_x86_flags(info, registers[2], registers[3]);
 
-        // Set registers for extended flags extraction
-        __cpuid(registers, 7);
+        // Set registers for extended flags extraction, eax=7 and ecx=0
+        // using __cpuidex ensures that ecx = 0.
+
+        __cpuidex(registers, 7, 0);
         extract_x86_extended_flags(info, registers[1]);
     }
 }
