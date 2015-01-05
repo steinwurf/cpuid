@@ -6,6 +6,10 @@ every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+3.2.0
+-----
 * Bug: On win32 use __cpuidex when detecting extended features (such as
   AVX2). This bug was reported by Ilya Lavrenov <ilya.lavrenov@itseez.com>.
 * Minor: Update to waf 1.8.0-pre1
