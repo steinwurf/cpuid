@@ -62,8 +62,6 @@ def configure(conf):
 
 def build(bld):
 
-    bld.recurse('src/cpuid')
-
     if bld.is_toplevel():
 
         bld.load('wurf_dependency_bundle')
@@ -77,3 +75,9 @@ def build(bld):
         # in a recurse call
         bld.recurse('test')
         bld.recurse('examples/print_cpuinfo')
+
+    bld.recurse('src/cpuid')
+
+    bld.env.append_unique(
+        'DEFINES_STEINWURF_VERSION',
+        'STEINWURF_CPUID_VERSION="{}"'.format(VERSION))

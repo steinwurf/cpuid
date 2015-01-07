@@ -1,16 +1,11 @@
 #! /usr/bin/env python
 # encoding: utf-8
 
-from waflib import Context
-
-VERSION = Context.g_module.VERSION
-
 bld.stlib(
     features='cxx',
     source=bld.path.ant_glob('**/*.cpp'),
     target='cpuid',
     export_includes=['..'],
-    export_defines=['STEINWURF_CPUID_VERSION="{}"'.format(VERSION)],
     use=['platform_includes']
 )
 
