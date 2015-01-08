@@ -6,6 +6,10 @@ every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+3.2.1
+-----
 * Patch: Fix version define.
 
 3.2.0
