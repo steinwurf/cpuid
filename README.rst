@@ -1,10 +1,11 @@
-Introduction
-------------
+cpuid
+-----
+
 cpuid is a C++ library for CPU dispatching. Currently the
 project can detect the following CPU capabilities:
 
 - Instruction sets detected on x86: FPU, MMX, SSE, SSE2, SSE3, SSSE3,
-  SSE 4.1, SSE 4.2, PCLMULQDQ, AVX, AVX2
+  SSE 4.1, SSE 4.2, PCLMULQDQ, AVX, and AVX2
 - Instruction sets detected on ARM: NEON
 
 .. image:: http://buildbot.steinwurf.dk/svgstatus?project=cpuid
@@ -27,9 +28,9 @@ You can see the status by selecting the cpuid project on the
 Build
 -----
 We use the ``waf`` build system to build the cpuid static library.
-We have some additional waf tools which can be found at external-waf_.
+We have some additional waf tools which can be found at waf_.
 
-.. _external-waf: https://github.com/steinwurf/external-waf
+.. _waf: https://github.com/steinwurf/waf
 
 To configure and build cpuid, run the following commands::
 
@@ -55,7 +56,7 @@ We have created cpuid to fit our specific needs, however we hope
 that others may also find it useful. When designing cpuid we found
 inspiration in these other nice projects:
 
-* CPUID website on Wikipedia: http://en.wikipedia.org/wiki/CPUID
+* CPUID article on Wikipedia: http://en.wikipedia.org/wiki/CPUID
 * zchotia's gist: https://gist.github.com/zchothia/3078968
 * Facebook CPU ID implementation: https://github.com/facebook/folly/blob/master/folly/CpuId.h
-* ARM Cortex-A Programmer's guide
+* ARM Cortex-A Programmer's guide: http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.den0013d/index.html

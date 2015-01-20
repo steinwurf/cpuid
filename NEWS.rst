@@ -14,7 +14,7 @@ Latest
 
 3.2.0
 -----
-* Bug: On win32 use __cpuidex when detecting extended features (such as
+* Patch: On win32 use __cpuidex when detecting extended features (such as
   AVX2). This bug was reported by Ilya Lavrenov <ilya.lavrenov@itseez.com>.
 * Minor: Update to waf 1.8.0-pre1
 * Minor: Made python files comply with pep8
@@ -23,7 +23,7 @@ Latest
 3.1.0
 -----
 * Minor: Added detection for AVX2 instruction set
-* Bug: Fixed issue with the -fPIC compiler flag on x86.
+* Patch: Fixed issue with the -fPIC compiler flag on x86.
 
 3.0.0
 -----
