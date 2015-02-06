@@ -12,6 +12,8 @@
     #include "init_gcc_x86.hpp"
 #elif defined(PLATFORM_MSVC_X86)
     #include "init_msvc_x86.hpp"
+#elif defined(PLATFORM_MSVC_ARM)
+    #include "init_msvc_arm.hpp"
 #elif defined(PLATFORM_CLANG_ARM) && defined(PLATFORM_IOS)
     #include "init_ios_clang_arm.hpp"
 #elif defined(PLATFORM_GCC_COMPATIBLE_ARM) && defined(PLATFORM_LINUX)

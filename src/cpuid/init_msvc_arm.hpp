@@ -9,9 +9,11 @@
 
 namespace cpuid
 {
-    /// @todo docs
     void init_cpuinfo(cpuinfo::impl& info)
     {
-        (void) info;
+        // Visual Studio 2012 (and above) guarantees the NEON capability when
+        // compiling for Windows Phone 8 (and above)
+
+        info.m_has_neon = true;
     }
 }

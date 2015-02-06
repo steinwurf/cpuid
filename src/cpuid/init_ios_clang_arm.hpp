@@ -6,10 +6,10 @@
 #pragma once
 
 #include "cpuinfo.hpp"
+#include "cpuinfo_impl.hpp"
 
 namespace cpuid
 {
-
     /// @todo docs
     void init_cpuinfo(cpuinfo::impl& info)
     {
@@ -25,5 +25,4 @@ namespace cpuid
         info.m_has_neon = false;
 #endif
     }
-
 }

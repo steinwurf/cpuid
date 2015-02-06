@@ -7,7 +7,7 @@
 
 #include <intrin.h>
 
-#include "cpuinfo.hpp"
+#include "cpuinfo_impl.hpp"
 #include "extract_x86_flags.hpp"
 
 namespace cpuid
