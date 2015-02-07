@@ -10,7 +10,7 @@
 
 #if defined(PLATFORM_GCC_COMPATIBLE_X86)
     #include "init_gcc_x86.hpp"
-#elif defined(PLATFORM_MSVC_X86)
+#elif defined(PLATFORM_MSVC_X86) && !defined(PLATFORM_WINDOWS_PHONE)
     #include "init_msvc_x86.hpp"
 #elif defined(PLATFORM_MSVC_ARM)
     #include "init_msvc_arm.hpp"
