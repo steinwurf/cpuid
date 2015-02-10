@@ -8,6 +8,11 @@ Latest
 ------
 * tbd
 
+3.3.0
+-----
+* Minor: Added init_msvc_arm.hpp to enable the NEON instruction set on
+  Windows Phone 8 (and above).
+
 3.2.1
 -----
 * Patch: Fix version define.

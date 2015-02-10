@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 APPNAME = 'cpuid'
-VERSION = '3.2.1'
+VERSION = '3.3.0'
 
 
 def recurse_helper(ctx, name):
