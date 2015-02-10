@@ -6,7 +6,6 @@
 #pragma once
 
 #include <memory>
-#include <string>
 
 namespace cpuid
 {
@@ -19,7 +18,7 @@ namespace cpuid
 
         ~cpuinfo();
 
-        /// x86 member functions
+        // x86 member functions
         bool has_fpu() const;
         bool has_mmx() const;
         bool has_sse() const;
@@ -32,7 +31,7 @@ namespace cpuid
         bool has_avx() const;
         bool has_avx2() const;
 
-        /// ARM member functions
+        // ARM member functions
         bool has_neon() const;
 
     public:
@@ -42,6 +41,5 @@ namespace cpuid
     private:
 
         std::unique_ptr<impl> m_impl;
-
     };
 }

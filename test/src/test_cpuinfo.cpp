@@ -3,11 +3,12 @@
 //
 // Distributed under the "BSD License". See the accompanying LICENSE.rst file.
 
+#include <cpuid/cpuinfo.hpp>
+
 #include <cstdint>
 #include <iostream>
 #include <gtest/gtest.h>
 
-#include <cpuid/cpuinfo.hpp>
 #include "../commandline_arguments.hpp"
 
 TEST(cpuinfo_tests, check_instruction_sets)
