@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include <cstdint>
+
 #include "cpuinfo_impl.hpp"
 #include "extract_x86_flags.hpp"
 

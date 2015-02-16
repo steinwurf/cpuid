@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include <cstdint>
+
 #include "cpuinfo_impl.hpp"
 
 namespace cpuid
