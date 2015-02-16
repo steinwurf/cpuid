@@ -6,7 +6,7 @@ every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Patch: Added missing ``cstdint`` includes
 
 3.3.0
 -----
