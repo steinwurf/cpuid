@@ -14,3 +14,4 @@ def run_tests(options):
 
 def coverage_settings(options):
     options['required_line_coverage'] = 50.0
+    options['run_cmd'] = '%s --no_fail'
