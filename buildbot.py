@@ -62,10 +62,10 @@ def run_tests(properties):
     run_cmd = '%s'
 
     if properties.get('valgrind_run'):
-        run_cmd = 'valgrind --error-exitcode=1 %s'
+        run_cmd = 'valgrind --error-exitcode=1 %s --no_fail'
 
     if 'cpu_capabilities' in properties:
-        for cpu_capability in properties['cpu_capabilities'].iteritems():
+        for cpu_capability in properties['cpu_capabilities'].items():
             run_cmd += ' --has_{0}={1}'.format(*cpu_capability)
 
     if run_cmd:
