@@ -19,7 +19,7 @@ def get_tool_options(properties):
     options = ""
     if 'tool_options' in properties:
         # Make sure that the values are correctly comma separated
-        for key, value in properties['tool_options'].iteritems():
+        for key, value in properties['tool_options'].items():
             if value is None:
                 options += ',{0}'.format(key)
             else:
