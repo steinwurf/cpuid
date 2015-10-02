@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 APPNAME = 'cpuid'
-VERSION = '3.3.1'
+VERSION = '4.0.0'
 
 import waflib.extras.wurf_options
 

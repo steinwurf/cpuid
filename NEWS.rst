@@ -8,6 +8,13 @@ Latest
 ------
 * Minor: Added buildbot.py for coverage reports.
 
+4.0.0
+-----
+* Major: Upgrade to waf-tools 3
+* Major: Upgrade to platform 2
+* Minor: Upgrade to boost 2
+* Minor: Upgrade to gtest 3
+
 3.3.1
 -----
 * Patch: Added missing ``cstdint`` includes
