@@ -6,7 +6,7 @@ every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Minor: Added buildbot.py for coverage reports.
 
 3.3.1
 -----
