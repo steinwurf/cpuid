@@ -16,14 +16,14 @@ def run_command(args):
 
 
 def get_tool_options(properties):
-    options = ""
+    options = []
     if 'tool_options' in properties:
         # Make sure that the values are correctly comma separated
         for key, value in properties['tool_options'].items():
             if value is None:
-                options += ',{0}'.format(key)
+                options += ['--{0}'.format(key)]
             else:
-                options += ',{0}={1}'.format(key, value)
+                options += ['--{0}={1}'.format(key, value)]
 
     return options
 
@@ -44,10 +44,9 @@ def configure(properties):
             properties['dependency_project'],
             properties['dependency_checkout'])]
 
-    options = "--options=cxx_mkspec={}".format(properties['cxx_mkspec'])
-    options += get_tool_options(properties)
+    command += ["--cxx_mkspec={}".format(properties['cxx_mkspec'])]
+    command += get_tool_options(properties)
 
-    command += [options]
     run_command(command)
 
 
@@ -57,8 +56,7 @@ def build(properties):
 
 
 def run_tests(properties):
-    command = [sys.executable, 'waf', '-v']
-    options = '--options=run_tests,run_always'
+    command = [sys.executable, 'waf', '-v', '--run_tests']
     run_cmd = '%s'
 
     if properties.get('valgrind_run'):
@@ -69,25 +67,20 @@ def run_tests(properties):
             run_cmd += ' --has_{0}={1}'.format(*cpu_capability)
 
     if run_cmd:
-        options += ",run_cmd={}".format(run_cmd)
+        command += ["--run_cmd={}".format(run_cmd)]
 
-    options += get_tool_options(properties)
+    command += get_tool_options(properties)
 
-    command += [options]
     run_command(command)
 
 
 def install(properties):
     command = [sys.executable, 'waf', '-v', 'install']
 
-    options = []
     if 'install_path' in properties:
-        options += ['install_path={0}'.format(properties['install_path'])]
+        command += ['--install_path={0}'.format(properties['install_path'])]
     if properties.get('install_relative'):
-        options += ['install_relative']
-
-    if len(options) > 0:
-        command += ['--options={}'.format(",".join(options))]
+        command += ['--install_relative']
 
     run_command(command)
 

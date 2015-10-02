@@ -4,80 +4,62 @@
 APPNAME = 'cpuid'
 VERSION = '3.3.1'
 
-
-def recurse_helper(ctx, name):
-    if not ctx.has_dependency_path(name):
-        ctx.fatal('Load a tool to find %s as system dependency' % name)
-    else:
-        p = ctx.dependency_path(name)
-        ctx.recurse([p])
+import waflib.extras.wurf_options
 
 
 def options(opt):
 
-    import waflib.extras.wurf_dependency_bundle as bundle
+    opt.load('wurf_common_tools')
+
+
+def resolve(ctx):
+
     import waflib.extras.wurf_dependency_resolve as resolve
 
-    bundle.add_dependency(opt, resolve.ResolveGitMajorVersion(
-        name='boost',
-        git_repository='github.com/steinwurf/boost.git',
-        major_version=1))
+    ctx.load('wurf_common_tools')
 
-    bundle.add_dependency(opt, resolve.ResolveGitMajorVersion(
-        name='gtest',
-        git_repository='github.com/steinwurf/gtest.git',
-        major_version=2))
-
-    bundle.add_dependency(opt, resolve.ResolveGitMajorVersion(
-        name='platform',
-        git_repository='github.com/steinwurf/platform.git',
-        major_version=1))
-
-    bundle.add_dependency(opt, resolve.ResolveGitMajorVersion(
+    ctx.add_dependency(resolve.ResolveVersion(
         name='waf-tools',
         git_repository='github.com/steinwurf/waf-tools.git',
-        major_version=2))
+        major=3))
 
-    opt.load('wurf_configure_output')
-    opt.load('wurf_dependency_bundle')
-    opt.load('wurf_tools')
+    ctx.add_dependency(resolve.ResolveVersion(
+        name='platform',
+        git_repository='github.com/steinwurf/platform.git',
+        major=2))
+
+    # Internal dependencies
+    if ctx.is_toplevel():
+
+        ctx.add_dependency(resolve.ResolveVersion(
+            name='boost',
+            git_repository='github.com/steinwurf/boost.git',
+            major=2))
+
+        ctx.add_dependency(resolve.ResolveVersion(
+            name='gtest',
+            git_repository='github.com/steinwurf/gtest.git',
+            major=3))
 
 
 def configure(conf):
 
-    if conf.is_toplevel():
-
-        conf.load('wurf_dependency_bundle')
-        conf.load('wurf_tools')
-
-        conf.load_external_tool('install_path', 'wurf_install_path')
-        conf.load_external_tool('mkspec', 'wurf_cxx_mkspec_tool')
-        conf.load_external_tool('project_gen', 'wurf_project_generator')
-        conf.load_external_tool('runners', 'wurf_runner')
-
-        recurse_helper(conf, 'boost')
-        recurse_helper(conf, 'gtest')
-        recurse_helper(conf, 'platform')
+    conf.load("wurf_common_tools")
 
 
 def build(bld):
 
-    if bld.is_toplevel():
-
-        bld.load('wurf_dependency_bundle')
-
-        recurse_helper(bld, 'boost')
-        recurse_helper(bld, 'gtest')
-        recurse_helper(bld, 'platform')
-
-        # Only build test when executed from the
-        # top-level wscript i.e. not when included as a dependency
-        # in a recurse call
-        bld.recurse('test')
-        bld.recurse('examples/print_cpuinfo')
-
-    bld.recurse('src/cpuid')
+    bld.load("wurf_common_tools")
 
     bld.env.append_unique(
         'DEFINES_STEINWURF_VERSION',
         'STEINWURF_CPUID_VERSION="{}"'.format(VERSION))
+
+    bld.recurse('src/cpuid')
+
+    if bld.is_toplevel():
+
+        # Only build tests when executed from the top-level wscript,
+        # i.e. not when included as a dependency
+        bld.recurse('test')
+        bld.recurse('examples/print_cpuinfo')
