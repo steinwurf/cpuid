@@ -43,7 +43,7 @@ namespace cpuid
                 }
             }
 
-            close (cpufile);
+            close(cpufile);
         }
         else
         {

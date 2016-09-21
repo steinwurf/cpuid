@@ -21,15 +21,15 @@ namespace cpuid
 # if defined( __i386__ ) && defined ( __PIC__ )
         // If PIC used under 32-bit, EBX cannot be clobbered
         // EBX is saved to EDI and later restored
-        __asm__ ( "movl %%ebx, %%edi;"
-                  "cpuid;"
-                  "xchgl %%ebx, %%edi;"
-                  : "=D"(ebx),
+        __asm__("movl %%ebx, %%edi;"
+                "cpuid;"
+                "xchgl %%ebx, %%edi;"
+                : "=D"(ebx),
 # else
-        __asm__ ( "cpuid;"
-                  : "+b"(ebx),
+        __asm__("cpuid;"
+                : "+b"(ebx),
 # endif
-                  "+a"(eax), "+c"(ecx), "=d"(edx));
+                "+a"(eax), "+c"(ecx), "=d"(edx));
 
         abcd[0] = eax;
         abcd[1] = ebx;
