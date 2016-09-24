@@ -24,74 +24,74 @@
 
 namespace cpuid
 {
-    cpuinfo::cpuinfo() :
-        m_impl(new impl)
-    {
-        init_cpuinfo(*m_impl);
-    }
+cpuinfo::cpuinfo() :
+    m_impl(new impl)
+{
+    init_cpuinfo(*m_impl);
+}
 
-    cpuinfo::~cpuinfo()
-    { }
+cpuinfo::~cpuinfo()
+{ }
 
-    // x86 member functions
-    bool cpuinfo::has_fpu() const
-    {
-        return m_impl->m_has_fpu;
-    }
+// x86 member functions
+bool cpuinfo::has_fpu() const
+{
+    return m_impl->m_has_fpu;
+}
 
-    bool cpuinfo::has_mmx() const
-    {
-        return m_impl->m_has_mmx;
-    }
+bool cpuinfo::has_mmx() const
+{
+    return m_impl->m_has_mmx;
+}
 
-    bool cpuinfo::has_sse() const
-    {
-        return m_impl->m_has_sse;
-    }
+bool cpuinfo::has_sse() const
+{
+    return m_impl->m_has_sse;
+}
 
-    bool cpuinfo::has_sse2() const
-    {
-        return m_impl->m_has_sse2;
-    }
+bool cpuinfo::has_sse2() const
+{
+    return m_impl->m_has_sse2;
+}
 
-    bool cpuinfo::has_sse3() const
-    {
-        return m_impl->m_has_sse3;
-    }
+bool cpuinfo::has_sse3() const
+{
+    return m_impl->m_has_sse3;
+}
 
-    bool cpuinfo::has_ssse3() const
-    {
-        return m_impl->m_has_ssse3;
-    }
+bool cpuinfo::has_ssse3() const
+{
+    return m_impl->m_has_ssse3;
+}
 
-    bool cpuinfo::has_sse4_1() const
-    {
-        return m_impl->m_has_sse4_1;
-    }
+bool cpuinfo::has_sse4_1() const
+{
+    return m_impl->m_has_sse4_1;
+}
 
-    bool cpuinfo::has_sse4_2() const
-    {
-        return m_impl->m_has_sse4_2;
-    }
+bool cpuinfo::has_sse4_2() const
+{
+    return m_impl->m_has_sse4_2;
+}
 
-    bool cpuinfo::has_pclmulqdq() const
-    {
-        return m_impl->m_has_pclmulqdq;
-    }
+bool cpuinfo::has_pclmulqdq() const
+{
+    return m_impl->m_has_pclmulqdq;
+}
 
-    bool cpuinfo::has_avx() const
-    {
-        return m_impl->m_has_avx;
-    }
+bool cpuinfo::has_avx() const
+{
+    return m_impl->m_has_avx;
+}
 
-    bool cpuinfo::has_avx2() const
-    {
-        return m_impl->m_has_avx2;
-    }
+bool cpuinfo::has_avx2() const
+{
+    return m_impl->m_has_avx2;
+}
 
-    // ARM functions
-    bool cpuinfo::has_neon() const
-    {
-        return m_impl->m_has_neon;
-    }
+// ARM functions
+bool cpuinfo::has_neon() const
+{
+    return m_impl->m_has_neon;
+}
 }
