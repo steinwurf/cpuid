@@ -9,9 +9,9 @@
 
 namespace cpuid
 {
-    /// @todo docs
-    void init_cpuinfo(cpuinfo::impl& info)
-    {
-        (void) info;
-    }
+/// @todo docs
+void init_cpuinfo(cpuinfo::impl& info)
+{
+    (void) info;
+}
 }
