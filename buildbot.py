@@ -34,13 +34,13 @@ def configure(properties):
     if properties.get('build_distclean'):
         command += ['distclean']
 
-    command += ['configure', '--git-protocol=git@']
+    command += ['configure', '--git_protocol=git@']
 
-    if 'waf_bundle_path' in properties:
-        command += ['--bundle-path=' + properties['waf_bundle_path']]
+    if 'waf_resolve_path' in properties:
+        command += ['--resolve_path=' + properties['waf_resolve_path']]
 
     if 'dependency_project' in properties:
-        command += ['--{0}-use-checkout={1}'.format(
+        command += ['--{0}_checkout={1}'.format(
             properties['dependency_project'],
             properties['dependency_checkout'])]
 
