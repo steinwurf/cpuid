@@ -56,6 +56,6 @@ void init_cpuinfo(cpuinfo::impl& info)
     {
         info.m_has_neon = false;
     }
-}
 #endif
+}
 }
