@@ -21,9 +21,16 @@ namespace cpuid
 /// @todo docs
 void init_cpuinfo(cpuinfo::impl& info)
 {
-    // Check NEON instruction set flag
+#if defined(__aarch64__)
+    // The Advanced SIMD (NEON) instruction set is required on AArch64
+    // (64-bit ARM). Note that /proc/cpuinfo will display "asimd" instead of
+    // "neon" in the Features list on a 64-bit ARM CPU.
+    info.m_has_neon = true;
+#else
+    // Runtime detection of NEON is necessary on 32-bit ARM CPUs
+    //
     // Follow recommendation from Cortex-A Series Programmer's guide
-    // on Section 20.1.7 Detecting NEON. The guide is available at:
+    // in Section 20.1.7 Detecting NEON. The guide is available at
     // Steinwurf's Google drive: steinwurf/technical/experimental/cpuid
 
     auto cpufile = open("/proc/self/auxv", O_RDONLY);
@@ -49,5 +56,6 @@ void init_cpuinfo(cpuinfo::impl& info)
     {
         info.m_has_neon = false;
     }
+#endif
 }
 }
