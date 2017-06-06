@@ -7,6 +7,9 @@ every change, see the Git log.
 Latest
 ------
 * tbd
+
+5.0.1
+-----
 * Patch: Fix the detection of the NEON instruction set on 64-bit ARM CPUs,
   where Advanced SIMD (NEON) is always available.
 
