@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 APPNAME = 'cpuid'
-VERSION = '5.0.1'
+VERSION = '5.0.2'
 
 
 def build(bld):

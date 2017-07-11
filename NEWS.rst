@@ -8,6 +8,12 @@ Latest
 ------
 * tbd
 
+5.0.2
+-----
+* Patch: Fix the detection of the AVX2 instruction set on older CPUs. If the
+  CPU does not support the eax=7 input value for the cpuid instruction, then
+  the corresponding query is skipped.
+
 5.0.1
 -----
 * Patch: Fix the detection of the NEON instruction set on 64-bit ARM CPUs,
