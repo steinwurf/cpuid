@@ -40,7 +40,7 @@ void init_cpuinfo(cpuinfo::impl& info)
     // Set registers for extended flags extraction, eax=7 and ecx=0
     // This operation is not supported on older CPUs, so it should be skipped
     // to avoid incorrect results
-    if (maximum_eax >= 1U)
+    if (maximum_eax >= 7U)
     {
         __cpuidex(registers, 7, 0);
         extract_x86_extended_flags(info, registers[1]);

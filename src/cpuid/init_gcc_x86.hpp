@@ -63,7 +63,7 @@ void init_cpuinfo(cpuinfo::impl& info)
     // Set registers for extended flags extraction using index=7
     // This operation is not supported on older CPUs, so it should be skipped
     // to avoid incorrect results
-    if (maximum_index >= 1U)
+    if (maximum_index >= 7U)
     {
         run_cpuid(7, 0, output);
         extract_x86_extended_flags(info, output[1]);
