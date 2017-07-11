@@ -47,12 +47,26 @@ void init_cpuinfo(cpuinfo::impl& info)
     // The register information per input can be extracted from here:
     // http://en.wikipedia.org/wiki/CPUID
 
-    // Set registers for basic flag extraction
-    run_cpuid(1, 0, output);
-    extract_x86_flags(info, output[2], output[3]);
+    // CPUID should be called with EAX=0 first, as this will return the
+    // maximum supported EAX input value for future calls
+    run_cpuid(0, 0, output);
+    uint32_t maximum_index = output[0];
 
-    // Set registers for extended flags extraction
-    run_cpuid(7, 0, output);
-    extract_x86_extended_flags(info, output[1]);
+    // Set registers for basic flag extraction
+    // All CPUs should support index=1
+    if (maximum_index >= 1U)
+    {
+        run_cpuid(1, 0, output);
+        extract_x86_flags(info, output[2], output[3]);
+    }
+
+    // Set registers for extended flags extraction using index=7
+    // This operation is not supported on older CPUs, so it should be skipped
+    // to avoid incorrect results
+    if (maximum_index >= 7U)
+    {
+        run_cpuid(7, 0, output);
+        extract_x86_extended_flags(info, output[1]);
+    }
 }
 }
