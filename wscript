@@ -11,22 +11,16 @@ def build(bld):
         'DEFINES_STEINWURF_VERSION',
         'STEINWURF_CPUID_VERSION="{}"'.format(VERSION))
 
+    # Build static library if this is top-level otherwise just .o files
+    features = ['cxx']
     if bld.is_toplevel():
-        bld.stlib(
-            features='cxx',
-            source=bld.path.ant_glob('src/**/*.cpp'),
-            target='cpuid',
-            export_includes=['src'],
-            use=['platform_includes'])
+        features += ['cxxstlib']
 
-    else:
-        bld.objects(
-            features='cxx',
-            source=bld.path.ant_glob('src/**/*.cpp'),
-            target='cpuid',
-            export_includes=['src'],
-            use=['platform_includes'])
-
+    bld(features=features,
+        source=bld.path.ant_glob('src/**/*.cpp'),
+        target='cpuid',
+        export_includes=['src'],
+        use=['platform_includes'])
 
 
     # Add a manual dependency to rebuild cpuinfo.cpp if a header file changes.
