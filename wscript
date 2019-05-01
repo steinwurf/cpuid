@@ -29,11 +29,10 @@ def build(bld):
         bld.path.find_node('src/cpuid/cpuinfo.cpp'),
         bld.path.ant_glob('src/cpuid/**/*.hpp'))
 
-
     if bld.is_toplevel():
 
         # Only build tests when executed from the top-level wscript,
         # i.e. not when included as a dependency
-        # bld.recurse('test')
-        # bld.recurse('examples/print_cpuinfo')
-        pass
+        bld.recurse('test')
+        bld.recurse('examples/print_cpuinfo')
+
