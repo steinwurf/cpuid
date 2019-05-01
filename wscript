@@ -22,6 +22,7 @@ def build(bld):
         export_includes=['src'],
         use=['platform_includes'])
 
+    # @todo remove this static library after testing
     bld(features="cxx cxxstlib",
         source=bld.path.ant_glob('src/**/*.cpp'),
         target='cpuid_static',
