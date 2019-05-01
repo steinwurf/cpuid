@@ -22,6 +22,12 @@ def build(bld):
         export_includes=['src'],
         use=['platform_includes'])
 
+    bld(features="cxx cxxstlib",
+        source=bld.path.ant_glob('src/**/*.cpp'),
+        target='cpuid_static',
+        export_includes=['src'],
+        use=['platform_includes'])
+
 
     # Add a manual dependency to rebuild cpuinfo.cpp if a header file changes.
     # waf cannot detect this dependency, because the headers are included
