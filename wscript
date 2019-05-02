@@ -36,3 +36,5 @@ def build(bld):
         bld.recurse('test')
         bld.recurse('examples/print_cpuinfo')
 
+def bundle(bld):
+    print("ok")
