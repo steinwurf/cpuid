@@ -4,6 +4,10 @@
 APPNAME = 'cpuid'
 VERSION = '5.0.2'
 
+default_prefix = '/' + APPNAME + '_' + VERSION
+
+from waflib.Build import BuildContext
+
 
 def build(bld):
 
@@ -20,7 +24,8 @@ def build(bld):
         source=bld.path.ant_glob('src/**/*.cpp'),
         target='cpuid',
         export_includes=['src'],
-        use=['platform_includes'])
+        use=['platform_includes'],
+        install_path='${PREFIX}/lib')
 
     # Add a manual dependency to rebuild cpuinfo.cpp if a header file changes.
     # waf cannot detect this dependency, because the headers are included
@@ -36,5 +41,21 @@ def build(bld):
         bld.recurse('test')
         bld.recurse('examples/print_cpuinfo')
 
-def bundle(bld):
-    print("ok")
+        sourcepath = bld.path.find_node('src')
+
+        bld.install_files(
+            dest="${PREFIX}/include",
+            files=sourcepath.ant_glob('**/*.hpp', excl=['**/detail/**']),
+            cwd=sourcepath,
+            relative_trick=True)
+
+class DocsContext(BuildContext):
+    cmd = 'docs'
+    fun = 'docs'
+
+def docs(ctx):
+    with ctx.create_virtualenv() as venv:
+        venv.run('pip install sphinx')
+        venv.run('pip install sphinxcontrib-restbuilder')
+        venv.run('sphinx-build -b rst docs build/rst',
+                 cwd=ctx.path.abspath())
