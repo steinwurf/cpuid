@@ -1,12 +1,11 @@
 #! /usr/bin/env python
 # encoding: utf-8
 
+from waflib.Build import BuildContext
 APPNAME = 'cpuid'
 VERSION = '5.0.2'
 
 default_prefix = '/' + APPNAME + '_' + VERSION
-
-from waflib.Build import BuildContext
 
 
 def build(bld):
@@ -15,17 +14,22 @@ def build(bld):
         'DEFINES_STEINWURF_VERSION',
         'STEINWURF_CPUID_VERSION="{}"'.format(VERSION))
 
-    # Build static library if this is top-level otherwise just .o files
-    features = ['cxx']
-    if bld.is_toplevel():
-        features += ['cxxstlib']
+    bld_features = []
 
-    bld(features=features,
-        source=bld.path.ant_glob('src/**/*.cpp'),
-        target='cpuid',
-        export_includes=['src'],
-        use=['platform_includes'],
-        install_path='${PREFIX}/lib')
+    # Build static library if this is top-level otherwise just .o files
+    if bld.is_toplevel():
+        bld_features += ['cxx cxxstlib']
+        bld_features += ['cxx cxxshlib']
+    else:
+        bld_features += ['cxx']
+
+    for features in bld_features:
+        bld(features=features,
+            source=bld.path.ant_glob('src/**/*.cpp'),
+            target='cpuid',
+            export_includes=['src'],
+            use=['platform_includes'],
+            install_path='${PREFIX}/lib')
 
     # Add a manual dependency to rebuild cpuinfo.cpp if a header file changes.
     # waf cannot detect this dependency, because the headers are included
@@ -49,13 +53,15 @@ def build(bld):
             cwd=sourcepath,
             relative_trick=True)
 
+
 class DocsContext(BuildContext):
     cmd = 'docs'
     fun = 'docs'
 
+
 def docs(ctx):
     with ctx.create_virtualenv() as venv:
         venv.run('pip install sphinx')
-        venv.run('pip install sphinxcontrib-restbuilder')
-        venv.run('sphinx-build -b rst docs build/rst',
+        venv.run('pip install ../../restbuilder')
+        venv.run('sphinx-build -E -b rst docs build/rst',
                  cwd=ctx.path.abspath())
