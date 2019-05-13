@@ -50,6 +50,12 @@ The compiled binary is located in the ``build/[platform]/examples/print_cpuinfo`
 folder (where ``[platform]`` denotes your current platform,
 e.g. ``linux``, ``win32`` or ``darwin``).
 
+API
+---
+
+.. wurfapi:: class_synopsis.rst
+  :selector: cpuid::cpuinfo
+
 Credits
 -------
 We have created cpuid to fit our specific needs, however we hope
