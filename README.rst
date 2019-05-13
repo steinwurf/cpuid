@@ -123,25 +123,21 @@ Member Function Description
 
 .. _cpuid-cpuinfo-cpuinfo:
 
+**cpuinfo** ()
+
 ..
 
-   **cpuinfo** ()
-
-   ..
-
-      Constructor for feature detection with default values.
+   Constructor for feature detection with default values.
 
 ======================================================================
 
 .. _id1:
 
+**~cpuinfo** ()
+
 ..
 
-   **~cpuinfo** ()
-
-   ..
-
-      Destructor.
+   Destructor.
 
 ======================================================================
 

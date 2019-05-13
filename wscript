@@ -62,7 +62,8 @@ class DocsContext(BuildContext):
 def docs(ctx):
     with ctx.create_virtualenv() as venv:
         venv.run('pip install sphinx')
-        venv.run('pip install git+https://github.com/steinwurf/wurfapi@b0efc1be76c399e80ae2f6f592f901ea5aa2389f')
+        venv.run(
+            'pip install git+https://github.com/steinwurf/wurfapi@d13a9a9c63889487954d7398a8c8aca416462e73')
         venv.run('pip install ../../restbuilder')
         venv.run('sphinx-build -E -d build/doctrees -b rst docs .',
                  cwd=ctx.path.abspath())
