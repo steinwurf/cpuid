@@ -39,16 +39,9 @@ To configure and build cpuid, run the following commands::
   python waf install
 
 The final step will copy the library and needed headers to the local
-`build_output` folder.
+``build_output`` folder.
 
-The ``waf configure`` command will download several auxiliary libraries
-into a folder called ``bundle_dependencies`` within the cpuid folder.
-You can also use the ``--bundle-path`` option to specify the download
-location for the project dependencies::
-
-  python waf configure --bundle-path=/my/path/to/bundle_dependencies
-
-When building the static lib, waf will also build the ``print_cpuinfo_example``
+When building the libraries, waf will also build the ``print_cpuinfo_example``
 executable which is useful to print the available CPU instruction sets.
 The compiled binary is located in the ``build/[platform]/examples/print_cpuinfo``
 folder (where ``[platform]`` denotes your current platform,
