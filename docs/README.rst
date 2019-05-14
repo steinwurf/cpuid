@@ -36,6 +36,10 @@ To configure and build cpuid, run the following commands::
 
   python waf configure
   python waf build
+  python waf install
+
+The final step will copy the library and needed headers to the local
+`build_output` folder.
 
 The ``waf configure`` command will download several auxiliary libraries
 into a folder called ``bundle_dependencies`` within the cpuid folder.

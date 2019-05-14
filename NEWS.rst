@@ -6,7 +6,7 @@ every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Major: Moved internal files to the ``details`` folder.
 
 5.0.2
 -----
