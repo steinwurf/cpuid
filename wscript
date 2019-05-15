@@ -2,10 +2,9 @@
 # encoding: utf-8
 
 from waflib.Build import BuildContext
+
 APPNAME = 'cpuid'
 VERSION = '5.0.2'
-
-default_prefix = '/' + APPNAME + '_' + VERSION
 
 
 def build(bld):
@@ -19,7 +18,6 @@ def build(bld):
     # Build static library if this is top-level otherwise just .o files
     if bld.is_toplevel():
         bld_features += ['cxx cxxstlib']
-        bld_features += ['cxx cxxshlib']
     else:
         bld_features += ['cxx']
 
