@@ -89,6 +89,10 @@ def rewrite(filename):
 
 
 def prepare_release(ctx):
+    """ Prepare a release.
+
+    - By rewriting specific files with the new version number.
+    """
 
     with rewrite(filename="src/cpuid/version.hpp") as f:
         v = "#define STEINWURF_CPUID_VERSION v{}".format(
