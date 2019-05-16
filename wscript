@@ -93,13 +93,13 @@ def rewrite(filename):
 
 
 def prepare_release(ctx):
-    print("prepare release")
 
     with rewrite(filename="src/cpuid/version.hpp") as f:
-        v = "#define CPUID_VERSION v" + VERSION.replace('.', '_')
+        v = "#define CPUID_VERSION v{}".format(VERSION.replace('.', '_'))
         f.sub("#define CPUID_VERSION v\d+_\d+_\d+", v)
 
-    print("ok")
-
+    with rewrite(filename="src/cpuid/version.cpp") as f:
+        v = 'return "{}"'.format(VERSION)
+        f.sub('return "\d+\.\d+\.\d+"', v)
 
 
