@@ -8,7 +8,7 @@
 namespace cpuid
 {
 
-inline namespace v5_0_2
+inline namespace STEINWURF_CPUID_VERSION
 {
 std::string version()
 {

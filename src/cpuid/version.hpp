@@ -9,7 +9,11 @@
 
 namespace cpuid
 {
-inline namespace v5_0_2
+/// Here we define the STEINWURF_CPUID_VERSION this should be updated on each
+/// release
+#define STEINWURF_CPUID_VERSION v5_0_2
+
+inline namespace STEINWURF_CPUID_VERSION
 {
 /// @return The version of the library as string
 std::string version();

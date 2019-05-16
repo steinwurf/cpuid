@@ -95,7 +95,7 @@ def prepare_release(ctx):
     for source in sources:
         with rewrite(filename=source.abspath()) as f:
             v = "inline namespace v{}".format(VERSION.replace('.', '_'))
-            f.sub("inline namespace v\d+_\d+_\d+", v)
+            f.sub("#define STEINWURF_CPUID_VERSION v\d+_\d+_\d+", v)
 
     with rewrite(filename="src/cpuid/version.cpp") as f:
         v = 'return "{}"'.format(VERSION)

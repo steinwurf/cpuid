@@ -12,7 +12,7 @@
 
 namespace cpuid
 {
-inline namespace v5_0_2
+inline namespace STEINWURF_CPUID_VERSION
 {
 // Reference for this code is Intel's recommendation for detecting AVX2
 // on Haswell located here: http://goo.gl/c6IkGX
