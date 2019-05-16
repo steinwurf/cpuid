@@ -7,7 +7,11 @@
 
 #include <memory>
 
+#include "version.hpp"
+
 namespace cpuid
+{
+inline namespace CPUID_VERSION
 {
 /// The cpuinfo object extract information about which, if any, additional
 /// instructiions are supported by the CPU.
@@ -64,4 +68,5 @@ private:
     /// Pimpl pointer
     std::unique_ptr<impl> m_impl;
 };
+}
 }

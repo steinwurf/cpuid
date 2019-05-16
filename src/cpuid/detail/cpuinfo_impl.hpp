@@ -9,6 +9,9 @@
 
 namespace cpuid
 {
+inline namespace CPUID_VERSION
+{
+
 struct cpuinfo::impl
 {
     impl() :
@@ -32,4 +35,5 @@ struct cpuinfo::impl
     bool m_has_avx2;
     bool m_has_neon;
 };
+}
 }

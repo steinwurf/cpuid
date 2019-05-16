@@ -4,7 +4,7 @@
 from waflib.Build import BuildContext
 
 APPNAME = 'cpuid'
-VERSION = '5.0.2'
+VERSION = '5.0.3'
 
 
 def build(bld):
@@ -63,6 +63,43 @@ def docs(ctx):
         venv.run(
             'pip install git+https://github.com/steinwurf/wurfapi@4f667e6290a1115d5443e5a45b0bf9ad2c3edbdc')
         venv.run(
-            'pip install git+https://github.com/mortenvp/restbuilder@830815608d4eb391e699bfb64315c89e091e4406')
+            'pip install git+https://github.com/steinwurf/restbuilder@830815608d4eb391e699bfb64315c89e091e4406')
         venv.run('sphinx-build -E -d build/doctrees -b rst docs .',
                  cwd=ctx.path.abspath())
+
+import re
+from contextlib import contextmanager
+
+@contextmanager
+def rewrite(filename):
+    class Content:
+
+        def __init__(self):
+            self.content = None
+
+        def sub(self, pattern, repl):
+            self.content = re.sub(pattern=pattern, repl=repl, string=self.content)
+
+
+    content = Content()
+
+    with open(filename) as f:
+        content.content = f.read()
+
+    yield content
+
+    with open(filename, 'w') as f:
+        f.write(content.content)
+
+
+def prepare_release(ctx):
+    print("prepare release")
+
+    with rewrite(filename="src/cpuid/version.hpp") as f:
+        v = "#define CPUID_VERSION v" + VERSION.replace('.', '_')
+        f.sub("#define CPUID_VERSION v\d+_\d+_\d+", v)
+
+    print("ok")
+
+
+

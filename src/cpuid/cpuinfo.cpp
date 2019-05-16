@@ -25,6 +25,9 @@
 namespace cpuid
 {
 
+inline namespace CPUID_VERSION
+{
+
 cpuinfo::cpuinfo() : m_impl(new impl)
 {
     init_cpuinfo(*m_impl);
@@ -94,5 +97,6 @@ bool cpuinfo::has_avx2() const
 bool cpuinfo::has_neon() const
 {
     return m_impl->m_has_neon;
+}
 }
 }
