@@ -90,7 +90,7 @@ def rewrite(filename):
 
 def prepare_release(ctx):
 
-    sources = ctx.path.ant_glob('src/cpuid/*.*pp')
+    sources = ctx.path.ant_glob('src/cpuid/**/*.*pp')
 
     for source in sources:
         with rewrite(filename=source.abspath()) as f:
