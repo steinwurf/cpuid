@@ -11,7 +11,7 @@
 
 namespace cpuid
 {
-inline namespace CPUID_VERSION
+inline namespace v5_0_2
 {
 /// The cpuinfo object extract information about which, if any, additional
 /// instructiions are supported by the CPU.

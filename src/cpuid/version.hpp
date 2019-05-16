@@ -5,16 +5,13 @@
 
 #pragma once
 
-#include "cpuinfo_impl.hpp"
+#include <memory>
 
 namespace cpuid
 {
 inline namespace v5_0_2
 {
-/// @todo docs
-void init_cpuinfo(cpuinfo::impl& info)
-{
-    (void)info;
-}
+/// @return The version of the library as string
+std::string version();
 }
 }

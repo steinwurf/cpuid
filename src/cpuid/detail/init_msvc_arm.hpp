@@ -9,7 +9,7 @@
 
 namespace cpuid
 {
-inline namespace CPUID_VERSION
+inline namespace v5_0_2
 {
 void init_cpuinfo(cpuinfo::impl& info)
 {
