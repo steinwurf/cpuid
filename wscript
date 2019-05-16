@@ -90,12 +90,10 @@ def rewrite(filename):
 
 def prepare_release(ctx):
 
-    sources = ctx.path.ant_glob('src/cpuid/**/*.*pp')
-
-    for source in sources:
-        with rewrite(filename=source.abspath()) as f:
-            v = "inline namespace v{}".format(VERSION.replace('.', '_'))
-            f.sub("#define STEINWURF_CPUID_VERSION v\d+_\d+_\d+", v)
+    with rewrite(filename="src/cpuid/version.hpp") as f:
+        v = "#define STEINWURF_CPUID_VERSION v{}".format(
+            VERSION.replace('.', '_'))
+        f.sub("#define STEINWURF_CPUID_VERSION v\d+_\d+_\d+", v)
 
     with rewrite(filename="src/cpuid/version.cpp") as f:
         v = 'return "{}"'.format(VERSION)
