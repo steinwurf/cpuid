@@ -3,6 +3,8 @@
 //
 // Distributed under the "BSD License". See the accompanying LICENSE.rst file.
 
+#include <string>
+
 #include "version.hpp"
 
 namespace cpuid
