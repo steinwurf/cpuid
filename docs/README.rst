@@ -11,6 +11,9 @@ project can detect the following CPU capabilities:
 .. image:: http://buildbot.steinwurf.dk/svgstatus?project=cpuid
     :target: http://buildbot.steinwurf.dk/stats?projects=cpuid
 
+.. contents:: Table of Contents:
+   :local:
+
 License
 -------
 cpuid license is based on the BSD License. Please refer to the LICENSE.rst
@@ -47,14 +50,14 @@ To configure and build cpuid, run the following commands::
   python waf build
   python waf install
 
-The final `install` step will create a folder containing all the nessecary
+The final ``install`` step will create a folder containing all the nessecary
 files needed to use the library (e.g. static library, headers etc.) in:
 
 .. parsed-literal::
 
   cd cpuid\_\ |version|
 
-To install to a different location use the `--destdir` option:
+To install to a different location use the ``--destdir`` option:
 
 .. parsed-literal::
 

@@ -55,7 +55,7 @@ To configure and build cpuid, run the following commands:
    python waf build
    python waf install
 
-The final *install* step will create a folder containing all the
+The final ``install`` step will create a folder containing all the
 nessecary files needed to use the library (e.g. static library,
 headers etc.) in:
 
@@ -63,7 +63,7 @@ headers etc.) in:
 
    cd cpuid_5.0.3
 
-To install to a different location use the *–destdir* option:
+To install to a different location use the ``--destdir`` option:
 
 ::
 
