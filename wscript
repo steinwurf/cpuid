@@ -60,7 +60,7 @@ def docs(ctx):
             'pip install git+https://github.com/steinwurf/wurfapi@4f667e6290a1115d5443e5a45b0bf9ad2c3edbdc')
         venv.run(
             'pip install git+https://github.com/steinwurf/restbuilder@830815608d4eb391e699bfb64315c89e091e4406')
-        venv.run('sphinx-build -E -d build/doctrees -b rst docs .',
+        venv.run('sphinx-build -E -d build/doctrees -b rst -D version={} docs .'.format(VERSION),
                  cwd=ctx.path.abspath())
 
 import re

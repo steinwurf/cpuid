@@ -27,6 +27,15 @@ You can see the status by selecting the cpuid project on the
 
 Build
 -----
+
+Fetch the sources:
+
+.. parsed-literal::
+
+  git clone https://github.com/steinwurf/cpuid
+  cd cpuid
+  git checkout |version|
+
 We use the ``waf`` build system to build the cpuid static library.
 We have some additional waf tools which can be found at waf_.
 
@@ -38,8 +47,20 @@ To configure and build cpuid, run the following commands::
   python waf build
   python waf install
 
-The final step will copy the library and needed headers to the local
-``build_output`` folder.
+The final `install` step will create a folder containing all the nessecary
+files needed to use the library (e.g. static library, headers etc.) in:
+
+.. parsed-literal::
+
+  cd cpuid\_\ |version|
+
+To install to a different location use the `--destdir` option:
+
+.. parsed-literal::
+
+  python waf install --destdir=/tmp
+  cd /tmp/cpuid\_\ |version|
+
 
 When building the libraries, waf will also build the ``print_cpuinfo_example``
 executable which is useful to print the available CPU instruction sets.
@@ -51,7 +72,7 @@ API
 ---
 
 .. wurfapi:: class_synopsis.rst
-  :selector: cpuid::cpuinfo
+  :selector: cpuid::STEINWURF_CPUID_VERSION::cpuinfo
 
 Credits
 -------

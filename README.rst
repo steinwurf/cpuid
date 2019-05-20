@@ -35,6 +35,14 @@ You can see the status by selecting the cpuid project on the
 Build
 *****
 
+Fetch the sources:
+
+::
+
+   git clone https://github.com/steinwurf/cpuid
+   cd cpuid
+   git checkout 5.0.3
+
 We use the ``waf`` build system to build the cpuid static library. We
 have some additional waf tools which can be found at `waf
 <https://github.com/steinwurf/waf>`_.
@@ -47,8 +55,20 @@ To configure and build cpuid, run the following commands:
    python waf build
    python waf install
 
-The final step will copy the library and needed headers to the local
-``build_output`` folder.
+The final *install* step will create a folder containing all the
+nessecary files needed to use the library (e.g. static library,
+headers etc.) in:
+
+::
+
+   cd cpuid_5.0.3
+
+To install to a different location use the *–destdir* option:
+
+::
+
+   python waf install --destdir=/tmp
+   cd /tmp/cpuid_5.0.3
 
 When building the libraries, waf will also build the
 ``print_cpuinfo_example`` executable which is useful to print the
@@ -61,13 +81,13 @@ available CPU instruction sets. The compiled binary is located in the
 API
 ***
 
-.. _cpuid-cpuinfo:
+.. _cpuid-steinwurf-cpuid-version-cpuinfo:
 
 
 class cpuinfo
 =============
 
-**Scope:** cpuid
+**Scope:** cpuid::STEINWURF_CPUID_VERSION
 
 **In header:** ``#include <cpuinfo.hpp>``
 
@@ -75,35 +95,48 @@ class cpuinfo
 Member functions (public)
 -------------------------
 
-+----------------------------------------------------+----------------------------------------------------------------+
-|                                                    | `cpuinfo <cpuid-cpuinfo-cpuinfo_>`_ ()                         |
-+----------------------------------------------------+----------------------------------------------------------------+
-|                                                    | `~cpuinfo <id1_>`_ ()                                          |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_avx <cpuid-cpuinfo-has-avx-const_>`_ () const             |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_avx2 <cpuid-cpuinfo-has-avx2-const_>`_ () const           |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_fpu <cpuid-cpuinfo-has-fpu-const_>`_ () const             |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_mmx <cpuid-cpuinfo-has-mmx-const_>`_ () const             |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_neon <cpuid-cpuinfo-has-neon-const_>`_ () const           |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_pclmulqdq <cpuid-cpuinfo-has-pclmulqdq-const_>`_ () const |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_sse <cpuid-cpuinfo-has-sse-const_>`_ () const             |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_sse2 <cpuid-cpuinfo-has-sse2-const_>`_ () const           |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_sse3 <cpuid-cpuinfo-has-sse3-const_>`_ () const           |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_sse4_1 <cpuid-cpuinfo-has-sse4-1-const_>`_ () const       |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_sse4_2 <cpuid-cpuinfo-has-sse4-2-const_>`_ () const       |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_ssse3 <cpuid-cpuinfo-has-ssse3-const_>`_ () const         |
-+----------------------------------------------------+----------------------------------------------------------------+
++----------------------------------------------------+----------------------------------------------------------------------------------------+
+|                                                    | `cpuinfo <cpuid-steinwurf-cpuid-version-cpuinfo-cpuinfo_>`_ ()                         |
++----------------------------------------------------+----------------------------------------------------------------------------------------+
+|                                                    | `~cpuinfo <id1_>`_ ()                                                                  |
++----------------------------------------------------+----------------------------------------------------------------------------------------+
+| bool                                               | `has_avx <cpuid-steinwurf-cpuid-version-cpuinfo-has-avx-const_>`_ ()
+const             |
++----------------------------------------------------+----------------------------------------------------------------------------------------+
+| bool                                               | `has_avx2 <cpuid-steinwurf-cpuid-version-cpuinfo-has-avx2-const_>`_ ()
+const           |
++----------------------------------------------------+----------------------------------------------------------------------------------------+
+| bool                                               | `has_fpu <cpuid-steinwurf-cpuid-version-cpuinfo-has-fpu-const_>`_ ()
+const             |
++----------------------------------------------------+----------------------------------------------------------------------------------------+
+| bool                                               | `has_mmx <cpuid-steinwurf-cpuid-version-cpuinfo-has-mmx-const_>`_ ()
+const             |
++----------------------------------------------------+----------------------------------------------------------------------------------------+
+| bool                                               | `has_neon <cpuid-steinwurf-cpuid-version-cpuinfo-has-neon-const_>`_ ()
+const           |
++----------------------------------------------------+----------------------------------------------------------------------------------------+
+| bool                                               | `has_pclmulqdq
+<cpuid-steinwurf-cpuid-version-cpuinfo-has-pclmulqdq-const_>`_ ()
+const |
++----------------------------------------------------+----------------------------------------------------------------------------------------+
+| bool                                               | `has_sse <cpuid-steinwurf-cpuid-version-cpuinfo-has-sse-const_>`_ ()
+const             |
++----------------------------------------------------+----------------------------------------------------------------------------------------+
+| bool                                               | `has_sse2 <cpuid-steinwurf-cpuid-version-cpuinfo-has-sse2-const_>`_ ()
+const           |
++----------------------------------------------------+----------------------------------------------------------------------------------------+
+| bool                                               | `has_sse3 <cpuid-steinwurf-cpuid-version-cpuinfo-has-sse3-const_>`_ ()
+const           |
++----------------------------------------------------+----------------------------------------------------------------------------------------+
+| bool                                               | `has_sse4_1
+<cpuid-steinwurf-cpuid-version-cpuinfo-has-sse4-1-const_>`_ () const       |
++----------------------------------------------------+----------------------------------------------------------------------------------------+
+| bool                                               | `has_sse4_2
+<cpuid-steinwurf-cpuid-version-cpuinfo-has-sse4-2-const_>`_ () const       |
++----------------------------------------------------+----------------------------------------------------------------------------------------+
+| bool                                               | `has_ssse3 <cpuid-steinwurf-cpuid-version-cpuinfo-has-ssse3-const_>`_
+() const         |
++----------------------------------------------------+----------------------------------------------------------------------------------------+
 
 
 Description
@@ -116,7 +149,7 @@ instructiions are supported by the CPU.
 Member Function Description
 ---------------------------
 
-.. _cpuid-cpuinfo-cpuinfo:
+.. _cpuid-steinwurf-cpuid-version-cpuinfo-cpuinfo:
 
 **cpuinfo** ()
 
@@ -136,7 +169,7 @@ Member Function Description
 
 ======================================================================
 
-.. _cpuid-cpuinfo-has-avx-const:
+.. _cpuid-steinwurf-cpuid-version-cpuinfo-has-avx-const:
 
 bool **has_avx** ()
 
@@ -146,7 +179,7 @@ bool **has_avx** ()
 
 ======================================================================
 
-.. _cpuid-cpuinfo-has-avx2-const:
+.. _cpuid-steinwurf-cpuid-version-cpuinfo-has-avx2-const:
 
 bool **has_avx2** ()
 
@@ -156,7 +189,7 @@ bool **has_avx2** ()
 
 ======================================================================
 
-.. _cpuid-cpuinfo-has-fpu-const:
+.. _cpuid-steinwurf-cpuid-version-cpuinfo-has-fpu-const:
 
 bool **has_fpu** ()
 
@@ -166,7 +199,7 @@ bool **has_fpu** ()
 
 ======================================================================
 
-.. _cpuid-cpuinfo-has-mmx-const:
+.. _cpuid-steinwurf-cpuid-version-cpuinfo-has-mmx-const:
 
 bool **has_mmx** ()
 
@@ -176,7 +209,7 @@ bool **has_mmx** ()
 
 ======================================================================
 
-.. _cpuid-cpuinfo-has-neon-const:
+.. _cpuid-steinwurf-cpuid-version-cpuinfo-has-neon-const:
 
 bool **has_neon** ()
 
@@ -186,7 +219,7 @@ bool **has_neon** ()
 
 ======================================================================
 
-.. _cpuid-cpuinfo-has-pclmulqdq-const:
+.. _cpuid-steinwurf-cpuid-version-cpuinfo-has-pclmulqdq-const:
 
 bool **has_pclmulqdq** ()
 
@@ -196,7 +229,7 @@ bool **has_pclmulqdq** ()
 
 ======================================================================
 
-.. _cpuid-cpuinfo-has-sse-const:
+.. _cpuid-steinwurf-cpuid-version-cpuinfo-has-sse-const:
 
 bool **has_sse** ()
 
@@ -206,7 +239,7 @@ bool **has_sse** ()
 
 ======================================================================
 
-.. _cpuid-cpuinfo-has-sse2-const:
+.. _cpuid-steinwurf-cpuid-version-cpuinfo-has-sse2-const:
 
 bool **has_sse2** ()
 
@@ -216,7 +249,7 @@ bool **has_sse2** ()
 
 ======================================================================
 
-.. _cpuid-cpuinfo-has-sse3-const:
+.. _cpuid-steinwurf-cpuid-version-cpuinfo-has-sse3-const:
 
 bool **has_sse3** ()
 
@@ -226,7 +259,7 @@ bool **has_sse3** ()
 
 ======================================================================
 
-.. _cpuid-cpuinfo-has-sse4-1-const:
+.. _cpuid-steinwurf-cpuid-version-cpuinfo-has-sse4-1-const:
 
 bool **has_sse4_1** ()
 
@@ -236,7 +269,7 @@ bool **has_sse4_1** ()
 
 ======================================================================
 
-.. _cpuid-cpuinfo-has-sse4-2-const:
+.. _cpuid-steinwurf-cpuid-version-cpuinfo-has-sse4-2-const:
 
 bool **has_sse4_2** ()
 
@@ -246,7 +279,7 @@ bool **has_sse4_2** ()
 
 ======================================================================
 
-.. _cpuid-cpuinfo-has-ssse3-const:
+.. _cpuid-steinwurf-cpuid-version-cpuinfo-has-ssse3-const:
 
 bool **has_ssse3** ()
 
