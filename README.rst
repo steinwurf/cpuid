@@ -2,9 +2,6 @@
 cpuid
 *****
 
-.. image:: http://buildbot.steinwurf.dk/svgstatus?project=cpuid
-   :target: http://buildbot.steinwurf.dk/stats?projects=cpuid
-
 cpuid is a C++ library for CPU dispatching. Currently the project can
 detect the following CPU capabilities:
 

@@ -4,7 +4,7 @@
 from waflib.Build import BuildContext
 
 APPNAME = 'cpuid'
-VERSION = '5.0.3'
+VERSION = '5.0.2'
 
 
 def build(bld):
@@ -88,12 +88,14 @@ def rewrite(filename):
         f.write(content.content)
 
 
+class ReleaseContext(BuildContext):
+    cmd = 'prepare_release'
+    fun = 'prepare_release'
+
 def prepare_release(ctx):
-    """ Prepare a release.
+    """ Prepare a release. """
 
-    - By rewriting specific files with the new version number.
-    """
-
+    # Rewrite versions
     with rewrite(filename="src/cpuid/version.hpp") as f:
         v = "#define STEINWURF_CPUID_VERSION v{}".format(
             VERSION.replace('.', '_'))
@@ -102,5 +104,8 @@ def prepare_release(ctx):
     with rewrite(filename="src/cpuid/version.cpp") as f:
         v = 'return "{}"'.format(VERSION)
         f.sub('return "\d+\.\d+\.\d+"', v)
+
+    # Build the docs
+    docs(ctx)
 
 
