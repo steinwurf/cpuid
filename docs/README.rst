@@ -1,6 +1,9 @@
 cpuid
 -----
 
+.. image:: http://buildbot.steinwurf.dk/svgstatus?project=cpuid
+    :target: http://buildbot.steinwurf.dk/stats?projects=cpuid
+
 cpuid is a C++ library for CPU dispatching. Currently the
 project can detect the following CPU capabilities:
 
@@ -8,8 +11,6 @@ project can detect the following CPU capabilities:
   SSE 4.1, SSE 4.2, PCLMULQDQ, AVX, and AVX2
 - Instruction sets detected on ARM: NEON
 
-.. image:: http://buildbot.steinwurf.dk/svgstatus?project=cpuid
-    :target: http://buildbot.steinwurf.dk/stats?projects=cpuid
 
 .. contents:: Table of Contents:
    :local:
