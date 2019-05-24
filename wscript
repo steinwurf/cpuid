@@ -1,6 +1,8 @@
 #! /usr/bin/env python
 # encoding: utf-8
 
+import re
+from contextlib import contextmanager
 from waflib.Build import BuildContext
 
 APPNAME = 'cpuid'
@@ -57,14 +59,12 @@ def docs(ctx):
     with ctx.create_virtualenv() as venv:
         venv.run('pip install sphinx')
         venv.run(
-            'pip install git+https://github.com/steinwurf/wurfapi@4416e13e6ca94ad833e25e81393d91eee59305f8')
+            'pip install git+https://github.com/steinwurf/wurfapi@4a8eb46300170ef3b7808c308e5cdad39f391034')
         venv.run(
             'pip install git+https://github.com/steinwurf/restbuilder@830815608d4eb391e699bfb64315c89e091e4406')
         venv.run('sphinx-build -E -d build/doctrees -b rst -D version={} docs .'.format(VERSION),
                  cwd=ctx.path.abspath())
 
-import re
-from contextlib import contextmanager
 
 @contextmanager
 def rewrite(filename):
@@ -74,8 +74,8 @@ def rewrite(filename):
             self.content = None
 
         def sub(self, pattern, repl):
-            self.content = re.sub(pattern=pattern, repl=repl, string=self.content)
-
+            self.content = re.sub(
+                pattern=pattern, repl=repl, string=self.content)
 
     content = Content()
 
@@ -92,6 +92,7 @@ class ReleaseContext(BuildContext):
     cmd = 'prepare_release'
     fun = 'prepare_release'
 
+
 def prepare_release(ctx):
     """ Prepare a release. """
 
@@ -107,5 +108,3 @@ def prepare_release(ctx):
 
     # Build the docs
     docs(ctx)
-
-

@@ -2,6 +2,9 @@
 cpuid
 *****
 
+.. image:: http://buildbot.steinwurf.dk/svgstatus?project=cpuid
+   :target: http://buildbot.steinwurf.dk/stats?projects=cpuid
+
 cpuid is a C++ library for CPU dispatching. Currently the project can
 detect the following CPU capabilities:
 
@@ -38,7 +41,7 @@ Fetch the sources:
 
    git clone https://github.com/steinwurf/cpuid
    cd cpuid
-   git checkout 5.0.3
+   git checkout 5.0.2
 
 We use the ``waf`` build system to build the cpuid static library. We
 have some additional waf tools which can be found at `waf
@@ -58,14 +61,14 @@ headers etc.) in:
 
 ::
 
-   cd cpuid_5.0.3
+   cd cpuid_5.0.2
 
 To install to a different location use the ``--destdir`` option:
 
 ::
 
    python waf install --destdir=/tmp
-   cd /tmp/cpuid_5.0.3
+   cd /tmp/cpuid_5.0.2
 
 When building the libraries, waf will also build the
 ``print_cpuinfo_example`` executable which is useful to print the
@@ -92,35 +95,35 @@ class cpuinfo
 Member functions (public)
 -------------------------
 
-+----------------------------------------------------+----------------------------------------------------------------+
-|                                                    | `cpuinfo <cpuid-cpuinfo-cpuinfo_>`_ ()                         |
-+----------------------------------------------------+----------------------------------------------------------------+
-|                                                    | `~cpuinfo <id1_>`_ ()                                          |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_avx <cpuid-cpuinfo-has-avx-const_>`_ () const             |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_avx2 <cpuid-cpuinfo-has-avx2-const_>`_ () const           |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_fpu <cpuid-cpuinfo-has-fpu-const_>`_ () const             |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_mmx <cpuid-cpuinfo-has-mmx-const_>`_ () const             |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_neon <cpuid-cpuinfo-has-neon-const_>`_ () const           |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_pclmulqdq <cpuid-cpuinfo-has-pclmulqdq-const_>`_ () const |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_sse <cpuid-cpuinfo-has-sse-const_>`_ () const             |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_sse2 <cpuid-cpuinfo-has-sse2-const_>`_ () const           |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_sse3 <cpuid-cpuinfo-has-sse3-const_>`_ () const           |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_sse4_1 <cpuid-cpuinfo-has-sse4-1-const_>`_ () const       |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_sse4_2 <cpuid-cpuinfo-has-sse4-2-const_>`_ () const       |
-+----------------------------------------------------+----------------------------------------------------------------+
-| bool                                               | `has_ssse3 <cpuid-cpuinfo-has-ssse3-const_>`_ () const         |
-+----------------------------------------------------+----------------------------------------------------------------+
++------------------------------------------------------------+----------------------------------------------------------------+
+|                                                            | `cpuinfo <cpuid-cpuinfo-cpuinfo_>`_ ()                         |
++------------------------------------------------------------+----------------------------------------------------------------+
+|                                                            | `~cpuinfo <id12_>`_ ()                                         |
++------------------------------------------------------------+----------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx <cpuid-cpuinfo-has-avx-const_>`_ () const             |
++------------------------------------------------------------+----------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx2 <cpuid-cpuinfo-has-avx2-const_>`_ () const           |
++------------------------------------------------------------+----------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_fpu <cpuid-cpuinfo-has-fpu-const_>`_ () const             |
++------------------------------------------------------------+----------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_mmx <cpuid-cpuinfo-has-mmx-const_>`_ () const             |
++------------------------------------------------------------+----------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_neon <cpuid-cpuinfo-has-neon-const_>`_ () const           |
++------------------------------------------------------------+----------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_pclmulqdq <cpuid-cpuinfo-has-pclmulqdq-const_>`_ () const |
++------------------------------------------------------------+----------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_sse <cpuid-cpuinfo-has-sse-const_>`_ () const             |
++------------------------------------------------------------+----------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_sse2 <cpuid-cpuinfo-has-sse2-const_>`_ () const           |
++------------------------------------------------------------+----------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_sse3 <cpuid-cpuinfo-has-sse3-const_>`_ () const           |
++------------------------------------------------------------+----------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_sse4_1 <cpuid-cpuinfo-has-sse4-1-const_>`_ () const       |
++------------------------------------------------------------+----------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_sse4_2 <cpuid-cpuinfo-has-sse4-2-const_>`_ () const       |
++------------------------------------------------------------+----------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_ssse3 <cpuid-cpuinfo-has-ssse3-const_>`_ () const         |
++------------------------------------------------------------+----------------------------------------------------------------+
 
 
 Description
@@ -143,7 +146,7 @@ Member Function Description
 
 ======================================================================
 
-.. _id1:
+.. _id12:
 
 **~cpuinfo** ()
 
@@ -155,7 +158,7 @@ Member Function Description
 
 .. _cpuid-cpuinfo-has-avx-const:
 
-bool **has_avx** ()
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx** ()
 
 ..
 
@@ -165,7 +168,7 @@ bool **has_avx** ()
 
 .. _cpuid-cpuinfo-has-avx2-const:
 
-bool **has_avx2** ()
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx2** ()
 
 ..
 
@@ -175,7 +178,7 @@ bool **has_avx2** ()
 
 .. _cpuid-cpuinfo-has-fpu-const:
 
-bool **has_fpu** ()
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_fpu** ()
 
 ..
 
@@ -185,7 +188,7 @@ bool **has_fpu** ()
 
 .. _cpuid-cpuinfo-has-mmx-const:
 
-bool **has_mmx** ()
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_mmx** ()
 
 ..
 
@@ -195,7 +198,7 @@ bool **has_mmx** ()
 
 .. _cpuid-cpuinfo-has-neon-const:
 
-bool **has_neon** ()
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_neon** ()
 
 ..
 
@@ -205,7 +208,7 @@ bool **has_neon** ()
 
 .. _cpuid-cpuinfo-has-pclmulqdq-const:
 
-bool **has_pclmulqdq** ()
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_pclmulqdq** ()
 
 ..
 
@@ -215,7 +218,7 @@ bool **has_pclmulqdq** ()
 
 .. _cpuid-cpuinfo-has-sse-const:
 
-bool **has_sse** ()
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_sse** ()
 
 ..
 
@@ -225,7 +228,7 @@ bool **has_sse** ()
 
 .. _cpuid-cpuinfo-has-sse2-const:
 
-bool **has_sse2** ()
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_sse2** ()
 
 ..
 
@@ -235,7 +238,7 @@ bool **has_sse2** ()
 
 .. _cpuid-cpuinfo-has-sse3-const:
 
-bool **has_sse3** ()
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_sse3** ()
 
 ..
 
@@ -245,7 +248,7 @@ bool **has_sse3** ()
 
 .. _cpuid-cpuinfo-has-sse4-1-const:
 
-bool **has_sse4_1** ()
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_sse4_1** ()
 
 ..
 
@@ -255,7 +258,7 @@ bool **has_sse4_1** ()
 
 .. _cpuid-cpuinfo-has-sse4-2-const:
 
-bool **has_sse4_2** ()
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_sse4_2** ()
 
 ..
 
@@ -265,7 +268,7 @@ bool **has_sse4_2** ()
 
 .. _cpuid-cpuinfo-has-ssse3-const:
 
-bool **has_ssse3** ()
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_ssse3** ()
 
 ..
 
