@@ -75,7 +75,7 @@ API
 ---
 
 .. wurfapi:: class_synopsis.rst
-  :selector: cpuid::STEINWURF_CPUID_VERSION::cpuinfo
+  :selector: cpuid::cpuinfo
 
 Credits
 -------
