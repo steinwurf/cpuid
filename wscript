@@ -49,6 +49,10 @@ def build(bld):
             cwd=sourcepath,
             relative_trick=True)
 
+        bld.install_files(
+            dest="${PREFIX}/",
+            files=bld.path.ant_glob('NEWS.rst'))
+
 
 class DocsContext(BuildContext):
     cmd = 'docs'
@@ -106,5 +110,5 @@ def prepare_release(ctx):
         v = 'return "{}"'.format(VERSION)
         f.sub('return "\d+\.\d+\.\d+"', v)
 
-    # Build the docs
+    # Build the docs (in this case the README.rst)
     docs(ctx)
