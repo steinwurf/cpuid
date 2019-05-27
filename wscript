@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 import re
-from contextlib import contextmanager
+
 from waflib.Build import BuildContext
 
 APPNAME = 'cpuid'
@@ -70,26 +70,6 @@ def docs(ctx):
                  cwd=ctx.path.abspath())
 
 
-@contextmanager
-def rewrite(filename):
-    class Content:
-
-        def __init__(self):
-            self.content = None
-
-        def sub(self, pattern, repl):
-            self.content = re.sub(
-                pattern=pattern, repl=repl, string=self.content)
-
-    content = Content()
-
-    with open(filename) as f:
-        content.content = f.read()
-
-    yield content
-
-    with open(filename, 'w') as f:
-        f.write(content.content)
 
 
 class ReleaseContext(BuildContext):
