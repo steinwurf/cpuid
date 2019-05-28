@@ -1,8 +1,6 @@
 #! /usr/bin/env python
 # encoding: utf-8
 
-import re
-
 from waflib.Build import BuildContext
 
 APPNAME = 'cpuid'
@@ -70,8 +68,6 @@ def docs(ctx):
                  cwd=ctx.path.abspath())
 
 
-
-
 class ReleaseContext(BuildContext):
     cmd = 'prepare_release'
     fun = 'prepare_release'
@@ -81,14 +77,19 @@ def prepare_release(ctx):
     """ Prepare a release. """
 
     # Rewrite versions
-    with rewrite(filename="src/cpuid/version.hpp") as f:
-        v = "#define STEINWURF_CPUID_VERSION v{}".format(
-            VERSION.replace('.', '_'))
-        f.sub("#define STEINWURF_CPUID_VERSION v\d+_\d+_\d+", v)
+    with ctx.rewrite_file(filename="src/cpuid/version.hpp") as f:
 
-    with rewrite(filename="src/cpuid/version.cpp") as f:
-        v = 'return "{}"'.format(VERSION)
-        f.sub('return "\d+\.\d+\.\d+"', v)
+        pattern = "#define STEINWURF_CPUID_VERSION v\d+_\d+_\d+"
+        replacement = "#define STEINWURF_CPUID_VERSION v{}".format(
+            VERSION.replace('.', '_'))
+
+        f.regex_replace(pattern=pattern, replacement=replacement)
+
+    with ctx.rewrite_file(filename="src/cpuid/version.cpp") as f:
+        pattern = 'return "\d+\.\d+\.\d+"'
+        replacement = 'return "{}"'.format(VERSION)
+
+        f.regex_replace(pattern=pattern, replacement=replacement)
 
     # Build the docs (in this case the README.rst)
     docs(ctx)
