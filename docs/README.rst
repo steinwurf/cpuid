@@ -49,16 +49,11 @@ To configure and build cpuid, run the following commands::
 
   python waf configure
   python waf build
-  python waf install
+  python waf install --destdir .
 
 The final ``install`` step will create a folder containing all the nessecary
-files needed to use the library (e.g. static library, headers etc.) in:
-
-.. parsed-literal::
-
-  cd cpuid\_\ |version|
-
-To install to a different location use the ``--destdir`` option:
+files needed to use the library (e.g. static library, headers etc.). You
+can change the output folder by passing a different path to ``--destdir``:
 
 .. parsed-literal::
 
