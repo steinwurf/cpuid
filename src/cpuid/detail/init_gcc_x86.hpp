@@ -27,7 +27,7 @@ void run_cpuid(uint32_t eax, uint32_t ecx, uint32_t* abcd)
             "cpuid;"
             "xchgl %%ebx, %%edi;"
             : "=D"(ebx),
-             "+a"(eax), "+c"(ecx), "=d"(edx));
+            "+a"(eax), "+c"(ecx), "=d"(edx));
 #else
     __asm__("cpuid;"
             : "+b"(ebx),
