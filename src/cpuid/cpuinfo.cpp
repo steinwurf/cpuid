@@ -28,7 +28,8 @@ namespace cpuid
 inline namespace STEINWURF_CPUID_VERSION
 {
 
-cpuinfo::cpuinfo() : m_impl(new impl)
+cpuinfo::cpuinfo() :
+    m_impl(new impl)
 {
     init_cpuinfo(*m_impl);
 }
