@@ -26,12 +26,10 @@ void run_cpuid(uint32_t eax, uint32_t ecx, uint32_t* abcd)
     __asm__("movl %%ebx, %%edi;"
             "cpuid;"
             "xchgl %%ebx, %%edi;"
-            : "=D"(ebx),
+            : "=D"(ebx), "+a"(eax), "+c"(ecx), "=d"(edx));
 #else
-    __asm__("cpuid;"
-            : "+b"(ebx),
+    __asm__("cpuid;" : "+b"(ebx), "+a"(eax), "+c"(ecx), "=d"(edx));
 #endif
-              "+a"(eax), "+c"(ecx), "=d"(edx));
 
     abcd[0] = eax;
     abcd[1] = ebx;
