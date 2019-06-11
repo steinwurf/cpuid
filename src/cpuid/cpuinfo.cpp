@@ -9,17 +9,17 @@
 #include "detail/cpuinfo_impl.hpp"
 
 #if defined(PLATFORM_GCC_COMPATIBLE_X86)
-#include "detail/init_gcc_x86.hpp"
+    #include "detail/init_gcc_x86.hpp"
 #elif defined(PLATFORM_MSVC_X86) && !defined(PLATFORM_WINDOWS_PHONE)
-#include "detail/init_msvc_x86.hpp"
+    #include "detail/init_msvc_x86.hpp"
 #elif defined(PLATFORM_MSVC_ARM)
-#include "detail/init_msvc_arm.hpp"
+    #include "detail/init_msvc_arm.hpp"
 #elif defined(PLATFORM_CLANG_ARM) && defined(PLATFORM_IOS)
-#include "detail/init_ios_clang_arm.hpp"
+    #include "detail/init_ios_clang_arm.hpp"
 #elif defined(PLATFORM_GCC_COMPATIBLE_ARM) && defined(PLATFORM_LINUX)
-#include "detail/init_linux_gcc_arm.hpp"
+    #include "detail/init_linux_gcc_arm.hpp"
 #else
-#include "detail/init_unknown.hpp"
+    #include "detail/init_unknown.hpp"
 #endif
 
 namespace cpuid
@@ -28,7 +28,8 @@ namespace cpuid
 inline namespace STEINWURF_CPUID_VERSION
 {
 
-cpuinfo::cpuinfo() : m_impl(new impl)
+cpuinfo::cpuinfo() :
+    m_impl(new impl)
 {
     init_cpuinfo(*m_impl);
 }
