@@ -5,4 +5,5 @@ bld.program(
     features='cxx test',
     source=bld.path.ant_glob('**/*.cpp'),
     target='cpuid_tests',
+    install_path=None,
     use=['cpuid', 'gtest', 'boost_program_options'])

@@ -9,6 +9,8 @@
 
 namespace cpuid
 {
+inline namespace STEINWURF_CPUID_VERSION
+{
 /// @todo docs
 void init_cpuinfo(cpuinfo::impl& info)
 {
@@ -23,5 +25,6 @@ void init_cpuinfo(cpuinfo::impl& info)
 #else
     info.m_has_neon = false;
 #endif
+}
 }
 }

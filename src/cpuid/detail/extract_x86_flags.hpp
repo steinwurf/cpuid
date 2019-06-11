@@ -11,6 +11,8 @@
 
 namespace cpuid
 {
+inline namespace STEINWURF_CPUID_VERSION
+{
 void extract_x86_flags(cpuinfo::impl& info, uint32_t ecx, uint32_t edx)
 {
     // Instruction set flags
@@ -32,5 +34,6 @@ void extract_x86_extended_flags(cpuinfo::impl& info, uint32_t ebx)
     // Extended instruction set flags
 
     info.m_has_avx2 = (ebx & (1 << 5)) != 0;
+}
 }
 }

@@ -12,24 +12,24 @@
 
 namespace cpuid
 {
+inline namespace STEINWURF_CPUID_VERSION
+{
 // Reference for this code is Intel's recommendation for detecting AVX2
 // on Haswell located here: http://goo.gl/c6IkGX
 void run_cpuid(uint32_t eax, uint32_t ecx, uint32_t* abcd)
 {
     uint32_t ebx = 0, edx = 0;
 
-# if defined( __i386__ ) && defined ( __PIC__ )
+#if defined(__i386__) && defined(__PIC__)
     // If PIC used under 32-bit, EBX cannot be clobbered
     // EBX is saved to EDI and later restored
     __asm__("movl %%ebx, %%edi;"
             "cpuid;"
             "xchgl %%ebx, %%edi;"
-            : "=D"(ebx),
-# else
-    __asm__("cpuid;"
-            : "+b"(ebx),
-# endif
-            "+a"(eax), "+c"(ecx), "=d"(edx));
+            : "=D"(ebx), "+a"(eax), "+c"(ecx), "=d"(edx));
+#else
+    __asm__("cpuid;" : "+b"(ebx), "+a"(eax), "+c"(ecx), "=d"(edx));
+#endif
 
     abcd[0] = eax;
     abcd[1] = ebx;
@@ -68,5 +68,6 @@ void init_cpuinfo(cpuinfo::impl& info)
         run_cpuid(7, 0, output);
         extract_x86_extended_flags(info, output[1]);
     }
+}
 }
 }

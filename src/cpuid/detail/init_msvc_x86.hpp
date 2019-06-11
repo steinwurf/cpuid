@@ -12,6 +12,8 @@
 
 namespace cpuid
 {
+inline namespace STEINWURF_CPUID_VERSION
+{
 /// @todo docs
 void init_cpuinfo(cpuinfo::impl& info)
 {
@@ -45,5 +47,6 @@ void init_cpuinfo(cpuinfo::impl& info)
         __cpuidex(registers, 7, 0);
         extract_x86_extended_flags(info, registers[1]);
     }
+}
 }
 }

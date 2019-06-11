@@ -5,18 +5,20 @@
 
 #pragma once
 
-#include <cstdio>
 #include <cassert>
+#include <cstdio>
 #include <cstring>
 
-#include <unistd.h>
-#include <fcntl.h>
 #include <elf.h>
+#include <fcntl.h>
 #include <linux/auxvec.h>
+#include <unistd.h>
 
 #include "cpuinfo_impl.hpp"
 
 namespace cpuid
+{
+inline namespace STEINWURF_CPUID_VERSION
 {
 /// @todo docs
 void init_cpuinfo(cpuinfo::impl& info)
@@ -57,5 +59,6 @@ void init_cpuinfo(cpuinfo::impl& info)
         info.m_has_neon = false;
     }
 #endif
+}
 }
 }

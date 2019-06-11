@@ -6,24 +6,28 @@
 #include <platform/config.hpp>
 
 #include "cpuinfo.hpp"
-#include "cpuinfo_impl.hpp"
+#include "detail/cpuinfo_impl.hpp"
 
 #if defined(PLATFORM_GCC_COMPATIBLE_X86)
-    #include "init_gcc_x86.hpp"
+    #include "detail/init_gcc_x86.hpp"
 #elif defined(PLATFORM_MSVC_X86) && !defined(PLATFORM_WINDOWS_PHONE)
-    #include "init_msvc_x86.hpp"
+    #include "detail/init_msvc_x86.hpp"
 #elif defined(PLATFORM_MSVC_ARM)
-    #include "init_msvc_arm.hpp"
+    #include "detail/init_msvc_arm.hpp"
 #elif defined(PLATFORM_CLANG_ARM) && defined(PLATFORM_IOS)
-    #include "init_ios_clang_arm.hpp"
+    #include "detail/init_ios_clang_arm.hpp"
 #elif defined(PLATFORM_GCC_COMPATIBLE_ARM) && defined(PLATFORM_LINUX)
-    #include "init_linux_gcc_arm.hpp"
+    #include "detail/init_linux_gcc_arm.hpp"
 #else
-    #include "init_unknown.hpp"
+    #include "detail/init_unknown.hpp"
 #endif
 
 namespace cpuid
 {
+
+inline namespace STEINWURF_CPUID_VERSION
+{
+
 cpuinfo::cpuinfo() :
     m_impl(new impl)
 {
@@ -31,7 +35,8 @@ cpuinfo::cpuinfo() :
 }
 
 cpuinfo::~cpuinfo()
-{ }
+{
+}
 
 // x86 member functions
 bool cpuinfo::has_fpu() const
@@ -93,5 +98,6 @@ bool cpuinfo::has_avx2() const
 bool cpuinfo::has_neon() const
 {
     return m_impl->m_has_neon;
+}
 }
 }

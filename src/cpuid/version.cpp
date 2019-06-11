@@ -3,15 +3,16 @@
 //
 // Distributed under the "BSD License". See the accompanying LICENSE.rst file.
 
-#pragma once
-
-#include "cpuinfo_impl.hpp"
+#include "version.hpp"
 
 namespace cpuid
 {
-/// @todo docs
-void init_cpuinfo(cpuinfo::impl& info)
+
+inline namespace STEINWURF_CPUID_VERSION
 {
-    (void) info;
+std::string version()
+{
+    return "5.0.2";
+}
 }
 }

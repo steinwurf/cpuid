@@ -9,6 +9,8 @@
 
 namespace cpuid
 {
+inline namespace STEINWURF_CPUID_VERSION
+{
 void init_cpuinfo(cpuinfo::impl& info)
 {
     // Visual Studio 2012 (and above) guarantees the NEON capability when
@@ -19,5 +21,6 @@ void init_cpuinfo(cpuinfo::impl& info)
 #else
     info.m_has_neon = false;
 #endif
+}
 }
 }
