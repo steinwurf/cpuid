@@ -79,14 +79,14 @@ def prepare_release(ctx):
     # Rewrite versions
     with ctx.rewrite_file(filename="src/cpuid/version.hpp") as f:
 
-        pattern = "#define STEINWURF_CPUID_VERSION v\d+_\d+_\d+"
+        pattern = r"#define STEINWURF_CPUID_VERSION v\d+_\d+_\d+"
         replacement = "#define STEINWURF_CPUID_VERSION v{}".format(
             VERSION.replace('.', '_'))
 
         f.regex_replace(pattern=pattern, replacement=replacement)
 
     with ctx.rewrite_file(filename="src/cpuid/version.cpp") as f:
-        pattern = 'return "\d+\.\d+\.\d+"'
+        pattern = r'return "\d+\.\d+\.\d+"'
         replacement = 'return "{}"'.format(VERSION)
 
         f.regex_replace(pattern=pattern, replacement=replacement)

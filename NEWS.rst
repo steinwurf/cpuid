@@ -7,6 +7,8 @@ every change, see the Git log.
 Latest
 ------
 * Major: Moved internal files to the ``details`` folder.
+* Major: Added inline namespace for versioning.
+* Major: Added prepare_release function to wscript.
 
 5.0.2
 -----
