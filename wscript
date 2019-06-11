@@ -4,7 +4,7 @@
 from waflib.Build import BuildContext
 
 APPNAME = 'cpuid'
-VERSION = '5.0.2'
+VERSION = '6.0.0'
 
 
 def build(bld):

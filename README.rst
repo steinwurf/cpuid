@@ -41,7 +41,7 @@ Fetch the sources:
 
    git clone https://github.com/steinwurf/cpuid
    cd cpuid
-   git checkout 5.0.2
+   git checkout 6.0.0
 
 We use the ``waf`` build system to build the cpuid static library. We
 have some additional waf tools which can be found at `waf
@@ -63,7 +63,7 @@ path to ``--destdir``:
 ::
 
    python waf install --destdir=/tmp
-   cd /tmp/cpuid_5.0.2
+   cd /tmp/cpuid_6.0.0
 
 When building the libraries, waf will also build the
 ``print_cpuinfo_example`` executable which is useful to print the
