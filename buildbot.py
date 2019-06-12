@@ -78,9 +78,7 @@ def install(properties):
     command = [sys.executable, 'waf', '-v', 'install']
 
     if 'install_path' in properties:
-        command += ['--install_path={0}'.format(properties['install_path'])]
-    if properties.get('install_relative'):
-        command += ['--install_relative']
+        command += ['--destdir={0}'.format(properties['install_path'])]
 
     run_command(command)
 
