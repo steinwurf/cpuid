@@ -6,7 +6,9 @@ every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Patch: Move options.log to build folder
+* Patch: Fix generator to build .o files when dependency and static lib when
+  top-level.
 
 6.0.0
 -----
