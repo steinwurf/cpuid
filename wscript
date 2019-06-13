@@ -9,21 +9,17 @@ VERSION = '6.0.0'
 
 def build(bld):
 
-    bld_features = []
-
     # Build static library if this is top-level otherwise just .o files
+    features = ['cxx']
     if bld.is_toplevel():
-        bld_features += ['cxx cxxstlib']
-    else:
-        bld_features += ['cxx']
+        features += ['cxxstlib']
 
-    for features in bld_features:
-        bld(features=features,
-            source=bld.path.ant_glob('src/**/*.cpp'),
-            target='cpuid',
-            export_includes=['src'],
-            use=['platform_includes'],
-            install_path='${PREFIX}/lib')
+    bld(features=features,
+        source=bld.path.ant_glob('src/**/*.cpp'),
+        target='cpuid',
+        export_includes=['src'],
+        use=['platform_includes'],
+        install_path='${PREFIX}/lib')
 
     # Add a manual dependency to rebuild cpuinfo.cpp if a header file changes.
     # waf cannot detect this dependency, because the headers are included
