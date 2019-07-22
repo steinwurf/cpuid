@@ -8,7 +8,7 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 endif()
 
-file( GLOB_RECURSE cpuid_sources ./src/*.cpp)
+file(GLOB_RECURSE cpuid_sources ./src/*.cpp)
 add_library(cpuid STATIC ${cpuid_sources})
 
 add_subdirectory("${CMAKE_SOURCE_DIR}/resolve_symlinks/platform" "platform")
