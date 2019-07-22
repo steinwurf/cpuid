@@ -11,7 +11,7 @@ endif()
 file( GLOB_RECURSE cpuid_sources ./src/*.cpp)
 add_library(cpuid STATIC ${cpuid_sources})
 
-add_subdirectory("${PROJECT_SOURCE_DIR}/resolve_symlinks/platform")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/resolve_symlinks/platform")
 
 target_link_libraries(cpuid platform)
 
