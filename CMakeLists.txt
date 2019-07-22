@@ -1,0 +1,20 @@
+cmake_minimum_required (VERSION 3.12)
+project(cpuid)
+
+message("Resolving dependencies...")
+if(PROJECT_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+    execute_process(
+        COMMAND python waf resolve --platform_path ../platform
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+endif()
+
+file( GLOB_RECURSE cpuid_sources ./src/*.cpp)
+add_library(cpuid STATIC ${cpuid_sources})
+
+add_subdirectory(resolve_symlinks/platform)
+
+target_link_libraries(cpuid platform)
+
+target_compile_features(cpuid PUBLIC cxx_std_11)
+
+target_include_directories(cpuid INTERFACE src)
