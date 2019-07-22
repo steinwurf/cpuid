@@ -4,7 +4,7 @@ project(cpuid)
 message("Resolving dependencies...")
 if(PROJECT_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
     execute_process(
-        COMMAND python waf resolve --platform_path ../platform
+        COMMAND python waf resolve
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 endif()
 
