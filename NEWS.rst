@@ -6,6 +6,11 @@ every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+6.1.0
+-----
+* Minor: Added cmake build file.
 * Patch: Move options.log to build folder
 * Patch: Fix generator to build .o files when dependency and static lib when
   top-level.
