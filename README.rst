@@ -41,7 +41,7 @@ Fetch the sources:
 
    git clone https://github.com/steinwurf/cpuid
    cd cpuid
-   git checkout 6.1.0
+   git checkout 6.2.0
 
 We use the ``waf`` build system to build the cpuid static library. We
 have some additional waf tools which can be found at `waf
@@ -63,7 +63,7 @@ path to ``--destdir``:
 ::
 
    python waf install --destdir=/tmp
-   cd /tmp/cpuid_6.1.0
+   cd /tmp/cpuid_6.2.0
 
 When building the libraries, waf will also build the
 ``print_cpuinfo_example`` executable which is useful to print the
@@ -269,11 +269,12 @@ Member Function Description
 
    Return true if the CPU supports SSSE3.
 
+
 Use as Dependency in CMake
 **************************
 
-To depend on this project when using the CMake build system, add the following
-in your CMake build script:
+To depend on this project when using the CMake build system, add the
+following in your CMake build script:
 
 ::
 
@@ -281,6 +282,7 @@ in your CMake build script:
    target_link_libraries(<my_target> steinwurf::cpuid)
 
 Where ``<my_target>`` is replaced by your target.
+
 
 Credits
 *******
