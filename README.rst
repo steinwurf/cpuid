@@ -269,6 +269,18 @@ Member Function Description
 
    Return true if the CPU supports SSSE3.
 
+Use as Dependency in CMake
+**************************
+
+To depend on this project when using the CMake build system, add the following
+in your CMake build script:
+
+::
+
+   add_subdirectory("/path/to/cpuid" cpuid)
+   target_link_libraries(<my_target> steinwurf::cpuid)
+
+Where ``<my_target>`` is replaced by your target.
 
 Credits
 *******
