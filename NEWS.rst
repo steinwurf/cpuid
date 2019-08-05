@@ -6,7 +6,7 @@ every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Minor: Improve cmake build file.
 
 6.1.0
 -----
