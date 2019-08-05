@@ -74,7 +74,7 @@ API
   :selector: cpuid::cpuinfo
 
 Use as Dependency in CMake
-**************************
+--------------------------
 
 To depend on this project when using the CMake build system, add the following
 in your CMake build script:
