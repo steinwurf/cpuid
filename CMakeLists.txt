@@ -1,7 +1,8 @@
 cmake_minimum_required (VERSION 3.12)
 project(cpuid)
 
-if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+if(NOT DEFINED STEINWURF_RESOLVE)
+    set(STEINWURF_RESOLVE TRUE)
     message(STATUS "Resolving dependencies...")
     execute_process(
         COMMAND python waf resolve
