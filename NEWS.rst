@@ -6,6 +6,10 @@ every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+6.2.1
+-----
 * Patch: Use variable for resolve step in cmake.
 
 6.2.0
