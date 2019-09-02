@@ -35,7 +35,8 @@ You can see the status by selecting the cpuid project on the
 Build
 *****
 
-Fetch the sources:
+Fetch the sources, and we also recommend that you switch to the last released
+version of the library:
 
 ::
 
@@ -53,17 +54,12 @@ To configure and build cpuid, run the following commands:
 
    python waf configure
    python waf build
-   python waf install --destdir .
+   python waf install --destdir cpuid_install
 
 The final ``install`` step will create a folder containing all the
 nessecary files needed to use the library (e.g. static library,
 headers etc.). You can change the output folder by passing a different
-path to ``--destdir``:
-
-::
-
-   python waf install --destdir=/tmp
-   cd /tmp/cpuid_6.2.1
+path to ``--destdir``.
 
 When building the libraries, waf will also build the
 ``print_cpuinfo_example`` executable which is useful to print the
