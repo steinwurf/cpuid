@@ -7,6 +7,7 @@ every change, see the Git log.
 Latest
 ------
 * tbd
+* Minor: Upgrade to boost 4
 
 6.2.1
 -----
