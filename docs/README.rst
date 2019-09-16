@@ -1,8 +1,8 @@
 cpuid
 -----
 
-.. image:: http://buildbot.steinwurf.dk/svgstatus?project=cpuid
-    :target: http://buildbot.steinwurf.dk/stats?projects=cpuid
+.. image:: https://travis-ci.org/steinwurf/cpuid.svg?branch=master
+    :target: https://travis-ci.org/steinwurf/cpuid
 
 cpuid is a C++ library for CPU dispatching. Currently the
 project can detect the following CPU capabilities:
@@ -22,12 +22,8 @@ file for more details.
 
 Platforms
 ---------
-We have tested cpuid on various versions of Windows, Linux and Mac. We run
-automated tests on x86 and ARM architectures with different compilers like
-g++, clang and Microsoft Visual Studio.
-
-You can see the status by selecting the cpuid project on the
-`Steinwurf buildbot page <http://buildbot.steinwurf.dk:12344/>`_.
+We have tested cpuid on various versions of Windows, Linux and Mac. We
+run automated tests with different compilers like g++, clang and msvc.
 
 Build
 -----
