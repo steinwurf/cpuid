@@ -30,3 +30,4 @@ install:
 script:
   - python waf build -v
   - python waf --run_tests --run_cmd="%s --no_fail"
+  - python waf install --destdir=test_install
