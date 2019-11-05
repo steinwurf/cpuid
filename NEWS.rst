@@ -6,7 +6,8 @@ every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Minor: Changed resolve step in CMake file.
+* Minor: Lowered required cmake version.
 * Minor: Upgrade to boost 4
 
 6.2.1
