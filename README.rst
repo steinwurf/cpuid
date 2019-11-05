@@ -3,7 +3,7 @@ cpuid
 *****
 
 .. image:: https://travis-ci.org/steinwurf/cpuid.svg?branch=master
-    :target: https://travis-ci.org/steinwurf/cpuid
+   :target: https://travis-ci.org/steinwurf/cpuid
 
 cpuid is a C++ library for CPU dispatching. Currently the project can
 detect the following CPU capabilities:
@@ -31,14 +31,14 @@ run automated tests with different compilers like g++, clang and msvc.
 Build
 *****
 
-Fetch the sources, and we also recommend that you switch to the last released
-version of the library:
+Fetch the sources, and we also recommend that you switch to the last
+released version of the library:
 
 ::
 
    git clone https://github.com/steinwurf/cpuid
    cd cpuid
-   git checkout 6.2.1
+   git checkout 6.3.0
 
 We use the ``waf`` build system to build the cpuid static library. We
 have some additional waf tools which can be found at `waf
