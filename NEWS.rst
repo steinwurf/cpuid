@@ -6,7 +6,7 @@ every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Patch: Link publicly with platform dependency in cmake.
 
 6.3.0
 -----
