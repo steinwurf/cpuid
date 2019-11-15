@@ -15,7 +15,7 @@ add_library(steinwurf::cpuid ALIAS cpuid)
 
 add_subdirectory("${STEINWURF_RESOLVE}/platform" platform)
 
-target_link_libraries(cpuid PUBLIC steinwurf::platform)
+target_link_libraries(cpuid PRIVATE steinwurf::platform)
 
 target_compile_features(cpuid PUBLIC cxx_std_11)
 
