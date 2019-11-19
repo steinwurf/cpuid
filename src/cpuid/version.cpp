@@ -12,7 +12,7 @@ inline namespace STEINWURF_CPUID_VERSION
 {
 std::string version()
 {
-    return "6.3.0";
+    return "6.3.1";
 }
 }
 }
