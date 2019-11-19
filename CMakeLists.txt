@@ -13,7 +13,9 @@ file(GLOB_RECURSE cpuid_sources ./src/*.cpp)
 add_library(cpuid STATIC ${cpuid_sources})
 add_library(steinwurf::cpuid ALIAS cpuid)
 
+if (NOT TARGET platform)
 add_subdirectory("${STEINWURF_RESOLVE}/platform" platform)
+endif()
 
 target_link_libraries(cpuid PRIVATE steinwurf::platform)
 

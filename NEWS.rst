@@ -6,7 +6,7 @@ every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Patch: Added add_subdirectory guard to CMakeLists.txt.
 
 6.3.0
 -----
