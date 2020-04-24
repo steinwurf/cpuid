@@ -85,11 +85,13 @@ Member functions (public)
 +------------------------------------------------------------+----------------------------------------------------------------+
 |                                                            | `cpuinfo <cpuid-cpuinfo-cpuinfo_>`_ ()                         |
 +------------------------------------------------------------+----------------------------------------------------------------+
-|                                                            | `~cpuinfo <id12_>`_ ()                                         |
+|                                                            | `~cpuinfo <id13_>`_ ()                                         |
 +------------------------------------------------------------+----------------------------------------------------------------+
 | `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx <cpuid-cpuinfo-has-avx-const_>`_ () const             |
 +------------------------------------------------------------+----------------------------------------------------------------+
 | `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx2 <cpuid-cpuinfo-has-avx2-const_>`_ () const           |
++------------------------------------------------------------+----------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_f16c <cpuid-cpuinfo-has-f16c-const_>`_ () const           |
 +------------------------------------------------------------+----------------------------------------------------------------+
 | `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_fpu <cpuid-cpuinfo-has-fpu-const_>`_ () const             |
 +------------------------------------------------------------+----------------------------------------------------------------+
@@ -117,7 +119,7 @@ Description
 -----------
 
 The cpuinfo object extract information about which, if any, additional
-instructiions are supported by the CPU.
+instructions are supported by the CPU.
 
 
 Member Function Description
@@ -133,7 +135,7 @@ Member Function Description
 
 ======================================================================
 
-.. _id12:
+.. _id13:
 
 **~cpuinfo** ()
 
@@ -163,6 +165,16 @@ Member Function Description
 
 ======================================================================
 
+.. _cpuid-cpuinfo-has-f16c-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_f16c** ()
+
+..
+
+   Return true if the CPU supports F16C.
+
+======================================================================
+
 .. _cpuid-cpuinfo-has-fpu-const:
 
 `bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_fpu** ()
@@ -189,7 +201,7 @@ Member Function Description
 
 ..
 
-   ARM member functions.
+   Return true if the CPU supports NEON.
 
 ======================================================================
 
