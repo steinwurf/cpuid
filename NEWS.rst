@@ -6,7 +6,7 @@ every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Minor: Added detection for F16C instruction
 
 6.3.1
 -----

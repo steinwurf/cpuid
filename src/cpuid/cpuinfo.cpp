@@ -94,7 +94,12 @@ bool cpuinfo::has_avx2() const
     return m_impl->m_has_avx2;
 }
 
-// ARM functions
+bool cpuinfo::has_f16c() const
+{
+    return m_impl->m_has_f16c;
+}
+
+// ARM member functions
 bool cpuinfo::has_neon() const
 {
     return m_impl->m_has_neon;

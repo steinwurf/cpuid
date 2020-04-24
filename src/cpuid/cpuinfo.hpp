@@ -14,7 +14,7 @@ namespace cpuid
 inline namespace STEINWURF_CPUID_VERSION
 {
 /// The cpuinfo object extract information about which, if any, additional
-/// instructiions are supported by the CPU.
+/// instructions are supported by the CPU.
 class cpuinfo
 {
 public:
@@ -57,7 +57,10 @@ public:
     /// Return true if the CPU supports AVX2
     bool has_avx2() const;
 
-    /// ARM member functions
+    /// Return true if the CPU supports F16C
+    bool has_f16c() const;
+
+    /// Return true if the CPU supports NEON
     bool has_neon() const;
 
 public:
