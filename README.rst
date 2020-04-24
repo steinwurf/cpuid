@@ -38,7 +38,7 @@ released version of the library:
 
    git clone https://github.com/steinwurf/cpuid
    cd cpuid
-   git checkout 6.3.1
+   git checkout 6.4.0
 
 We use the ``waf`` build system to build the cpuid static library. We
 have some additional waf tools which can be found at `waf
