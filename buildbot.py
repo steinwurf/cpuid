@@ -93,7 +93,12 @@ def cmake(properties):
 
     old_cwd = os.getcwd()
     os.chdir(build_path)
-    run_command(['cmake', '../'], env_ext={'VERBOSE': '1'})
+    cmd = ['cmake']
+
+    if properties['is_release']:
+        cmd.append('-DCMAKE_BUILD_TYPE=Release')
+    cmd.append('../')
+    run_command(cmd, env_ext={'VERBOSE': '1'})
     run_command(['cmake', '--build', '.'], env_ext={'VERBOSE': '1'})
     os.chdir(old_cwd)
 
