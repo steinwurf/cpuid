@@ -45,6 +45,8 @@ def configure(properties):
             properties['dependency_project'],
             properties['dependency_checkout'])]
 
+    if 'nodebug' in properties:
+        command += ["--cxx_nodebug"]
     command += ["--cxx_mkspec={}".format(properties['cxx_mkspec'])]
     command += get_tool_options(properties)
 
