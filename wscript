@@ -4,7 +4,7 @@
 from waflib.Build import BuildContext
 
 APPNAME = 'cpuid'
-VERSION = '6.4.0'
+VERSION = '6.5.0'
 
 
 def build(bld):
@@ -86,6 +86,3 @@ def prepare_release(ctx):
         replacement = 'return "{}"'.format(VERSION)
 
         f.regex_replace(pattern=pattern, replacement=replacement)
-
-    # Build the docs (in this case the README.rst)
-    docs(ctx)
