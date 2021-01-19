@@ -9,12 +9,13 @@ if(NOT DEFINED STEINWURF_RESOLVE)
     set(STEINWURF_RESOLVE "${CMAKE_CURRENT_SOURCE_DIR}/resolve_symlinks")
 endif()
 
+file(GLOB cpuid_headers ./src/cpuid/*.hpp)
 file(GLOB_RECURSE cpuid_sources ./src/*.cpp)
 add_library(cpuid STATIC ${cpuid_sources})
 add_library(steinwurf::cpuid ALIAS cpuid)
 
 if (NOT TARGET platform)
-add_subdirectory("${STEINWURF_RESOLVE}/platform" platform)
+add_subdirectory("${STEINWURF_RESOLVE}/platform" platform EXCLUDE_FROM_ALL)
 endif()
 
 target_link_libraries(cpuid PRIVATE steinwurf::platform)
@@ -22,3 +23,6 @@ target_link_libraries(cpuid PRIVATE steinwurf::platform)
 target_compile_features(cpuid PUBLIC cxx_std_11)
 
 target_include_directories(cpuid INTERFACE src)
+
+install(FILES ${cpuid_headers} DESTINATION ${CMAKE_INSTALL_PREFIX}/include/cpuid)
+install(FILES $<TARGET_FILE:cpuid> DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
