@@ -14,7 +14,6 @@ file(GLOB cpuid_headers ./src/cpuid/*.hpp)
 file(GLOB_RECURSE cpuid_sources ./src/*.cpp)
 
 add_library(cpuid_objects OBJECT ${cpuid_sources})
-add_library(steinwurf::cpuid ALIAS cpuid_objects)
 
 if (NOT TARGET platform)
 add_subdirectory("${STEINWURF_RESOLVE}/platform" platform EXCLUDE_FROM_ALL)
@@ -32,5 +31,8 @@ install(FILES ${cpuid_headers} DESTINATION ${CMAKE_INSTALL_PREFIX}/include/cpuid
 if (DEFINED CPUID_TOPLEVEL)
 add_library(cpuid STATIC $<TARGET_OBJECTS:cpuid_objects>)
 install(FILES $<TARGET_FILE:cpuid> DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
+add_library(steinwurf::cpuid ALIAS cpuid)
+else()
+add_library(steinwurf::cpuid ALIAS cpuid_objects)
 endif()
 
