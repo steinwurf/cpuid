@@ -7,7 +7,6 @@ if(NOT DEFINED STEINWURF_RESOLVE)
         COMMAND python waf resolve
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
     set(STEINWURF_RESOLVE "${CMAKE_CURRENT_SOURCE_DIR}/resolve_symlinks")
-    set(CPUID_TOPLEVEL 1)
 endif()
 
 file(GLOB cpuid_headers ./src/cpuid/*.hpp)
@@ -28,7 +27,7 @@ target_include_directories(cpuid_objects INTERFACE src)
 install(FILES ${cpuid_headers} DESTINATION ${CMAKE_INSTALL_PREFIX}/include/cpuid)
 
 
-if (DEFINED CPUID_TOPLEVEL)
+if(${CMAKE_PROJECT_NAME} STREQUAL ${PROJECT_NAME})
 add_library(cpuid STATIC $<TARGET_OBJECTS:cpuid_objects>)
 install(FILES $<TARGET_FILE:cpuid> DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
 add_library(steinwurf::cpuid ALIAS cpuid)
