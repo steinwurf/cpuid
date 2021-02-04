@@ -1,40 +1,32 @@
 [
-    {
-        "name": "waf-tools",
-        "resolver": "git",
-        "method": "semver",
-        "major": 4,
-        "sources": [
-            "github.com/steinwurf/waf-tools.git"
-        ]
-    },
-    {
-        "name": "platform",
-        "resolver": "git",
-        "method": "semver",
-        "major": 3,
-        "sources": [
-            "github.com/steinwurf/platform.git"
-        ]
-    },
-    {
-        "name": "boost",
-        "internal": true,
-        "resolver": "git",
-        "method": "semver",
-        "major": 4,
-        "sources": [
-            "github.com/steinwurf/boost.git"
-        ]
-    },
-    {
-        "name": "gtest",
-        "internal": true,
-        "resolver": "git",
-        "method": "semver",
-        "major": 4,
-        "sources": [
-            "github.com/steinwurf/gtest.git"
-        ]
-    }
+  {
+    "name": "waf-tools",
+    "resolver": "git",
+    "method": "semver",
+    "major": 4,
+    "sources": ["github.com/steinwurf/waf-tools.git"]
+  },
+  {
+    "name": "platform",
+    "resolver": "git",
+    "method": "semver",
+    "major": 4,
+    "sources": ["github.com/steinwurf/platform.git"]
+  },
+  {
+    "name": "boost",
+    "internal": true,
+    "resolver": "git",
+    "method": "semver",
+    "major": 4,
+    "sources": ["github.com/steinwurf/boost.git"]
+  },
+  {
+    "name": "gtest",
+    "internal": true,
+    "resolver": "git",
+    "method": "semver",
+    "major": 4,
+    "sources": ["github.com/steinwurf/gtest.git"]
+  }
 ]
