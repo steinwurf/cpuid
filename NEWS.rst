@@ -6,6 +6,10 @@ every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+8.0.0
+-----
 * Major: Change cmake object library approach.
 
 7.0.0
