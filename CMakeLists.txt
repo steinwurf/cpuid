@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.12)
 project(cpuid)
 
 # Use waf to resolve dependencies
@@ -7,6 +7,7 @@ if(NOT DEFINED STEINWURF_RESOLVE)
   execute_process(COMMAND python waf resolve
                   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
   set(STEINWURF_RESOLVE "${CMAKE_CURRENT_SOURCE_DIR}/resolve_symlinks")
+  set(STEINWURF_TOP_NAME cpuid)
 endif()
 
 # platform dependency
@@ -16,18 +17,27 @@ endif()
 
 # Define library
 file(GLOB_RECURSE cpuid_sources ./src/*.cpp)
-add_library(cpuid_internal OBJECT ${cpuid_sources})
-target_compile_features(cpuid_internal PUBLIC cxx_std_14)
 
-# Link dependencies
-target_link_libraries(cpuid_internal PRIVATE steinwurf::platform)
+# Is this the top-level steinwurf project?
+if(${PROJECT_NAME} STREQUAL ${STEINWURF_TOP_NAME})
+  # Create static library
+  add_library(cpuid STATIC ${cpuid_sources})
+  # Install library
+  install(FILES $<TARGET_FILE:cpuid> DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
+else()
+  # Create object library
+  add_library(cpuid OBJECT ${cpuid_sources})
+  # Add this library to a global list of steinwurf object libraries
+  set_property(GLOBAL APPEND PROPERTY steinwurf::object_libraries
+                                      steinwurf::cpuid)
+endif()
 
-# Add interface library encapsulating the internal the library object
-add_library(cpuid_objects INTERFACE)
-target_sources(cpuid_objects INTERFACE $<TARGET_OBJECTS:cpuid_internal>)
-target_link_libraries(cpuid_objects INTERFACE)
-target_include_directories(cpuid_objects INTERFACE src)
-target_compile_features(cpuid_objects INTERFACE cxx_std_14)
+# Link header only dependencies
+target_link_libraries(cpuid PRIVATE steinwurf::platform)
+
+target_include_directories(cpuid INTERFACE src)
+target_compile_features(cpuid PUBLIC cxx_std_14)
+add_library(steinwurf::cpuid ALIAS cpuid)
 
 # Install headers excluding "detail" as these are internal to the library.
 install(
@@ -39,16 +49,7 @@ install(
 
 # Is top level project?
 if(${CMAKE_PROJECT_NAME} STREQUAL ${PROJECT_NAME})
-  add_library(cpuid_static STATIC)
-  target_link_libraries(cpuid_static PUBLIC cpuid_objects)
-  set_target_properties(cpuid_static PROPERTIES OUTPUT_NAME cpuid)
-
-  install(FILES $<TARGET_FILE:cpuid_static>
-          DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
-
   # Build executables
   add_executable(print_cpuinfo examples/print_cpuinfo/main.cpp)
-  target_link_libraries(print_cpuinfo cpuid_static)
-else()
-  add_library(steinwurf::cpuid ALIAS cpuid_objects)
+  target_link_libraries(print_cpuinfo cpuid)
 endif()
