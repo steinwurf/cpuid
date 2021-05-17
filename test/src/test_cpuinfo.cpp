@@ -6,8 +6,8 @@
 #include <cpuid/cpuinfo.hpp>
 
 #include <cstdint>
-#include <iostream>
 #include <gtest/gtest.h>
+#include <iostream>
 
 #include "../commandline_arguments.hpp"
 
