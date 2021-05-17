@@ -159,5 +159,5 @@ jobs:
         run: |
           echo "::add-matcher::.github/gcc-problem-matcher.json"
           python3 waf
-      - name: Valgrind Test
-        run: python3 waf --run_tests
+      # - name: Valgrind Test
+      #   run: python3 waf --run_tests
