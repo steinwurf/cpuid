@@ -89,7 +89,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [Windows, macOS, Linux]
+        os: [Windows, macOS_X64, Linux]
     runs-on: [self-hosted, "${{ matrix.os }}", "cmake"]
     name: ${{ matrix.os }} CMake Build
     steps:
