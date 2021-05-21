@@ -46,8 +46,8 @@ jobs:
         run: |
           echo "::add-matcher::.github/gcc-problem-matcher.json"
           python3 waf
-      # - name: Waf Test
-      #   run: python3 waf --run_tests
+      - name: Waf Test
+        run: python3 waf --run_tests --run_cmd="%s --no_fail"
   # Build performed on runner using make specs
   cxx_mkspec:
     strategy:
@@ -82,8 +82,8 @@ jobs:
         run: |
           echo "::add-matcher::.github/gcc-problem-matcher.json"
           ${{ env.python }} waf
-      # - name: Test
-      #   run: ${{ env.python }} waf --run_tests
+      - name: Test
+        run: ${{ env.python }} waf --run_tests --run_cmd="%s --no_fail"
   # CMake build
   cmake_build:
     strategy:
@@ -142,8 +142,8 @@ jobs:
         run: |
           echo "::add-matcher::.github/gcc-problem-matcher.json"
           python3 waf
-      # - name: Valgrind Test
-      #   run: python3 waf --run_tests --run_cmd="valgrind %s"
+      - name: Valgrind Test
+        run: python3 waf --run_tests --run_cmd="valgrind %s --no_fail"
   # NDEBUG compilation
   ndebug:
     name: No Assertions
@@ -159,5 +159,5 @@ jobs:
         run: |
           echo "::add-matcher::.github/gcc-problem-matcher.json"
           python3 waf
-      # - name: Valgrind Test
-      #   run: python3 waf --run_tests
+      - name: Test
+        run: python3 waf --run_tests --run_cmd="%s --no_fail"
