@@ -10,13 +10,12 @@
 class commandline_arguments
 {
 public:
-
     /// Constructor
     commandline_arguments();
 
     // void
-    template<class T> void add_option(const char* option,
-                                      const char* description)
+    template <class T>
+    void add_option(const char* option, const char* description)
     {
         m_options.add_options()(option, boost::program_options::value<T>(),
                                 description);
@@ -25,7 +24,6 @@ public:
     boost::program_options::variables_map parse(int argc, char** argv);
 
 private:
-
     /// The options
     boost::program_options::options_description m_options;
 };
