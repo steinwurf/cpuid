@@ -6,7 +6,7 @@ every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Minor: Added different AVX-512 extensions.
 
 8.0.0
 -----

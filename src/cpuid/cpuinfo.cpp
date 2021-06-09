@@ -93,6 +93,86 @@ bool cpuinfo::has_avx2() const
     return m_impl->m_has_avx2;
 }
 
+bool cpuinfo::has_avx512_f() const
+{
+    return m_impl->m_has_avx512_f;
+}
+
+bool cpuinfo::has_avx512_dq() const
+{
+    return m_impl->m_has_avx512_dq;
+}
+
+bool cpuinfo::has_avx512_ifma() const
+{
+    return m_impl->m_has_avx512_ifma;
+}
+
+bool cpuinfo::has_avx512_pf() const
+{
+    return m_impl->m_has_avx512_pf;
+}
+
+bool cpuinfo::has_avx512_er() const
+{
+    return m_impl->m_has_avx512_er;
+}
+
+bool cpuinfo::has_avx512_cd() const
+{
+    return m_impl->m_has_avx512_cd;
+}
+
+bool cpuinfo::has_avx512_bw() const
+{
+    return m_impl->m_has_avx512_bw;
+}
+
+bool cpuinfo::has_avx512_vl() const
+{
+    return m_impl->m_has_avx512_vl;
+}
+
+bool cpuinfo::has_avx512_vbmi() const
+{
+    return m_impl->m_has_avx512_vbmi;
+}
+
+bool cpuinfo::has_avx512_vbmi2() const
+{
+    return m_impl->m_has_avx512_vbmi2;
+}
+
+bool cpuinfo::has_avx512_vnni() const
+{
+    return m_impl->m_has_avx512_vnni;
+}
+
+bool cpuinfo::has_avx512_bitalg() const
+{
+    return m_impl->m_has_avx512_bitalg;
+}
+
+bool cpuinfo::has_avx512_vpopcntdq() const
+{
+    return m_impl->m_has_avx512_vpopcntdq;
+}
+
+bool cpuinfo::has_avx512_4vnniw() const
+{
+    return m_impl->m_has_avx512_4vnniw;
+}
+
+bool cpuinfo::has_avx512_4fmaps() const
+{
+    return m_impl->m_has_avx512_4fmaps;
+}
+
+bool cpuinfo::has_avx512_vp2intersect() const
+{
+    return m_impl->m_has_avx512_vp2intersect;
+}
+
 bool cpuinfo::has_f16c() const
 {
     return m_impl->m_has_f16c;

@@ -57,7 +57,7 @@ def docs(ctx):
     with ctx.create_virtualenv() as venv:
         venv.run('pip install sphinx')
         venv.run(
-            'pip install git+https://github.com/steinwurf/wurfapi@4a8eb46300170ef3b7808c308e5cdad39f391034')
+            'pip install git+https://github.com/steinwurf/wurfapi@4d49e7f1aa3a2cf1e647ff525daeb7a9a769c547')
         venv.run(
             'pip install git+https://github.com/steinwurf/restbuilder@830815608d4eb391e699bfb64315c89e091e4406')
         venv.run('sphinx-build -E -d build/doctrees -b rst -D version={} docs .'.format(VERSION),
