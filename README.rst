@@ -131,15 +131,13 @@ Member functions (public)
 +------------------------------------------------------------+------------------------------------------------------------------------------------+
 | `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_bitalg <cpuid-cpuinfo-has-avx512-bitalg-const_>`_ () const             |
 +------------------------------------------------------------+------------------------------------------------------------------------------------+
-| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_vpopcntdq <cpuid-cpuinfo-has-avx512-vpopcntdq-const_>`_ ()
-const       |
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_vpopcntdq <cpuid-cpuinfo-has-avx512-vpopcntdq-const_>`_ () const       |
 +------------------------------------------------------------+------------------------------------------------------------------------------------+
 | `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_4vnniw <cpuid-cpuinfo-has-avx512-4vnniw-const_>`_ () const             |
 +------------------------------------------------------------+------------------------------------------------------------------------------------+
 | `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_4fmaps <cpuid-cpuinfo-has-avx512-4fmaps-const_>`_ () const             |
 +------------------------------------------------------------+------------------------------------------------------------------------------------+
-| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_vp2intersect
-<cpuid-cpuinfo-has-avx512-vp2intersect-const_>`_ () const |
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_vp2intersect <cpuid-cpuinfo-has-avx512-vp2intersect-const_>`_ () const |
 +------------------------------------------------------------+------------------------------------------------------------------------------------+
 | `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_f16c <cpuid-cpuinfo-has-f16c-const_>`_ () const                               |
 +------------------------------------------------------------+------------------------------------------------------------------------------------+
