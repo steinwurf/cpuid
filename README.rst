@@ -9,7 +9,7 @@ cpuid is a C++ library for CPU dispatching. Currently the project can
 detect the following CPU capabilities:
 
 * Instruction sets detected on x86: FPU, MMX, SSE, SSE2, SSE3, SSSE3,
-   SSE 4.1, SSE 4.2, PCLMULQDQ, AVX, and AVX2
+   SSE 4.1, SSE 4.2, PCLMULQDQ, AVX, AVX2 and AVX-512 extensions.
 
 * Instruction sets detected on ARM: NEON
 
@@ -38,7 +38,7 @@ released version of the library:
 
    git clone https://github.com/steinwurf/cpuid
    cd cpuid
-   git checkout 6.4.0
+   git checkout 8.0.0
 
 We use the ``waf`` build system to build the cpuid static library. We
 have some additional waf tools which can be found at `waf
@@ -76,43 +76,75 @@ class cpuinfo
 
 **Scope:** cpuid
 
-**In header:** ``#include <cpuinfo.hpp>``
-
 
 Member functions (public)
 -------------------------
 
-+------------------------------------------------------------+----------------------------------------------------------------+
-|                                                            | `cpuinfo <cpuid-cpuinfo-cpuinfo_>`_ ()                         |
-+------------------------------------------------------------+----------------------------------------------------------------+
-|                                                            | `~cpuinfo <id13_>`_ ()                                         |
-+------------------------------------------------------------+----------------------------------------------------------------+
-| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx <cpuid-cpuinfo-has-avx-const_>`_ () const             |
-+------------------------------------------------------------+----------------------------------------------------------------+
-| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx2 <cpuid-cpuinfo-has-avx2-const_>`_ () const           |
-+------------------------------------------------------------+----------------------------------------------------------------+
-| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_f16c <cpuid-cpuinfo-has-f16c-const_>`_ () const           |
-+------------------------------------------------------------+----------------------------------------------------------------+
-| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_fpu <cpuid-cpuinfo-has-fpu-const_>`_ () const             |
-+------------------------------------------------------------+----------------------------------------------------------------+
-| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_mmx <cpuid-cpuinfo-has-mmx-const_>`_ () const             |
-+------------------------------------------------------------+----------------------------------------------------------------+
-| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_neon <cpuid-cpuinfo-has-neon-const_>`_ () const           |
-+------------------------------------------------------------+----------------------------------------------------------------+
-| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_pclmulqdq <cpuid-cpuinfo-has-pclmulqdq-const_>`_ () const |
-+------------------------------------------------------------+----------------------------------------------------------------+
-| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_sse <cpuid-cpuinfo-has-sse-const_>`_ () const             |
-+------------------------------------------------------------+----------------------------------------------------------------+
-| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_sse2 <cpuid-cpuinfo-has-sse2-const_>`_ () const           |
-+------------------------------------------------------------+----------------------------------------------------------------+
-| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_sse3 <cpuid-cpuinfo-has-sse3-const_>`_ () const           |
-+------------------------------------------------------------+----------------------------------------------------------------+
-| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_sse4_1 <cpuid-cpuinfo-has-sse4-1-const_>`_ () const       |
-+------------------------------------------------------------+----------------------------------------------------------------+
-| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_sse4_2 <cpuid-cpuinfo-has-sse4-2-const_>`_ () const       |
-+------------------------------------------------------------+----------------------------------------------------------------+
-| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_ssse3 <cpuid-cpuinfo-has-ssse3-const_>`_ () const         |
-+------------------------------------------------------------+----------------------------------------------------------------+
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+|                                                            | `cpuinfo <cpuid-cpuinfo-cpuinfo_>`_ ()                                             |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+|                                                            | `~cpuinfo <id29_>`_ ()                                                             |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_fpu <cpuid-cpuinfo-has-fpu-const_>`_ () const                                 |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_mmx <cpuid-cpuinfo-has-mmx-const_>`_ () const                                 |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_sse <cpuid-cpuinfo-has-sse-const_>`_ () const                                 |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_sse2 <cpuid-cpuinfo-has-sse2-const_>`_ () const                               |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_sse3 <cpuid-cpuinfo-has-sse3-const_>`_ () const                               |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_ssse3 <cpuid-cpuinfo-has-ssse3-const_>`_ () const                             |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_sse4_1 <cpuid-cpuinfo-has-sse4-1-const_>`_ () const                           |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_sse4_2 <cpuid-cpuinfo-has-sse4-2-const_>`_ () const                           |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_pclmulqdq <cpuid-cpuinfo-has-pclmulqdq-const_>`_ () const                     |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx <cpuid-cpuinfo-has-avx-const_>`_ () const                                 |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx2 <cpuid-cpuinfo-has-avx2-const_>`_ () const                               |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_f <cpuid-cpuinfo-has-avx512-f-const_>`_ () const                       |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_dq <cpuid-cpuinfo-has-avx512-dq-const_>`_ () const                     |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_ifma <cpuid-cpuinfo-has-avx512-ifma-const_>`_ () const                 |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_pf <cpuid-cpuinfo-has-avx512-pf-const_>`_ () const                     |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_er <cpuid-cpuinfo-has-avx512-er-const_>`_ () const                     |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_cd <cpuid-cpuinfo-has-avx512-cd-const_>`_ () const                     |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_bw <cpuid-cpuinfo-has-avx512-bw-const_>`_ () const                     |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_vl <cpuid-cpuinfo-has-avx512-vl-const_>`_ () const                     |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_vbmi <cpuid-cpuinfo-has-avx512-vbmi-const_>`_ () const                 |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_vbmi2 <cpuid-cpuinfo-has-avx512-vbmi2-const_>`_ () const               |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_vnni <cpuid-cpuinfo-has-avx512-vnni-const_>`_ () const                 |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_bitalg <cpuid-cpuinfo-has-avx512-bitalg-const_>`_ () const             |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_vpopcntdq <cpuid-cpuinfo-has-avx512-vpopcntdq-const_>`_ ()
+const       |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_4vnniw <cpuid-cpuinfo-has-avx512-4vnniw-const_>`_ () const             |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_4fmaps <cpuid-cpuinfo-has-avx512-4fmaps-const_>`_ () const             |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx512_vp2intersect
+<cpuid-cpuinfo-has-avx512-vp2intersect-const_>`_ () const |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_f16c <cpuid-cpuinfo-has-f16c-const_>`_ () const                               |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_neon <cpuid-cpuinfo-has-neon-const_>`_ () const                               |
++------------------------------------------------------------+------------------------------------------------------------------------------------+
 
 
 Description
@@ -122,8 +154,8 @@ The cpuinfo object extract information about which, if any, additional
 instructions are supported by the CPU.
 
 
-Member Function Description
----------------------------
+Member Function Descriptions
+----------------------------
 
 .. _cpuid-cpuinfo-cpuinfo:
 
@@ -135,7 +167,7 @@ Member Function Description
 
 ======================================================================
 
-.. _id13:
+.. _id29:
 
 **~cpuinfo** ()
 
@@ -145,39 +177,9 @@ Member Function Description
 
 ======================================================================
 
-.. _cpuid-cpuinfo-has-avx-const:
-
-`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx** ()
-
-..
-
-   Return true if the CPU supports AVX.
-
-======================================================================
-
-.. _cpuid-cpuinfo-has-avx2-const:
-
-`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx2** ()
-
-..
-
-   Return true if the CPU supports AVX2.
-
-======================================================================
-
-.. _cpuid-cpuinfo-has-f16c-const:
-
-`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_f16c** ()
-
-..
-
-   Return true if the CPU supports F16C.
-
-======================================================================
-
 .. _cpuid-cpuinfo-has-fpu-const:
 
-`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_fpu** ()
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_fpu** () const
 
 ..
 
@@ -187,7 +189,7 @@ Member Function Description
 
 .. _cpuid-cpuinfo-has-mmx-const:
 
-`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_mmx** ()
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_mmx** () const
 
 ..
 
@@ -195,29 +197,9 @@ Member Function Description
 
 ======================================================================
 
-.. _cpuid-cpuinfo-has-neon-const:
-
-`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_neon** ()
-
-..
-
-   Return true if the CPU supports NEON.
-
-======================================================================
-
-.. _cpuid-cpuinfo-has-pclmulqdq-const:
-
-`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_pclmulqdq** ()
-
-..
-
-   Return true if the CPU supports pclmulqdq.
-
-======================================================================
-
 .. _cpuid-cpuinfo-has-sse-const:
 
-`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_sse** ()
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_sse** () const
 
 ..
 
@@ -227,7 +209,7 @@ Member Function Description
 
 .. _cpuid-cpuinfo-has-sse2-const:
 
-`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_sse2** ()
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_sse2** () const
 
 ..
 
@@ -237,7 +219,7 @@ Member Function Description
 
 .. _cpuid-cpuinfo-has-sse3-const:
 
-`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_sse3** ()
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_sse3** () const
 
 ..
 
@@ -245,9 +227,19 @@ Member Function Description
 
 ======================================================================
 
+.. _cpuid-cpuinfo-has-ssse3-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_ssse3** () const
+
+..
+
+   Return true if the CPU supports SSSE3.
+
+======================================================================
+
 .. _cpuid-cpuinfo-has-sse4-1-const:
 
-`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_sse4_1** ()
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_sse4_1** () const
 
 ..
 
@@ -257,7 +249,7 @@ Member Function Description
 
 .. _cpuid-cpuinfo-has-sse4-2-const:
 
-`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_sse4_2** ()
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_sse4_2** () const
 
 ..
 
@@ -265,13 +257,213 @@ Member Function Description
 
 ======================================================================
 
-.. _cpuid-cpuinfo-has-ssse3-const:
+.. _cpuid-cpuinfo-has-pclmulqdq-const:
 
-`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_ssse3** ()
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_pclmulqdq** () const
 
 ..
 
-   Return true if the CPU supports SSSE3.
+   Return true if the CPU supports pclmulqdq.
+
+======================================================================
+
+.. _cpuid-cpuinfo-has-avx-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx** () const
+
+..
+
+   Return true if the CPU supports AVX.
+
+======================================================================
+
+.. _cpuid-cpuinfo-has-avx2-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx2** () const
+
+..
+
+   Return true if the CPU supports AVX2.
+
+======================================================================
+
+.. _cpuid-cpuinfo-has-avx512-f-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx512_f** () const
+
+..
+
+   Return true if the CPU supports AVX512F.
+
+======================================================================
+
+.. _cpuid-cpuinfo-has-avx512-dq-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx512_dq** () const
+
+..
+
+   Return true if the CPU supports AVX512DQ.
+
+======================================================================
+
+.. _cpuid-cpuinfo-has-avx512-ifma-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx512_ifma** () const
+
+..
+
+   Return true if the CPU supports AVX512_IFMA.
+
+======================================================================
+
+.. _cpuid-cpuinfo-has-avx512-pf-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx512_pf** () const
+
+..
+
+   Return true if the CPU supports AVX512PF.
+
+======================================================================
+
+.. _cpuid-cpuinfo-has-avx512-er-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx512_er** () const
+
+..
+
+   Return true if the CPU supports AVX512ER.
+
+======================================================================
+
+.. _cpuid-cpuinfo-has-avx512-cd-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx512_cd** () const
+
+..
+
+   Return true if the CPU supports AVX512CD.
+
+======================================================================
+
+.. _cpuid-cpuinfo-has-avx512-bw-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx512_bw** () const
+
+..
+
+   Return true if the CPU supports AVX512BW.
+
+======================================================================
+
+.. _cpuid-cpuinfo-has-avx512-vl-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx512_vl** () const
+
+..
+
+   Return true if the CPU supports AVX512VL.
+
+======================================================================
+
+.. _cpuid-cpuinfo-has-avx512-vbmi-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx512_vbmi** () const
+
+..
+
+   Return true if the CPU supports AVX512_VBMI.
+
+======================================================================
+
+.. _cpuid-cpuinfo-has-avx512-vbmi2-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx512_vbmi2** () const
+
+..
+
+   Return true if the CPU supports AVX512_VBMI2.
+
+======================================================================
+
+.. _cpuid-cpuinfo-has-avx512-vnni-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx512_vnni** () const
+
+..
+
+   Return true if the CPU supports AVX512_VNNI.
+
+======================================================================
+
+.. _cpuid-cpuinfo-has-avx512-bitalg-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx512_bitalg** () const
+
+..
+
+   Return true if the CPU supports AVX512_BITALG.
+
+======================================================================
+
+.. _cpuid-cpuinfo-has-avx512-vpopcntdq-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx512_vpopcntdq** () const
+
+..
+
+   Return true if the CPU supports AVX512_VPOPCNTDQ.
+
+======================================================================
+
+.. _cpuid-cpuinfo-has-avx512-4vnniw-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx512_4vnniw** () const
+
+..
+
+   Return true if the CPU supports AVX512_4VNNIW.
+
+======================================================================
+
+.. _cpuid-cpuinfo-has-avx512-4fmaps-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx512_4fmaps** () const
+
+..
+
+   Return true if the CPU supports AVX512_4FMAPS.
+
+======================================================================
+
+.. _cpuid-cpuinfo-has-avx512-vp2intersect-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_avx512_vp2intersect** () const
+
+..
+
+   Return true if the CPU supports AVX512_VP2INTERSECT.
+
+======================================================================
+
+.. _cpuid-cpuinfo-has-f16c-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_f16c** () const
+
+..
+
+   Return true if the CPU supports F16C.
+
+======================================================================
+
+.. _cpuid-cpuinfo-has-neon-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_neon** () const
+
+..
+
+   Return true if the CPU supports NEON.
 
 
 Use as Dependency in CMake
@@ -305,5 +497,6 @@ inspiration in these other nice projects:
 * ARM Cortex-A Programmer’s guide:
    http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.den0013d/index.html
 
-* Intel® Architecture Instruction Set Extensions Programming Reference:
+* Intel® Architecture Instruction Set Extensions Programming
+   Reference:
    https://software.intel.com/content/dam/develop/public/us/en/documents/architecture-instruction-set-extensions-programming-reference.pdf

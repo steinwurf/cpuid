@@ -8,7 +8,7 @@ cpuid is a C++ library for CPU dispatching. Currently the
 project can detect the following CPU capabilities:
 
 - Instruction sets detected on x86: FPU, MMX, SSE, SSE2, SSE3, SSSE3,
-  SSE 4.1, SSE 4.2, PCLMULQDQ, AVX, and AVX2
+  SSE 4.1, SSE 4.2, PCLMULQDQ, AVX, AVX2 and AVX-512 extensions.
 - Instruction sets detected on ARM: NEON
 
 
@@ -87,3 +87,4 @@ inspiration in these other nice projects:
 * zchotia's gist: https://gist.github.com/zchothia/3078968
 * Facebook CPU ID implementation: https://github.com/facebook/folly/blob/master/folly/CpuId.h
 * ARM Cortex-A Programmer's guide: http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.den0013d/index.html
+* Intel® Architecture Instruction Set Extensions Programming Reference: https://software.intel.com/content/dam/develop/public/us/en/documents/architecture-instruction-set-extensions-programming-reference.pdf
