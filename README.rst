@@ -495,6 +495,5 @@ inspiration in these other nice projects:
 * ARM Cortex-A Programmer’s guide:
    http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.den0013d/index.html
 
-* Intel® Architecture Instruction Set Extensions Programming
-   Reference:
+* Intel® Architecture Instruction Set Extensions Programming Reference:
    https://software.intel.com/content/dam/develop/public/us/en/documents/architecture-instruction-set-extensions-programming-reference.pdf
