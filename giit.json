@@ -1,0 +1,24 @@
+{
+    "sphinx": [
+        {
+            "scripts": [
+                "sphinx-build -b html -D version=${release} . ${build_path}/${release}"
+            ],
+            "requirements": "${source_path}/docs/requirements.txt",
+            "cwd": "${source_path}/docs",
+            "tags.semver.filters": [
+                ">8.0.0"
+            ],
+            "workingtree": true,
+            "variables": {
+                "tag:release": "${name}",
+                "workingtree:release": "latest"
+            }
+        },
+        {
+            "scripts": [
+                "versjon --docs_path ${build_path}"
+            ]
+        }
+    ]
+}
