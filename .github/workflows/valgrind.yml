@@ -10,25 +10,10 @@ on:
   push:
   pull_request:
 env:
-  EXTRA_RESOLVE_OPTIONS: ${{ github.event.inputs.resolve_options }}
+  EXTRA_RESOLVE_OPTIONS: ${{ github.event.inputs.extra_resolve_options }}
 jobs:
-  # Valgrind Check
   valgrind:
-    name: Valgrind 3.17.0
-    runs-on: [self-hosted, docker, builder]
-    container:
-      image: ghcr.io/steinwurf/valgrind-3.17.0:1.0.0
-      options: --user 0:0
-      volumes:
-        - /home/buildbot/.ssh:/root/.ssh
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Configure
-        run: python3 waf configure --git_protocol=git@ $EXTRA_RESOLVE_OPTIONS
-      - name: Build
-        run: |
-          echo "::add-matcher::.github/gcc-problem-matcher.json"
-          python3 waf
-      - name: Valgrind Test
-        run: python3 waf --run_tests --run_cmd="valgrind %s --no_fail"
+    name: Valgrind
+    uses: steinwurf/valgrind-action/.github/workflows/action.yml@1.0.0
+    with:
+      extra_resolve_options: $EXTRA_RESOLVE_OPTIONS

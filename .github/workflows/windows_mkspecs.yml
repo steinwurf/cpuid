@@ -1,4 +1,4 @@
-name: No Assertions
+name: Windows C++ make-specs
 on:
   workflow_dispatch:
     inputs:
@@ -12,9 +12,7 @@ on:
 env:
   EXTRA_RESOLVE_OPTIONS: ${{ github.event.inputs.extra_resolve_options }}
 jobs:
-  ndebug:
-    name: No Assertions
-    uses: steinwurf/nodebug-action/.github/workflows/action.yml@1.0.0
+  Windows-mkspecs:
+    uses: steinwurf/windows-mkspecs-action/.github/workflows/action.yml@1.0.0
     with:
       extra_resolve_options: $EXTRA_RESOLVE_OPTIONS
-
