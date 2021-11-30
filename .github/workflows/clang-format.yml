@@ -6,20 +6,5 @@ on:
   push:
   pull_request:
 jobs:
-  clang-format:
-    name: ClangFormat
-    runs-on: [self-hosted, docker, builder]
-    container:
-      image: ghcr.io/steinwurf/clang-format-12:1.0.0
-      options: --user 0:0
-      volumes:
-        - /home/buildbot/.ssh/root/.ssh
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v2
-      - name: Run Clang-format
-        run: clang-format --help
-      - name: Run Clang-format
-        run: clang-format -version
-      - name: Run Clang-format
-        run: find ./ -iname *.hpp -o -iname *.cpp -o -iname *.c -o -iname *.h | xargs clang-format --dry-run --Werror
+  Clang-Format:
+    uses: steinwurf/clang-format-action/.github/workflows/action.yml@1.0.0

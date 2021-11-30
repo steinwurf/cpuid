@@ -6,16 +6,5 @@ on:
   push:
 jobs:
   docker_check:
-    runs-on: [self-hosted, docker, builder]
-    container:
-      image: ghcr.io/steinwurf/cppcheck-2.4.1:1.0.0
-      options: --user 0:0
-      volumes:
-        - /home/buildbot/.ssh:/root/.ssh
-    name: Cppcheck 2.4.1
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Cppcheck
-        uses: deep5050/cppcheck-action@main
+    name: Cppcheck
+    uses: steinwurf/cppcheck-action/.github/workflows/action.yml@1.0.0
