@@ -11,7 +11,7 @@ on:
   pull_request:
 env:
   EXTRA_RESOLVE_OPTIONS: ${{ github.event.inputs.extra_resolve_options }}
-  EXTRA_TEST_COMMAND: --no-fail
+  EXTRA_TEST_COMMAND: "--no-fail"
 jobs:
   Linux-mkspecs:
     uses: steinwurf/linux-mkspecs-action/.github/workflows/action.yml@add-test-command
