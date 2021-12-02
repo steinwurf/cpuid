@@ -14,8 +14,7 @@ jobs:
     env:
       EXTRA_RESOLVE_OPTIONS: ${{ inputs.extra_resolve_options }}
       EXTRA_TEST_COMMAND: --no-fail
-    steps:
-      - uses: steinwurf/linux-mkspecs-action/.github/workflows/action.yml@add-test-command
-        with:
-          extra_resolve_options: ${{ env.EXTRA_RESOLVE_OPTIONS }}
-          extra_test_command: ${{ env.EXTRA_TEST_COMMAND }}
+    uses: steinwurf/linux-mkspecs-action/.github/workflows/action.yml@add-test-command
+    with:
+      extra_resolve_options: ${{ env.EXTRA_RESOLVE_OPTIONS }}
+      extra_test_command: ${{ env.EXTRA_TEST_COMMAND }}
