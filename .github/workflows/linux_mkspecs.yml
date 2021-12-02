@@ -14,4 +14,4 @@ jobs:
     uses: steinwurf/linux-mkspecs-action/.github/workflows/action.yml@add-test-command
     with:
       extra_resolve_options: ${{ github.events.inputs.extra_resolve_options }}
-      extra_test_command: --no-fail
+      extra_test_command: --no_fail
