@@ -14,4 +14,4 @@ jobs:
     uses: steinwurf/macos-mkspecs-action/.github/workflows/action.yml@master
     with:
       extra_resolve_options: ${{ github.events.inputs.extra_resolve_options }}
-      extra_test_command: python3 waf --run_tests --run_cmd="%s --no_fail"
+      test_command: python3 waf --run_tests --run_cmd="%s --no_fail"
