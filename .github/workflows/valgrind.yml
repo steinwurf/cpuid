@@ -12,7 +12,7 @@ on:
 jobs:
   valgrind:
     name: Valgrind
-    uses: steinwurf/valgrind-action/.github/workflows/action.yml@1.1.0
+    uses: steinwurf/valgrind-action/.github/workflows/action.yml@master
     with:
       extra_resolve_options: ${{ github.events.inputs.extra_resolve_options }}
-      extra_test_command: --no_fail
+      test_command: python3 waf --run_tests --run_cmd="valgrind %s --no_fail"
