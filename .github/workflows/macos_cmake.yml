@@ -1,0 +1,19 @@
+name: MacOS Cmake
+on:
+  workflow_dispatch:
+    inputs:
+      extra_resolve_options:
+        description: "Extra Resolve Options"
+        required: false
+  schedule:
+    - cron: "0 1 * * *" # 3 AM CET
+  push:
+  pull_request:
+env:
+  EXTRA_RESOLVE_OPTIONS: ${{ github.event.inputs.extra_resolve_options }}
+jobs:
+  MacOS-cmake:
+    name: MacOS Cmake
+    uses: steinwurf/macos-cmake-action/.github/workflows/action.yml@1.0.0
+    with:
+      extra_resolve_options: $EXTRA_RESOLVE_OPTIONS
