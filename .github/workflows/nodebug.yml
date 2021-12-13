@@ -16,4 +16,3 @@ jobs:
     with:
       extra_resolve_options: ${{ github.events.inputs.extra_resolve_options }}
       test_command: python3 waf --run_tests --run_cmd="%s --no_fail"
-
