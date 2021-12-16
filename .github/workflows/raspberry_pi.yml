@@ -10,7 +10,7 @@ on:
   push:
   pull_request:
 jobs:
-  Raspberry Pi:
+  RaspberryPi:
     uses: steinwurf/cross-compile-action/.github/workflows/action.yml@v1
     with:
       extra_resolve_options: ${{ github.event.inputs.extra_resolve_options }}
@@ -19,3 +19,4 @@ jobs:
       image: ghcr.io/steinwurf/gcc-8.3.0-raspberrypi-armv7:1.0.0
       test_runner: raspberry_pi
       test_binary_name: test/cpuid_tests
+      test_option: --no_fail
