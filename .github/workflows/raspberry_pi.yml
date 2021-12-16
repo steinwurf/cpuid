@@ -17,6 +17,6 @@ jobs:
       name: Raspberry Pi 3
       cxx_mkspec: cxx_raspberry_gxx83_armv7
       image: ghcr.io/steinwurf/gcc-8.3.0-raspberrypi-armv7:1.0.0
-      test_runner: raspberry_pi
+      test_runner: raspberry_pi_3
       test_binary_name: test/cpuid_tests
       test_option: --no_fail
