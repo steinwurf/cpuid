@@ -11,7 +11,7 @@ on:
   pull_request:
 jobs:
   RaspberryPi:
-    uses: steinwurf/cross-compile-action/.github/workflows/action.yml@1.0.0
+    uses: steinwurf/cross-compile-action/.github/workflows/action.yml@master
     with:
       extra_resolve_options: ${{ github.event.inputs.extra_resolve_options }}
       name: Raspberry Pi 3
