@@ -11,12 +11,13 @@ on:
   pull_request:
 jobs:
   RaspberryPi:
-    uses: steinwurf/cross-compile-action/.github/workflows/action.yml@1.0.1
+    uses: steinwurf/cross-compile-action/.github/workflows/action.yml@2.0.0
     with:
       extra_resolve_options: ${{ github.event.inputs.extra_resolve_options }}
       name: Raspberry Pi 3
       cxx_mkspec: cxx_raspberry_gxx83_armv7
       image: ghcr.io/steinwurf/gcc-8.3.0-raspberrypi-armv7:1.0.0
       test_runner: raspberry_pi_3
-      test_binary_name: test/cpuid_tests
+      test_binary_name: cpuid_tests
+      test_binary_directory: build/cxx_raspberry_gxx83_armv7/test
       test_option: --no_fail
