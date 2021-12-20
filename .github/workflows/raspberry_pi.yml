@@ -1,0 +1,23 @@
+name: Raspberry Pi
+on:
+  workflow_dispatch:
+    inputs:
+      extra_resolve_options:
+        description: "Extra Resolve Options"
+        required: false
+  schedule:
+    - cron: "0 1 * * *" # 3 AM CET
+  push:
+  pull_request:
+jobs:
+  RaspberryPi:
+    uses: steinwurf/cross-compile-action/.github/workflows/action.yml@3.0.0
+    with:
+      extra_resolve_options: ${{ github.event.inputs.extra_resolve_options }}
+      name: Raspberry Pi
+      cxx_mkspec: cxx_raspberry_gxx83_armv7
+      image: ghcr.io/steinwurf/gcc-8.3.0-raspberrypi-armv7:1.0.0
+      test_runner: raspberry_pi
+      test_binary_name: cpuid_tests
+      test_binary_directory: build/cxx_raspberry_gxx83_armv7/test
+      test_option: --no_fail
