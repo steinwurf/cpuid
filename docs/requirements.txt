@@ -6,21 +6,21 @@
 #
 alabaster==0.7.12
     # via sphinx
-attrs==21.2.0
+attrs==21.4.0
     # via
     #   jsonschema
     #   sphobjinv
 babel==2.9.1
     # via sphinx
-beautifulsoup4==4.9.3
+beautifulsoup4==4.10.0
     # via versjon
-certifi==2021.5.30
+certifi==2021.10.8
     # via
     #   requests
     #   sphobjinv
-charset-normalizer==2.0.4
+charset-normalizer==2.0.10
     # via requests
-click==8.0.1
+click==8.0.3
     # via
     #   giit
     #   versjon
@@ -38,39 +38,43 @@ fuzzywuzzy==0.18.0
     # via sphobjinv
 giit==6.1.0
     # via -r docs/requirements.in
-git+https://github.com/steinwurf/guzzle_sphinx_theme@53265a5ccd929ad63b7b0bff029c634be4977a43
+guzzle-sphinx-theme @ git+https://github.com/steinwurf/guzzle_sphinx_theme@53265a5ccd929ad63b7b0bff029c634be4977a43
     # via -r docs/requirements.in
-idna==3.2
+idna==3.3
     # via requests
-imagesize==1.2.0
+imagesize==1.3.0
     # via sphinx
-jinja2==3.0.1
+importlib-metadata==4.10.1
     # via sphinx
-jsonschema==3.2.0
+importlib-resources==5.4.0
+    # via jsonschema
+jinja2==3.0.3
+    # via sphinx
+jsonschema==4.4.0
     # via sphobjinv
-lxml==4.6.3
+lxml==4.7.1
     # via pyquery
 markupsafe==2.0.1
     # via jinja2
-packaging==21.0
+packaging==21.3
     # via sphinx
-pygments==2.10.0
+pygments==2.11.2
     # via sphinx
-pyparsing==2.4.7
+pyparsing==3.0.6
     # via packaging
 pyquery==1.4.3
     # via wurfapi
-pyrsistent==0.18.0
+pyrsistent==0.18.1
     # via jsonschema
 python-archive==0.2
     # via wurfapi
 python-slugify==5.0.2
     # via wurfapi
-pytz==2021.1
+pytz==2021.3
     # via babel
-requests==2.26.0
+requests==2.27.1
     # via sphinx
-schema==0.7.4
+schema==0.7.5
     # via
     #   giit
     #   wurfapi
@@ -81,13 +85,12 @@ semantic-version==2.8.5
 six==1.16.0
     # via
     #   giit
-    #   jsonschema
     #   wurfapi
-snowballstemmer==2.1.0
+snowballstemmer==2.2.0
     # via sphinx
-soupsieve==2.2.1
+soupsieve==2.3.1
     # via beautifulsoup4
-sphinx==4.1.2
+sphinx==4.4.0
     # via
     #   -r docs/requirements.in
     #   guzzle-sphinx-theme
@@ -108,12 +111,13 @@ sphobjinv==2.1
     # via versjon
 text-unidecode==1.3
     # via python-slugify
-urllib3==1.26.6
+urllib3==1.26.8
     # via requests
 versjon==2.1.0
     # via -r docs/requirements.in
 wurfapi==8.1.0
     # via -r docs/requirements.in
-
-# The following packages are considered to be unsafe in a requirements file:
-# setuptools
+zipp==3.7.0
+    # via
+    #   importlib-metadata
+    #   importlib-resources
