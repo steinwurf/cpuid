@@ -7,4 +7,4 @@ on:
   pull_request:
 jobs:
   Clang-Format:
-    uses: steinwurf/clang-format-action/.github/workflows/action.yml@1.0.0
+    uses: steinwurf/clang-format-action/.github/workflows/action.yml@2.0.0
