@@ -11,7 +11,7 @@ on:
   pull_request:
 jobs:
   MacOS-mkspecs:
-    uses: steinwurf/macos-mkspecs-action/.github/workflows/action.yml@2.0.1
+    uses: steinwurf/macos-mkspecs-action/.github/workflows/action.yml@3.0.0
     with:
       extra_resolve_options: ${{ github.events.inputs.extra_resolve_options }}
       test_command: python3 waf --run_tests --run_cmd="%s --no_fail"
