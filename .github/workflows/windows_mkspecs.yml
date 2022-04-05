@@ -11,7 +11,7 @@ on:
   pull_request:
 jobs:
   Windows-mkspecs:
-    uses: steinwurf/windows-mkspecs-action/.github/workflows/action.yml@2.0.1
+    uses: steinwurf/windows-mkspecs-action/.github/workflows/action.yml@3.0.0
     with:
       extra_resolve_options: ${{ github.events.inputs.extra_resolve_options }}
       test_command: python waf --run_tests --run_cmd="%s --no_fail"
