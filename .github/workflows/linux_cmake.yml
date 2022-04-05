@@ -14,6 +14,6 @@ env:
 jobs:
   Linux-cmake:
     name: Linux Cmake
-    uses: steinwurf/linux-cmake-action/.github/workflows/action.yml@1.0.0
+    uses: steinwurf/linux-cmake-action/.github/workflows/action.yml@2.0.0
     with:
       extra_resolve_options: $EXTRA_RESOLVE_OPTIONS
