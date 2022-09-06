@@ -12,6 +12,6 @@ on:
 jobs:
   ndebug:
     name: No Assertions
-    uses: steinwurf/nodebug-action/.github/workflows/action.yml@5.0.0
+    uses: steinwurf/nodebug-action/.github/workflows/action.yml@5.0.1
     with:
       extra_resolve_options: ${{ github.events.inputs.extra_resolve_options }}
