@@ -47,6 +47,9 @@ int main()
     std::cout << "CPU has F16C?: " << (m_cpuid.has_f16c() ? "Yes" : "No")
               << std::endl;
 
+    std::cout << "CPU has AES?: " << (m_cpuid.has_aes() ? "Yes" : "No")
+              << std::endl;
+
     std::cout << "CPU has ARM NEON?: " << (m_cpuid.has_neon() ? "Yes" : "No")
               << std::endl;
 

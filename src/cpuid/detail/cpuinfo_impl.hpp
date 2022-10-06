@@ -18,7 +18,8 @@ struct cpuinfo::impl
         m_has_fpu(false), m_has_mmx(false), m_has_sse(false), m_has_sse2(false),
         m_has_sse3(false), m_has_ssse3(false), m_has_sse4_1(false),
         m_has_sse4_2(false), m_has_pclmulqdq(false), m_has_avx(false),
-        m_has_avx2(false), m_has_f16c(false), m_has_neon(false)
+        m_has_avx2(false), m_has_f16c(false), m_has_aes(false),
+        m_has_neon(false)
     {
     }
 
@@ -34,6 +35,7 @@ struct cpuinfo::impl
     bool m_has_avx;
     bool m_has_avx2;
     bool m_has_f16c;
+    bool m_has_aes;
     bool m_has_neon;
 };
 }

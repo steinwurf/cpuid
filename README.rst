@@ -119,6 +119,8 @@ Member functions (public)
 +------------------------------------------------------------+----------------------------------------------------------------+
 |                                                            | `~cpuinfo <id13_>`_ ()                                         |
 +------------------------------------------------------------+----------------------------------------------------------------+
+| `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_aes <cpuid-cpuinfo-has-aes-const_>`_ () const             |
++------------------------------------------------------------+----------------------------------------------------------------+
 | `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx <cpuid-cpuinfo-has-avx-const_>`_ () const             |
 +------------------------------------------------------------+----------------------------------------------------------------+
 | `bool <https://en.cppreference.com/w/cpp/language/types>`_ | `has_avx2 <cpuid-cpuinfo-has-avx2-const_>`_ () const           |
@@ -174,6 +176,16 @@ Member Function Description
 ..
 
    Destructor.
+
+======================================================================
+
+.. _cpuid-cpuinfo-has-aes-const:
+
+`bool <https://en.cppreference.com/w/cpp/language/types>`_ **has_aes** ()
+
+..
+
+   Return true if the CPU supports AES.
 
 ======================================================================
 

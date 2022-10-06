@@ -25,6 +25,7 @@ commandline_arguments::commandline_arguments()
         "has_avx", po::value<bool>()->default_value(false))(
         "has_avx2", po::value<bool>()->default_value(false))(
         "has_f16c", po::value<bool>()->default_value(false))(
+        "has_aes", po::value<bool>()->default_value(false))(
         "has_neon", po::value<bool>()->default_value(false));
 }
 
