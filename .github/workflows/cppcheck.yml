@@ -7,4 +7,4 @@ on:
 jobs:
   docker_check:
     name: Cppcheck
-    uses: steinwurf/cppcheck-action/.github/workflows/action.yml@1.0.0
+    uses: steinwurf/cppcheck-action/.github/workflows/action.yml@2.0.0
