@@ -3,9 +3,15 @@
 
 from waflib.Build import BuildContext
 import os
+import shutil
 
 APPNAME = "cpuid"
 VERSION = "8.0.0"
+
+def options(opt):
+    opt.add_option(
+        '--cloudflare-auth', default=False, dest='cloudflare_auth',
+        action='store_true', help='Use when deploying to Cloudflare')
 
 
 def build(bld):
@@ -78,6 +84,11 @@ def prepare_release(ctx):
 
 def docs(ctx):
     """Build the documentation in a virtualenv"""
+    if ctx.options.cloudflare_auth:
+        shutil.rmtree("./functions", ignore_errors=True)
+        os.system("git clone git@github.com:steinwurf/cloudflare-auth.git")
+        shutil.copytree('cloudflare-auth/functions', './functions')
+        shutil.rmtree("./cloudflare-auth", ignore_errors=True)
 
     with ctx.create_virtualenv() as venv:
 
