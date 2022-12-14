@@ -27,6 +27,7 @@ void extract_x86_flags(cpuinfo::impl& info, uint32_t ecx, uint32_t edx)
     info.m_has_sse4_2 = (ecx & (1 << 20)) != 0;
     info.m_has_pclmulqdq = (ecx & (1 << 1)) != 0;
     info.m_has_avx = (ecx & (1 << 28)) != 0;
+    info.m_has_aes = (ecx & (1 << 25)) != 0;
     info.m_has_f16c = (ecx & (1 << 29)) != 0;
 }
 

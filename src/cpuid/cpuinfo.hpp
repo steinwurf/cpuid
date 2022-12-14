@@ -60,6 +60,9 @@ public:
     /// Return true if the CPU supports F16C
     bool has_f16c() const;
 
+    /// Return true if the CPU supports AES
+    bool has_aes() const;
+
     /// Return true if the CPU supports NEON
     bool has_neon() const;
 

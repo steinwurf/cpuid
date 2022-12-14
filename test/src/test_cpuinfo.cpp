@@ -29,5 +29,6 @@ TEST(cpuinfo_tests, check_instruction_sets)
     EXPECT_EQ(variable_map["has_avx"].as<bool>(), m_cpuinfo.has_avx());
     EXPECT_EQ(variable_map["has_avx2"].as<bool>(), m_cpuinfo.has_avx2());
     EXPECT_EQ(variable_map["has_f16c"].as<bool>(), m_cpuinfo.has_f16c());
+    EXPECT_EQ(variable_map["has_aes"].as<bool>(), m_cpuinfo.has_aes());
     EXPECT_EQ(variable_map["has_neon"].as<bool>(), m_cpuinfo.has_neon());
 }

@@ -98,6 +98,11 @@ bool cpuinfo::has_f16c() const
     return m_impl->m_has_f16c;
 }
 
+bool cpuinfo::has_aes() const
+{
+    return m_impl->m_has_aes;
+}
+
 // ARM member functions
 bool cpuinfo::has_neon() const
 {
