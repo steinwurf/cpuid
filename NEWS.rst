@@ -6,6 +6,7 @@ every change, see the Git log.
 
 Latest
 ------
+* Minor: Added different AVX-512 extensions.
 * Minor: Updated waf.
 
 8.0.0
