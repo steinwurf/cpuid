@@ -6,6 +6,7 @@ every change, see the Git log.
 
 Latest
 ------
+* Major: Use waf-tools 5.
 * Minor: Added different AVX-512 extensions.
 * Minor: Updated waf.
 

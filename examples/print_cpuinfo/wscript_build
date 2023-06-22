@@ -2,8 +2,9 @@
 # encoding: utf-8
 
 bld.program(
-    features='cxx',
-    source=bld.path.ant_glob('*.cpp'),
-    target='print_cpuinfo_example',
+    features="cxx",
+    source=bld.path.ant_glob("*.cpp"),
+    target="print_cpuinfo_example",
     install_path=None,
-    use=['cpuid'])
+    use=["cpuid"],
+)
