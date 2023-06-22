@@ -5,62 +5,49 @@
 
 #include <cpuid/cpuinfo.hpp>
 
-#include <cstdint>
 #include <gtest/gtest.h>
-#include <iostream>
 
-#include "../commandline_arguments.hpp"
+#include <cstdint>
+#include <iostream>
+#include <map>
+
+extern std::map<std::string, bool> variable_map;
 
 TEST(cpuinfo_tests, check_instruction_sets)
 {
     cpuid::cpuinfo m_cpuinfo;
 
     // Check CPU capabilities
-    EXPECT_EQ(variable_map["has_fpu"].as<bool>(), m_cpuinfo.has_fpu());
-    EXPECT_EQ(variable_map["has_mmx"].as<bool>(), m_cpuinfo.has_mmx());
-    EXPECT_EQ(variable_map["has_sse"].as<bool>(), m_cpuinfo.has_sse());
-    EXPECT_EQ(variable_map["has_sse2"].as<bool>(), m_cpuinfo.has_sse2());
-    EXPECT_EQ(variable_map["has_sse3"].as<bool>(), m_cpuinfo.has_sse3());
-    EXPECT_EQ(variable_map["has_ssse3"].as<bool>(), m_cpuinfo.has_ssse3());
-    EXPECT_EQ(variable_map["has_sse4_1"].as<bool>(), m_cpuinfo.has_sse4_1());
-    EXPECT_EQ(variable_map["has_sse4_2"].as<bool>(), m_cpuinfo.has_sse4_2());
-    EXPECT_EQ(variable_map["has_pclmulqdq"].as<bool>(),
-              m_cpuinfo.has_pclmulqdq());
-    EXPECT_EQ(variable_map["has_avx"].as<bool>(), m_cpuinfo.has_avx());
-    EXPECT_EQ(variable_map["has_avx2"].as<bool>(), m_cpuinfo.has_avx2());
-    EXPECT_EQ(variable_map["has_avx512_f"].as<bool>(),
-              m_cpuinfo.has_avx512_f());
-    EXPECT_EQ(variable_map["has_avx512_dq"].as<bool>(),
-              m_cpuinfo.has_avx512_dq());
-    EXPECT_EQ(variable_map["has_avx512_ifma"].as<bool>(),
-              m_cpuinfo.has_avx512_ifma());
-    EXPECT_EQ(variable_map["has_avx512_pf"].as<bool>(),
-              m_cpuinfo.has_avx512_pf());
-    EXPECT_EQ(variable_map["has_avx512_er"].as<bool>(),
-              m_cpuinfo.has_avx512_er());
-    EXPECT_EQ(variable_map["has_avx512_cd"].as<bool>(),
-              m_cpuinfo.has_avx512_cd());
-    EXPECT_EQ(variable_map["has_avx512_bw"].as<bool>(),
-              m_cpuinfo.has_avx512_bw());
-    EXPECT_EQ(variable_map["has_avx512_vl"].as<bool>(),
-              m_cpuinfo.has_avx512_vl());
-    EXPECT_EQ(variable_map["has_avx512_vbmi"].as<bool>(),
-              m_cpuinfo.has_avx512_vbmi());
-    EXPECT_EQ(variable_map["has_avx512_vbmi2"].as<bool>(),
-              m_cpuinfo.has_avx512_vbmi2());
-    EXPECT_EQ(variable_map["has_avx512_vnni"].as<bool>(),
-              m_cpuinfo.has_avx512_vnni());
-    EXPECT_EQ(variable_map["has_avx512_bitalg"].as<bool>(),
-              m_cpuinfo.has_avx512_bitalg());
-    EXPECT_EQ(variable_map["has_avx512_vpopcntdq"].as<bool>(),
+    EXPECT_EQ(variable_map["has_fpu"], m_cpuinfo.has_fpu());
+    EXPECT_EQ(variable_map["has_mmx"], m_cpuinfo.has_mmx());
+    EXPECT_EQ(variable_map["has_sse"], m_cpuinfo.has_sse());
+    EXPECT_EQ(variable_map["has_sse2"], m_cpuinfo.has_sse2());
+    EXPECT_EQ(variable_map["has_sse3"], m_cpuinfo.has_sse3());
+    EXPECT_EQ(variable_map["has_ssse3"], m_cpuinfo.has_ssse3());
+    EXPECT_EQ(variable_map["has_sse4_1"], m_cpuinfo.has_sse4_1());
+    EXPECT_EQ(variable_map["has_sse4_2"], m_cpuinfo.has_sse4_2());
+    EXPECT_EQ(variable_map["has_pclmulqdq"], m_cpuinfo.has_pclmulqdq());
+    EXPECT_EQ(variable_map["has_avx"], m_cpuinfo.has_avx());
+    EXPECT_EQ(variable_map["has_avx2"], m_cpuinfo.has_avx2());
+    EXPECT_EQ(variable_map["has_avx512_f"], m_cpuinfo.has_avx512_f());
+    EXPECT_EQ(variable_map["has_avx512_dq"], m_cpuinfo.has_avx512_dq());
+    EXPECT_EQ(variable_map["has_avx512_ifma"], m_cpuinfo.has_avx512_ifma());
+    EXPECT_EQ(variable_map["has_avx512_pf"], m_cpuinfo.has_avx512_pf());
+    EXPECT_EQ(variable_map["has_avx512_er"], m_cpuinfo.has_avx512_er());
+    EXPECT_EQ(variable_map["has_avx512_cd"], m_cpuinfo.has_avx512_cd());
+    EXPECT_EQ(variable_map["has_avx512_bw"], m_cpuinfo.has_avx512_bw());
+    EXPECT_EQ(variable_map["has_avx512_vl"], m_cpuinfo.has_avx512_vl());
+    EXPECT_EQ(variable_map["has_avx512_vbmi"], m_cpuinfo.has_avx512_vbmi());
+    EXPECT_EQ(variable_map["has_avx512_vbmi2"], m_cpuinfo.has_avx512_vbmi2());
+    EXPECT_EQ(variable_map["has_avx512_vnni"], m_cpuinfo.has_avx512_vnni());
+    EXPECT_EQ(variable_map["has_avx512_bitalg"], m_cpuinfo.has_avx512_bitalg());
+    EXPECT_EQ(variable_map["has_avx512_vpopcntdq"],
               m_cpuinfo.has_avx512_vpopcntdq());
-    EXPECT_EQ(variable_map["has_avx512_4vnniw"].as<bool>(),
-              m_cpuinfo.has_avx512_4vnniw());
-    EXPECT_EQ(variable_map["has_avx512_4fmaps"].as<bool>(),
-              m_cpuinfo.has_avx512_4fmaps());
-    EXPECT_EQ(variable_map["has_avx512_vp2intersect"].as<bool>(),
+    EXPECT_EQ(variable_map["has_avx512_4vnniw"], m_cpuinfo.has_avx512_4vnniw());
+    EXPECT_EQ(variable_map["has_avx512_4fmaps"], m_cpuinfo.has_avx512_4fmaps());
+    EXPECT_EQ(variable_map["has_avx512_vp2intersect"],
               m_cpuinfo.has_avx512_vp2intersect());
-    EXPECT_EQ(variable_map["has_f16c"].as<bool>(), m_cpuinfo.has_f16c());
-    EXPECT_EQ(variable_map["has_aes"].as<bool>(), m_cpuinfo.has_aes());
-    EXPECT_EQ(variable_map["has_neon"].as<bool>(), m_cpuinfo.has_neon());
+    EXPECT_EQ(variable_map["has_f16c"], m_cpuinfo.has_f16c());
+    EXPECT_EQ(variable_map["has_aes"], m_cpuinfo.has_aes());
+    EXPECT_EQ(variable_map["has_neon"], m_cpuinfo.has_neon());
 }

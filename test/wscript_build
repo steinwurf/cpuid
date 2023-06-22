@@ -2,8 +2,9 @@
 # encoding: utf-8
 
 bld.program(
-    features='cxx test',
-    source=bld.path.ant_glob('**/*.cpp'),
-    target='cpuid_tests',
+    features="cxx test",
+    source=bld.path.ant_glob("**/*.cpp"),
+    target="cpuid_tests",
     install_path=None,
-    use=['cpuid', 'gtest', 'boost_program_options'])
+    use=["cpuid", "gtest", "cli11"],
+)

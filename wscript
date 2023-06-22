@@ -8,8 +8,11 @@ APPNAME = "cpuid"
 VERSION = "8.0.0"
 
 
-def build(bld):
+def configure(conf):
+    conf.set_cxx_std(11)
 
+
+def build(bld):
     # Build static library if this is top-level otherwise just .o files
     features = ["cxx"]
     if bld.is_toplevel():
@@ -33,7 +36,6 @@ def build(bld):
     )
 
     if bld.is_toplevel():
-
         # Only build tests when executed from the top-level wscript,
         # i.e. not when included as a dependency
         bld.recurse("test")
@@ -61,7 +63,6 @@ def prepare_release(ctx):
 
     # Rewrite versions
     with ctx.rewrite_file(filename="src/cpuid/version.hpp") as f:
-
         pattern = r"#define STEINWURF_CPUID_VERSION v\d+_\d+_\d+"
         replacement = "#define STEINWURF_CPUID_VERSION v{}".format(
             VERSION.replace(".", "_")
@@ -79,7 +80,6 @@ def prepare_release(ctx):
 def docs(ctx):
     """Build the documentation in a virtualenv"""
     with ctx.create_virtualenv() as venv:
-
         # To update the requirements.txt just delete it - a fresh one
         # will be generated from test/requirements.in
         if not os.path.isfile("docs/requirements.txt"):
