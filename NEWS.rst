@@ -6,6 +6,10 @@ every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+9.0.0
+-----
 * Major: Use waf-tools 5.
 * Minor: Added different AVX-512 extensions.
 * Minor: Updated waf.
