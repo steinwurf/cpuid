@@ -21,3 +21,9 @@ jobs:
       test_binary_name: cpuid_tests
       test_binary_directory: build/cxx_raspberry_gxx83_armv7/test
       test_option: --no_fail
+
+# Cancel previous in-progress when pushing: https://stackoverflow.com/a/72408109
+concurrency:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
