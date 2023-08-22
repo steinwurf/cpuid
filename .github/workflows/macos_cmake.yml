@@ -1,3 +1,14 @@
+name: MacOS Cmake
+'on':
+  workflow_dispatch:
+    inputs:
+      extra_resolve_options:
+        description: Extra Resolve Options
+        required: false
+  push:
+    branches:
+    - master
+  pull_request:
 concurrency:
   cancel-in-progress: true
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
@@ -9,16 +20,3 @@ jobs:
     uses: steinwurf/macos-cmake-action/.github/workflows/action.yml@6.0.0
     with:
       extra_resolve_options: $EXTRA_RESOLVE_OPTIONS
-name: MacOS Cmake
-'on':
-  pull_request: null
-  push:
-    branches:
-    - master
-  schedule:
-  - cron: 0 1 * * *
-  workflow_dispatch:
-    inputs:
-      extra_resolve_options:
-        description: Extra Resolve Options
-        required: false
