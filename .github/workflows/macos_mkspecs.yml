@@ -8,7 +8,7 @@ name: MacOS C++ make-specs
   push:
     branches:
     - master
-  pull_request: null
+  pull_request:
 jobs:
   MacOS-mkspecs:
     uses: steinwurf/macos-mkspecs-action/.github/workflows/action.yml@7.0.0
