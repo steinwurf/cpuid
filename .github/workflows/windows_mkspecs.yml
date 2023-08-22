@@ -8,7 +8,7 @@ name: Windows C++ make-specs
   push:
     branches:
     - master
-  pull_request: null
+  pull_request:
 jobs:
   Windows-mkspecs:
     uses: steinwurf/windows-mkspecs-action/.github/workflows/action.yml@6.0.0
