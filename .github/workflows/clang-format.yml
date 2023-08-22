@@ -8,7 +8,7 @@ name: Clang-Format
   push:
     branches:
     - master
-  pull_request: null
+  pull_request:
 jobs:
   Clang-Format:
     uses: steinwurf/clang-format-action/.github/workflows/action.yml@4.0.0
