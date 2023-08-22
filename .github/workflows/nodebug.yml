@@ -8,7 +8,7 @@ name: No Assertions
   push:
     branches:
     - master
-  pull_request: null
+  pull_request:
 jobs:
   ndebug:
     name: No Assertions
