@@ -9,8 +9,8 @@ jobs:
   Clang-Format:
     uses: steinwurf/clang-format-action/.github/workflows/action.yml@4.0.0
 
+
 # Cancel previous in-progress when pushing: https://stackoverflow.com/a/72408109
-concurrency:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
   cancel-in-progress: true
@@ -19,3 +19,11 @@ concurrency:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
   cancel-in-progress: true
+
+
+
+# Cancel previous in-progress when pushing: https://stackoverflow.com/a/72408109
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
