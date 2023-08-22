@@ -16,3 +16,9 @@ jobs:
     with:
       extra_resolve_options: ${{ github.events.inputs.extra_resolve_options }}
       test_command: python3 waf --run_tests --run_cmd="valgrind %s --no_fail"
+
+# Cancel previous in-progress when pushing: https://stackoverflow.com/a/72408109
+concurrency:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
