@@ -8,7 +8,7 @@ name: Valgrind
   push:
     branches:
     - master
-  pull_request: null
+  pull_request:
 jobs:
   valgrind:
     name: Valgrind
