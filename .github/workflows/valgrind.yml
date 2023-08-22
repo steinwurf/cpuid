@@ -8,10 +8,7 @@ name: Valgrind
   push:
     branches:
     - master
-  pull_request:
-concurrency:
-  cancel-in-progress: true
-  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  pull_request: null
 jobs:
   valgrind:
     name: Valgrind
@@ -19,3 +16,6 @@ jobs:
     with:
       extra_resolve_options: ${{ github.events.inputs.extra_resolve_options }}
       test_command: python3 waf --run_tests --run_cmd="valgrind %s --no_fail"
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
