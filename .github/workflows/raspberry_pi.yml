@@ -8,10 +8,7 @@ name: Raspberry Pi
   push:
     branches:
     - master
-  pull_request:
-concurrency:
-  cancel-in-progress: true
-  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  pull_request: null
 jobs:
   RaspberryPi:
     uses: steinwurf/cross-compile-action/.github/workflows/action.yml@6.0.0
@@ -24,3 +21,6 @@ jobs:
       test_binary_name: cpuid_tests
       test_option: --no_fail
       test_runner: raspberry_pi
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
