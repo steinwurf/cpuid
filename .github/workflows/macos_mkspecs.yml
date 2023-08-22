@@ -8,13 +8,13 @@ name: MacOS C++ make-specs
   push:
     branches:
     - master
-  pull_request:
-concurrency:
-  cancel-in-progress: true
-  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  pull_request: null
 jobs:
   MacOS-mkspecs:
     uses: steinwurf/macos-mkspecs-action/.github/workflows/action.yml@7.0.0
     with:
       extra_resolve_options: ${{ github.events.inputs.extra_resolve_options }}
       test_command: python3 waf --run_tests --run_cmd="%s --no_fail"
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
