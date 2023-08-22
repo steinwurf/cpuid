@@ -17,3 +17,9 @@ jobs:
     uses: steinwurf/macos-cmake-action/.github/workflows/action.yml@6.0.0
     with:
       extra_resolve_options: $EXTRA_RESOLVE_OPTIONS
+
+# Cancel previous in-progress when pushing: https://stackoverflow.com/a/72408109
+concurrency:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
