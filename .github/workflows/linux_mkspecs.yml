@@ -8,7 +8,7 @@ name: Linux C++ make-specs
   push:
     branches:
     - master
-  pull_request: null
+  pull_request:
 jobs:
   Linux-mkspecs:
     uses: steinwurf/linux-mkspecs-action/.github/workflows/action.yml@6.0.0
