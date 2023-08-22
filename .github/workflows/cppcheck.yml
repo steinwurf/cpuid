@@ -8,10 +8,10 @@ name: Cppcheck
   push:
     branches:
     - master
-concurrency:
-  cancel-in-progress: true
-  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
 jobs:
   docker_check:
     name: Cppcheck
     uses: steinwurf/cppcheck-action/.github/workflows/action.yml@2.0.0
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
