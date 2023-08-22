@@ -8,7 +8,7 @@ name: Raspberry Pi
   push:
     branches:
     - master
-  pull_request: null
+  pull_request:
 jobs:
   RaspberryPi:
     uses: steinwurf/cross-compile-action/.github/workflows/action.yml@6.0.0
