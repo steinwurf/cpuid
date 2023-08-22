@@ -8,13 +8,13 @@ name: No Assertions
   push:
     branches:
     - master
-  pull_request:
-concurrency:
-  cancel-in-progress: true
-  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  pull_request: null
 jobs:
   ndebug:
     name: No Assertions
     uses: steinwurf/nodebug-action/.github/workflows/action.yml@8.0.0
     with:
       extra_resolve_options: ${{ github.events.inputs.extra_resolve_options }}
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
