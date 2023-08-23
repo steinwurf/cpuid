@@ -5,6 +5,8 @@ name: Linux C++ make-specs
       extra_resolve_options:
         description: Extra Resolve Options
         required: false
+  schedule:
+  - cron: 0 1 * * *
   push:
     branches:
     - master
