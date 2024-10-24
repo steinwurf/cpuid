@@ -6,7 +6,7 @@ every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Patch: Made Neon detection work on MacOS.
 
 9.0.0
 -----

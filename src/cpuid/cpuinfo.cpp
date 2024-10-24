@@ -14,8 +14,9 @@
 #include "detail/init_msvc_x86.hpp"
 #elif defined(PLATFORM_MSVC_ARM)
 #include "detail/init_msvc_arm.hpp"
-#elif defined(PLATFORM_CLANG_ARM) && defined(PLATFORM_IOS)
-#include "detail/init_ios_clang_arm.hpp"
+#elif defined(PLATFORM_CLANG_ARM) && \
+    (defined(PLATFORM_IOS) || defined(PLATFORM_MAC))
+#include "detail/init_apple_gcc_arm.hpp"
 #elif defined(PLATFORM_GCC_COMPATIBLE_ARM) && defined(PLATFORM_LINUX)
 #include "detail/init_linux_gcc_arm.hpp"
 #else
