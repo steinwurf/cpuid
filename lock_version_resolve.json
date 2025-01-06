@@ -1,0 +1,32 @@
+{
+    "cli11": {
+        "commit_id": "b1003a44f018255c409c43d5f35e71ab8f7eef62",
+        "resolver_info": "2.0.1",
+        "sha1": "fdd606a277e537302216420bd3e9070c6f0df861"
+    },
+    "cli11-source": {
+        "commit_id": "f862849488557eeee0397814a47449ecfdae0383",
+        "resolver_info": "f862849488557eeee0397814a47449ecfdae0383",
+        "sha1": "c907ae8559530944e520e22d1382be32d290ca77"
+    },
+    "gtest": {
+        "commit_id": "da24468d2c5deb601d0f67196abe83d78a00f972",
+        "resolver_info": "5.0.0",
+        "sha1": "11e35e3559b3844fbe2fa6f045854cd2dcdf0f86"
+    },
+    "gtest-source": {
+        "commit_id": "e2239ee6043f73722e7aa812a459f54a28552929",
+        "resolver_info": "release-1.11.0",
+        "sha1": "ca969a1500e88a09de1cbfb8d8d3307a7773abfd"
+    },
+    "platform": {
+        "commit_id": "c2543dd5e613fb86d8dee530c0f1c142a310e1f0",
+        "resolver_info": "5.1.1",
+        "sha1": "f6bc772cf920c024726ebd12a5a38f123d057adb"
+    },
+    "waf-tools": {
+        "commit_id": "6379b83992885dcb148e2c8bf3677f315d623e8f",
+        "resolver_info": "5.4.0",
+        "sha1": "9dd4ab1d52c916572f45237d4e7450abc7c19a14"
+    }
+}
