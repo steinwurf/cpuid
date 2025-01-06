@@ -6,7 +6,7 @@ every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Patch: Fixed compilation error on ARM64 FreeBSD.
 
 9.0.1
 -----
