@@ -20,8 +20,8 @@
         "sha1": "ca969a1500e88a09de1cbfb8d8d3307a7773abfd"
     },
     "platform": {
-        "commit_id": "154597a353125e804ff327842533c76f5e4d549f",
-        "resolver_info": "5.1.0",
+        "commit_id": "c2543dd5e613fb86d8dee530c0f1c142a310e1f0",
+        "resolver_info": "5.1.1",
         "sha1": "f6bc772cf920c024726ebd12a5a38f123d057adb"
     },
     "waf-tools": {
