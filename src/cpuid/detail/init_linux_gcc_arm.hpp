@@ -11,8 +11,16 @@
 
 #include <elf.h>
 #include <fcntl.h>
-#include <linux/auxvec.h>
 #include <unistd.h>
+
+// The following includes are needed for the runtime detection of NEON
+#ifdef PLATFORM_FREEBSD
+// FreeBSD uses sys/auxv.h
+#include <sys/auxv.h>
+#else
+// Linux uses linux/auxvec.h
+#include <linux/auxvec.h>
+#endif
 
 #include "cpuinfo_impl.hpp"
 
@@ -30,11 +38,16 @@ void init_cpuinfo(cpuinfo::impl& info)
     info.m_has_neon = true;
 #else
     // Runtime detection of NEON is necessary on 32-bit ARM CPUs
-    //
+
+#ifdef PLATFORM_FREEBSD
+    // On FreeBSD we use the elf_aux_info function to get the HWCAP
+    long hwcap = 0;
+    elf_aux_info(AT_HWCAP, &hwcap, sizeof hwcap);
+    info.m_has_neon = hwcap & HWCAP_NEON;
+#else
     // Follow recommendation from Cortex-A Series Programmer's guide
     // in Section 20.1.7 Detecting NEON. The guide is available at
     // Steinwurf's Google drive: steinwurf/technical/experimental/cpuid
-
     auto cpufile = open("/proc/self/auxv", O_RDONLY);
     assert(cpufile);
 
@@ -58,6 +71,7 @@ void init_cpuinfo(cpuinfo::impl& info)
     {
         info.m_has_neon = false;
     }
+#endif
 #endif
 }
 }
