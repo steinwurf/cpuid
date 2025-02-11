@@ -25,8 +25,8 @@
         "sha1": "f6bc772cf920c024726ebd12a5a38f123d057adb"
     },
     "waf-tools": {
-        "commit_id": "6379b83992885dcb148e2c8bf3677f315d623e8f",
-        "resolver_info": "5.4.0",
+        "commit_id": "807915941436a61f45e89aefb385392f628b8a29",
+        "resolver_info": "5.4.1",
         "sha1": "9dd4ab1d52c916572f45237d4e7450abc7c19a14"
     }
 }
