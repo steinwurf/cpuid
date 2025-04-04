@@ -74,4 +74,5 @@ if(${CMAKE_PROJECT_NAME} STREQUAL ${PROJECT_NAME})
   add_executable(cpuid_tests ${cpuid_test_sources})
   target_link_libraries(cpuid_tests ${steinwurf_object_libraries}
                         steinwurf::gtest steinwurf::cpuid CLI11)
+  add_test(NAME cpuid_tests COMMAND cpuid_tests)
 endif()

@@ -41,7 +41,7 @@ jobs:
         run: cmake --build . --config Debug --parallel -- /p:UseMultiToolTask=true /p:EnforceProcessCountAcrossBuilds=true
       - name: CTest
         working-directory: ${{github.workspace}}/build
-        run: ctest -V --test-args="--no_fail"
+        run: ctest -V --test-args "--no_fail"
 
   workflow-keepalive:
     if: github.event_name == 'schedule'
