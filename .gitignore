@@ -25,6 +25,7 @@ waf3-*
 .lock-*
 build
 build_current
+build_cmake
 resolve_symlinks
 resolved_dependencies
 

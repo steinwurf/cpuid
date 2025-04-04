@@ -1,22 +1,55 @@
 name: MacOS C++ make-specs
-'on':
+"on":
   workflow_dispatch:
     inputs:
       extra_resolve_options:
         description: Extra Resolve Options
         required: false
   schedule:
-  - cron: 0 1 * * *
+    - cron: 0 1 * * *
   push:
     branches:
-    - master
+      - master
   pull_request:
 jobs:
   MacOS-mkspecs:
-    uses: steinwurf/macos-mkspecs-action/.github/workflows/action.yml@7.0.0
-    with:
-      extra_resolve_options: ${{ github.events.inputs.extra_resolve_options }}
-      test_command: python3 waf --run_tests --run_cmd="%s --no_fail"
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - arch: ARM64
+            name: Apple (ARM)
+    runs-on: [self-hosted, macOS, "${{ matrix.config.arch }}", builder]
+    name: ${{ matrix.config.name }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Clang Version
+        run: clang --version
+      - name: Configure
+        env:
+          GIT_SSH_COMMAND: "ssh"
+          EXTRA_RESOLVE_OPTIONS: ${{ inputs.extra_resolve_options }}
+        uses: nick-fields/retry@v2
+        with:
+          max_attempts: 3
+          timeout_minutes: 15
+          command: python3 waf configure --git_protocol=git@ ${{ env.EXTRA_RESOLVE_OPTIONS }}
+      - name: Build
+        run: |
+          echo "::add-matcher::.github/gcc-problem-matcher.json"
+          python3 waf
+      - name: Test
+        run: python3 waf --run_tests --run_cmd="%s --no_fail"
+
+  workflow-keepalive:
+    if: github.event_name == 'schedule'
+    runs-on: [self-hosted, vm, ubuntu-current]
+    permissions:
+      actions: write
+    steps:
+      - uses: liskin/gh-workflow-keepalive@v1
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
   cancel-in-progress: true

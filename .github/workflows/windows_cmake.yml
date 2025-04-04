@@ -14,11 +14,42 @@ name: Windows Cmake
 env:
   EXTRA_RESOLVE_OPTIONS: ${{ github.event.inputs.extra_resolve_options }}
 jobs:
-  Windows-cmake:
-    name: Windows Cmake
-    uses: steinwurf/windows-cmake-action/.github/workflows/action.yml@4.0.0
-    with:
-      extra_resolve_options: $EXTRA_RESOLVE_OPTIONS
+  windows_cmake:
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+    runs-on: [self-hosted, windows, vm, windows-current]
+    name: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: CMake Cleanup
+        run: cmake -E remove_directory ${{github.workspace}}/build
+      - name: CMake Setup
+        run: cmake -E make_directory ${{github.workspace}}/build
+      - name: CMake Configure
+        env:
+          GIT_SSH_COMMAND: "${{ 'ssh -i /home/buildbot/.ssh/id_ed25519 -o IdentitiesOnly=yes' }}"
+        uses: nick-fields/retry@v2
+        with:
+          max_attempts: 3
+          timeout_minutes: 15
+          command: cd build | cmake ${{github.workspace}} -DSTEINWURF_RESOLVE_OPTIONS="--git_protocol=git@ $EXTRA_RESOLVE_OPTIONS"
+      - name: CMake Build
+        working-directory: ${{github.workspace}}/build
+        # Parallelize MSBuild https://devblogs.microsoft.com/cppblog/improved-parallelism-in-msbuild/
+        run: cmake --build . --config Debug --parallel -- /p:UseMultiToolTask=true /p:EnforceProcessCountAcrossBuilds=true
+      - name: CTest
+        working-directory: ${{github.workspace}}/build
+        run: ctest -V --test-args="--no_fail"
+
+  workflow-keepalive:
+    if: github.event_name == 'schedule'
+    runs-on: [self-hosted, vm, ubuntu-current]
+    permissions:
+      actions: write
+    steps:
+      - uses: liskin/gh-workflow-keepalive@v1
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
   cancel-in-progress: true

@@ -2,6 +2,11 @@ name: Linux Cmake
 'on':
   workflow_dispatch:
     inputs:
+      preparation_commands:
+          description: "Commands to run to prepare the build"
+          required: false
+          type: string
+          default: ''
       extra_resolve_options:
         description: Extra Resolve Options
         required: false
@@ -14,11 +19,79 @@ name: Linux Cmake
 env:
   EXTRA_RESOLVE_OPTIONS: ${{ github.event.inputs.extra_resolve_options }}
 jobs:
-  Linux-cmake:
-    name: Linux Cmake
-    uses: steinwurf/linux-cmake-action/.github/workflows/action.yml@4.0.0
-    with:
-      extra_resolve_options: $EXTRA_RESOLVE_OPTIONS
+  docker_builds:
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+        - name: Cmake (GCC) Latest
+          cxx: g++
+          cc: gcc
+          cxxflags: ''
+          env:
+        - name: Cmake (Clang) Latest
+          cxx: clang++
+          cc: clang
+          cxxflags: ''
+          env:
+        - name: Clang Address Sanitizer Latest
+          cxx: clang++
+          cc: clang
+          cxxflags: '-fsanitize=address -fno-omit-frame-pointer -g'
+          env:
+          runner: ubuntu-current
+        - name: Clang Thread Sanitizer Latest
+          CXX: clang++
+          cc: clang
+          cxxflags: '-fsanitize=thread -fPIE -g'
+          env:
+          runner: ubuntu-current
+        - name: Clang Undefined Sanitizer Latest
+          CXX: clang++
+          cc: clang
+          cxxflags: '-fsanitize=undefined -g'
+          env: UBSAN_OPTIONS="abort_on_error=1:print_stacktrace=1"
+          runner: ubuntu-current
+    runs-on:
+    - self-hosted
+    - vm
+    - ubuntu-current
+    name: ${{ matrix.config.name }}
+    steps:
+    - name: Ensure correct owner of repository
+      run: sudo chown -R actions-runner:actions-runner .
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Preparation Commands
+      if: inputs.preparation_commands != ''
+      run: ${{ inputs.preparation_commands }}
+    - name: CMake Cleanup
+      run: cmake -E remove_directory build
+    - name: CMake Setup
+      run: cmake -E make_directory build
+    - name: CMake Configure
+      uses: nick-fields/retry@v3
+      env:
+        GIT_SSH_COMMAND: "${{ 'ssh -i /opt/actions-runner/.ssh/id_25519 -o IdentitiesOnly=yes' }}"
+      with:
+        max_attempts: 3
+        timeout_minutes: 15
+        command: cd build && cmake ../ -DCMAKE_BUILD_TYPE=Debug -DSTEINWURF_RESOLVE_OPTIONS="--git_protocol=git@ $EXTRA_RESOLVE_OPTIONS" -DCMAKE_CXX_COMPILER=${{ matrix.config.cxx }} -DCMAKE_C_COMPILER=${{ matrix.config.cc }} -DCMAKE_CXX_FLAGS="${{ matrix.config.cxxflags }}" -GNinja
+    - name: CMake Build
+      working-directory: ${{github.workspace}}/build
+      run: cmake --build . -j
+    - name: Run Tests
+      working-directory: ${{github.workspace}}/build
+      run: ${{ matrix.config.env }} ctest -V
+
+  workflow-keepalive:
+    if: github.event_name == 'schedule'
+    runs-on: [self-hosted, vm, ubuntu-current]
+    permissions:
+      actions: write
+    steps:
+      - uses: liskin/gh-workflow-keepalive@v1
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
   cancel-in-progress: true
