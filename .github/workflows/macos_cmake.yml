@@ -14,11 +14,50 @@ name: MacOS Cmake
 env:
   EXTRA_RESOLVE_OPTIONS: ${{ github.event.inputs.extra_resolve_options }}
 jobs:
-  MacOS-cmake:
-    name: MacOS Cmake
-    uses: steinwurf/macos-cmake-action/.github/workflows/action.yml@6.0.0
-    with:
-      extra_resolve_options: $EXTRA_RESOLVE_OPTIONS
+  macos_cmake:
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - arch: ARM64
+            name: Apple (ARM)
+
+    runs-on: [self-hosted, macOS, "${{ matrix.config.arch }}", cmake, builder]
+    name: ${{ matrix.config.name }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: CMake & Clang versions
+        run: |
+          cmake --version
+          clang --version
+      - name: CMake Cleanup
+        run: cmake -E remove_directory ${{github.workspace}}/build
+      - name: CMake Setup
+        run: cmake -E make_directory ${{github.workspace}}/build
+      - name: CMake Configure
+        env:
+          GIT_SSH_COMMAND: "${{ 'ssh -i /home/buildbot/.ssh/id_ed25519 -o IdentitiesOnly=yes' }}"
+        uses: nick-fields/retry@v2
+        with:
+          max_attempts: 3
+          timeout_minutes: 15
+          command: cd build && cmake ${{github.workspace}} -DSTEINWURF_RESOLVE_OPTIONS="--git_protocol=git@ $EXTRA_RESOLVE_OPTIONS" -DCMAKE_BUILD_TYPE=Debug
+      - name: CMake Build
+        working-directory: ${{github.workspace}}/build
+        run: cmake --build . -j$(( (`sysctl -n hw.physicalcpu` - 1) / 2 ))
+      - name: CTest
+        working-directory: ${{github.workspace}}/build
+        run: ./cpuid_tests --no_fail
+
+  workflow-keepalive:
+    if: github.event_name == 'schedule'
+    runs-on: [self-hosted, vm, ubuntu-current]
+    permissions:
+      actions: write
+    steps:
+      - uses: liskin/gh-workflow-keepalive@v1
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
   cancel-in-progress: true

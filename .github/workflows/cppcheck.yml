@@ -10,10 +10,28 @@ name: Cppcheck
   push:
     branches:
     - master
+  pull_request:
 jobs:
-  docker_check:
+  cpp_check:
+    runs-on: [self-hosted, vm, ubuntu-current]
     name: Cppcheck
-    uses: steinwurf/cppcheck-action/.github/workflows/action.yml@2.0.0
+    steps:
+      - name: Ensure correct owner of repository
+        run: sudo chown -R actions-runner:actions-runner .
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Get Compile Commands
+        run: cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DSTEINWURF_RESOLVE_OPTIONS="--git_protocol=git@" -B cmake_build
+      - name: Cppcheck
+        run: cppcheck --project=cmake_build/compile_commands.json -j$(nproc) -i resolve_symlinks/ -i test -i cmake_build/_deps --suppress=unknownMacro --suppress="preprocessorErrorDirective"
+
+  workflow-keepalive:
+    if: github.event_name == 'schedule'
+    runs-on: [self-hosted, vm, ubuntu-current]
+    permissions:
+      actions: write
+    steps:
+      - uses: liskin/gh-workflow-keepalive@v1
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
   cancel-in-progress: true

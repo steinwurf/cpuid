@@ -1,19 +1,38 @@
 name: Clang-Format
-'on':
+"on":
   workflow_dispatch:
     inputs:
       extra_resolve_options:
         description: Extra Resolve Options
         required: false
   schedule:
-  - cron: 0 1 * * *
+    - cron: 0 1 * * *
   push:
     branches:
-    - master
+      - master
   pull_request:
 jobs:
-  Clang-Format:
-    uses: steinwurf/clang-format-action/.github/workflows/action.yml@4.0.0
+  clang-format:
+    timeout-minutes: 45
+    name: Clang-Format
+    runs-on: [self-hosted, vm, ubuntu-current]
+    steps:
+      - name: Ensure correct owner of repository
+        run: sudo chown -R actions-runner:actions-runner .
+      - name: Clang format version
+        run: clang-format --version
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - name: Run Clang-format
+        run: find ./ -iname *.hpp -o -iname *.cpp -o -iname *.c -o -iname *.h | xargs clang-format --dry-run --Werror
+
+  workflow-keepalive:
+    if: github.event_name == 'schedule'
+    runs-on: [self-hosted, vm, ubuntu-current]
+    permissions:
+      actions: write
+    steps:
+      - uses: liskin/gh-workflow-keepalive@v1
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
   cancel-in-progress: true

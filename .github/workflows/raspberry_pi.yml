@@ -1,5 +1,5 @@
-name: Raspberry Pi
-'on':
+name: Aarch64 Linux Musl
+on:
   workflow_dispatch:
     inputs:
       extra_resolve_options:
@@ -12,17 +12,72 @@ name: Raspberry Pi
     - master
   pull_request:
 jobs:
-  RaspberryPi:
-    uses: steinwurf/cross-compile-action/.github/workflows/action.yml@6.0.0
-    with:
-      cxx_mkspec: cxx_raspberry_gxx83_armv7
-      extra_resolve_options: ${{ github.event.inputs.extra_resolve_options }}
-      image: ghcr.io/steinwurf/gcc-8.3.0-raspberrypi-armv7:1.0.0
-      name: Raspberry Pi
-      test_binary_directory: build/cxx_raspberry_gxx83_armv7/test
-      test_binary_name: cpuid_tests
-      test_option: --no_fail
-      test_runner: raspberry_pi
+  cross-compile:
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+    runs-on: [self-hosted, vm, ubuntu-current]
+    name: Raspberry Pi Cross-compile
+    steps:
+      - name: Ensure correct owner of repository
+        run: sudo chown -R actions-runner:actions-runner .
+      - name: Checkout source code
+        uses: actions/checkout@v4
+      - name: Clone toolchains
+        run: rm -rf ~/toolchains && git clone --depth 1 git@github.com:steinwurf/cmake-toolchains.git ~/toolchains
+      - name: CMake Cleanup
+        run: cmake -E remove_directory cmake_build
+      - name: CMake Configure
+        uses: nick-fields/retry@v3
+        with:
+          max_attempts: 3
+          timeout_minutes: 15
+          command: cmake -B cmake_build -DCMAKE_BUILD_TYPE=Debug -DSTEINWURF_RESOLVE_OPTIONS="--git_protocol=git@ $EXTRA_RESOLVE_OPTIONS" -DCMAKE_CXX_COMPILER=${{ matrix.config.cxx }} -DCMAKE_C_COMPILER=${{ matrix.config.cc }} -DCMAKE_BUILD_TYPE=WurfRelease -DCMAKE_TOOLCHAIN_FILE=~/toolchains/zig-toolchain-aarch64-linux-musl.cmake -GNinja
+      - name: CMake Build
+        run: cmake --build cmake_build -j
+      - name: Gather Test Binary and Input files
+        run: |
+          mkdir artifact
+          mv cmake_build/cpuid_tests ./artifact
+      - name: Upload Test Binary Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpuid_tests
+          path: artifact
+          retention-days: 1
+  tests:
+    needs: cross-compile
+    strategy:
+      fail-fast: false
+    runs-on: [self-hosted, raspberry_pi_4]
+    name: Run Tests on Raspberry Pi
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - name: Download Test Binary Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: cpuid_tests
+      - name: List files
+        run: ls -l
+      - name: Run all tests
+        run: chmod +x cpuid_tests
+      - name: Get backtrace on failure if available
+        run: |
+          if ! ./cpuid_tests --no_fail; then
+            echo "Test failed, getting backtrace"
+            gdb -batch -ex "r" -ex "thread apply all backtrace full" -ex "quit" ./cpuid_tests --no_fail
+            exit 1
+          fi
+
+  workflow-keepalive:
+    if: github.event_name == 'schedule'
+    runs-on: [self-hosted, vm, ubuntu-current]
+    permissions:
+      actions: write
+    steps:
+      - uses: liskin/gh-workflow-keepalive@v1
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
   cancel-in-progress: true
+

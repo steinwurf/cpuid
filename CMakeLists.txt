@@ -37,6 +37,10 @@ else()
   set_property(GLOBAL APPEND PROPERTY steinwurf::object_libraries
                                       steinwurf::cpuid)
 endif()
+find_package(Threads REQUIRED)
+
+# Link Threads
+target_link_libraries(cpuid PRIVATE Threads::Threads)
 
 # Link header only dependencies
 target_link_libraries(cpuid PRIVATE steinwurf::platform)
@@ -58,4 +62,17 @@ if(${CMAKE_PROJECT_NAME} STREQUAL ${PROJECT_NAME})
   # Build executables
   add_executable(print_cpuinfo examples/print_cpuinfo/main.cpp)
   target_link_libraries(print_cpuinfo cpuid)
+
+  if(NOT TARGET steinwurf::gtest)
+      add_subdirectory("${STEINWURF_RESOLVE}/gtest" EXCLUDE_FROM_ALL)
+  endif()
+
+  if(NOT TARGET steinwurf::cli11)
+    add_subdirectory("${STEINWURF_RESOLVE}/cli11-source" CLI11 EXCLUDE_FROM_ALL)
+  endif()
+  file(GLOB_RECURSE cpuid_test_sources test/**.cpp)
+  add_executable(cpuid_tests ${cpuid_test_sources})
+  target_link_libraries(cpuid_tests ${steinwurf_object_libraries}
+                        steinwurf::gtest steinwurf::cpuid CLI11)
+  add_test(NAME cpuid_tests COMMAND cpuid_tests)
 endif()
