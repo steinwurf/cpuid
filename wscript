@@ -5,7 +5,7 @@ from waflib.Build import BuildContext
 import os
 
 APPNAME = "cpuid"
-VERSION = "9.0.1"
+VERSION = "10.0.0"
 
 
 def options(ctx):

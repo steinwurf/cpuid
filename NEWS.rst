@@ -6,6 +6,10 @@ every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+10.0.0
+------
 * Major: Only builds with CMake
 * Major: Bumped platform to v6.
 * Patch: Fixed compilation error on ARM64 FreeBSD.
