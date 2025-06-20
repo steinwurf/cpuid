@@ -2,7 +2,7 @@ name: C++ Internal
 
 on:
   schedule:
-    - cron: 0 1 * * *  # Nightly at 01:00 UTC
+    - cron: 0 1 * * * # Nightly at 01:00 UTC
   push:
     branches:
       - master
@@ -82,7 +82,7 @@ jobs:
     name: Zig Toolchain Build (Docker)
     runs-on: [self-hosted, vm, ubuntu-current]
     container:
-      image: kassany/bookworm-ziglang
+      image: ghcr.io/steinwurf/build-images/zig-cpp
       options: --user 0:0
       volumes:
         - /root/.ssh:/root/.ssh
