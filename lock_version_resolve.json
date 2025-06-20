@@ -1,32 +1,27 @@
 {
-    "cli11": {
-        "commit_id": "b1003a44f018255c409c43d5f35e71ab8f7eef62",
-        "resolver_info": "2.0.1",
-        "sha1": "fdd606a277e537302216420bd3e9070c6f0df861"
-    },
     "cli11-source": {
         "commit_id": "f862849488557eeee0397814a47449ecfdae0383",
         "resolver_info": "f862849488557eeee0397814a47449ecfdae0383",
         "sha1": "c907ae8559530944e520e22d1382be32d290ca77"
     },
     "gtest": {
-        "commit_id": "da24468d2c5deb601d0f67196abe83d78a00f972",
-        "resolver_info": "5.0.0",
-        "sha1": "11e35e3559b3844fbe2fa6f045854cd2dcdf0f86"
+        "commit_id": "8e1f80ae8618fdba4389f1b56c811ea7241569d1",
+        "resolver_info": "6.0.2",
+        "sha1": "44c35f8798a738692c902fe2b67dc0cb76a1df53"
     },
     "gtest-source": {
-        "commit_id": "e2239ee6043f73722e7aa812a459f54a28552929",
-        "resolver_info": "release-1.11.0",
-        "sha1": "ca969a1500e88a09de1cbfb8d8d3307a7773abfd"
+        "commit_id": "52eb8108c5bdec04579160ae17225d66034bd723",
+        "resolver_info": "v1.17.0",
+        "sha1": "8600eafa3daedc694d3115677da0dda3af6a8633"
     },
     "platform": {
-        "commit_id": "c2543dd5e613fb86d8dee530c0f1c142a310e1f0",
-        "resolver_info": "5.1.1",
-        "sha1": "f6bc772cf920c024726ebd12a5a38f123d057adb"
+        "commit_id": "7740600dfa6c8800819737dd85fb89c16c1c0c01",
+        "resolver_info": "6.0.0",
+        "sha1": "7a014ba5a95cf7f0193213e95d3d2d8fcfa313b7"
     },
-    "waf-tools": {
-        "commit_id": "6379b83992885dcb148e2c8bf3677f315d623e8f",
-        "resolver_info": "5.4.0",
-        "sha1": "9dd4ab1d52c916572f45237d4e7450abc7c19a14"
+    "toolchains": {
+        "commit_id": "f7b9747ab22d7dbbeb23c9f863e735bac883566e",
+        "resolver_info": "1.0.3",
+        "sha1": "443cb23b0570dffd39283d8679ec393ed809302f"
     }
 }
