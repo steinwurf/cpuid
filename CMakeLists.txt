@@ -13,8 +13,10 @@ if(NOT DEFINED STEINWURF_RESOLVE)
     message(FATAL_ERROR "Failed: ${STATUS}")
   endif()
   set(STEINWURF_RESOLVE "${CMAKE_CURRENT_SOURCE_DIR}/resolve_symlinks")
-  set(STEINWURF_TOP_NAME cpuid)
 endif()
+
+# Include common CMake settings
+include("${STEINWURF_RESOLVE}/toolchains/common_settings.cmake")
 
 # platform dependency
 if(NOT TARGET steinwurf::platform)
@@ -25,7 +27,7 @@ endif()
 file(GLOB_RECURSE cpuid_sources ./src/*.cpp)
 
 # Is this the top-level steinwurf project?
-if(${PROJECT_NAME} STREQUAL ${STEINWURF_TOP_NAME})
+if(${CMAKE_PROJECT_NAME} STREQUAL ${PROJECT_NAME})
   # Create static library
   add_library(cpuid STATIC ${cpuid_sources})
   # Install library
@@ -58,4 +60,8 @@ if(${CMAKE_PROJECT_NAME} STREQUAL ${PROJECT_NAME})
   # Build executables
   add_executable(print_cpuinfo examples/print_cpuinfo/main.cpp)
   target_link_libraries(print_cpuinfo cpuid)
+
+  enable_testing()
+  add_test(print_cpuinfo print_cpuinfo)
+
 endif()

@@ -8,49 +8,24 @@ APPNAME = "cpuid"
 VERSION = "9.0.1"
 
 
-def configure(conf):
-    conf.set_cxx_std(11)
+def options(ctx):
+    ctx.load("cmake")
 
 
-def build(bld):
-    # Build static library if this is top-level otherwise just .o files
-    features = ["cxx"]
-    if bld.is_toplevel():
-        features += ["cxxstlib"]
+def configure(ctx):
 
-    bld(
-        features=features,
-        source=bld.path.ant_glob("src/**/*.cpp"),
-        target="cpuid",
-        export_includes=["src"],
-        use=["platform_includes"],
-        install_path="${PREFIX}/lib",
-    )
+    ctx.load("cmake")
 
-    # Add a manual dependency to rebuild cpuinfo.cpp if a header file changes.
-    # waf cannot detect this dependency, because the headers are included
-    # conditionally based on the platform
-    bld.add_manual_dependency(
-        bld.path.find_node("src/cpuid/cpuinfo.cpp"),
-        bld.path.ant_glob("src/cpuid/**/*.hpp"),
-    )
+    if ctx.is_toplevel():
+        ctx.cmake_configure()
 
-    if bld.is_toplevel():
-        # Only build tests when executed from the top-level wscript,
-        # i.e. not when included as a dependency
-        bld.recurse("test")
-        bld.recurse("examples/print_cpuinfo")
 
-        sourcepath = bld.path.find_node("src")
+def build(ctx):
 
-        bld.install_files(
-            dest="${PREFIX}/include",
-            files=sourcepath.ant_glob("**/*.hpp", excl=["**/detail/**"]),
-            cwd=sourcepath,
-            relative_trick=True,
-        )
+    ctx.load("cmake")
 
-        bld.install_files(dest="${PREFIX}/", files=bld.path.ant_glob("NEWS.rst"))
+    if ctx.is_toplevel():
+        ctx.cmake_build()
 
 
 class ReleaseContext(BuildContext):
